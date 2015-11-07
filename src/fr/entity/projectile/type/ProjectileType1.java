@@ -17,7 +17,7 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 	private int amplitude;// Amplitude du sinus.
 	
 	public ProjectileType1(double x, double y, double speed) {
-		super(x, y, speed);
+		super(x, y, 0, speed);
 		speedY = -0.5;
 		spawnY = y;
 		amplitude = 64;
