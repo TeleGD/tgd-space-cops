@@ -1,5 +1,6 @@
 package fr.entity.projectile;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -25,22 +26,25 @@ public class Projectile extends Movable implements Rectangle {
 		 return shotType;
 	}
 	
-	public Projectile(double x, double y, int shotType) { // (x,y) Sont les coordonnees d'apparition du tir
+	public Projectile(double x, double y, int shotType) { //(x,y) Sont les coordonnees d'apparition du tir
 		this.x = x;
 		this.y = y;
+		width = 16;
+		height = 16;
 		this.shotType = shotType;
-		this.speedY = -0.5;
 		this.setMoving(true);
 	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		g.setColor(Color.green);
 		g.fillRect((float)x, (float)y, (float)width, (float)height);
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
+		moveX(delta);
 	}
 	
 	public void keyReleased(int key, char c) {
