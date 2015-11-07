@@ -23,6 +23,7 @@ public abstract class Movable extends Entity{
 	public void moveY(int delta){
 		if(isMoving){
 			y+=speedY*delta;
+			System.out.println("de="+delta+"  speedY="+speedY);
 		}
 	}
 	
