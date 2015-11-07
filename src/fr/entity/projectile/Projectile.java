@@ -12,27 +12,12 @@ import fr.world.World;
 
 public class Projectile extends Movable implements Rectangle {
 
-	protected int shotType; // Pour avoir plusieurs types de tirs
-	
-	public void setShotType(int typeNumber){
-		if(typeNumber>=0){
-			shotType = typeNumber;
-		}
-		else {
-			shotType = 0;
-		}
-	}
-	
-	public int getShotType() {
-		 return shotType;
-	}
-	
 	public Projectile(double x, double y) { //(x,y) Sont les coordonnees d'apparition du tir
 		this.x = x;
 		this.y = y;
 		width = 16;
 		height = 16;
-		this.setMoving(true);
+		setMoving(true);
 		World.getProjectiles().add(this);
 	}
 	
