@@ -10,17 +10,26 @@ import fr.entity.projectile.Projectile;
 import fr.util.Rectangle;
 
 public class ProjectileType1 extends Projectile implements Rectangle {
-//Ce projectile la monte tout droit en oscillant de gauche a droite (avec une periode de 128).
+// Ce projectile avance selon l'angle donne
+// en oscillant de gauche a droite (avec une periode de p ou 128 par defaut).
 	
-	private double spawnX;// X d'apparition du projectile
-	private double spawnY;// Y d'apparition du projectile
+	private double spawnX;// X d'apparition du projectile.
+	private double spawnY;// Y d'apparition du projectile.
 	private int amplitude;// Amplitude du sinus.
+	private int period;// Periode du sinus.
 	
-	public ProjectileType1(double x, double y, double speed) {
-		super(x, y, 0, speed);
-		speedY = -0.5;
+	public ProjectileType1(double x, double y, double angle, double speed) {
+		super(x, y, angle, speed);
 		spawnY = y;
 		amplitude = 64;
+		period = 128;
+	}
+	
+	public ProjectileType1(double x, double y, double angle, double speed, int period){
+		super(x, y, angle, speed);
+		spawnY = y;
+		amplitude = 64;
+		this.period = period;
 	}
 	
 	public void move(int delta) { 
