@@ -41,7 +41,7 @@ public class World extends BasicGameState{
 
 
 	public void keyPressed(int key, char c) {
-		player.keyReleased(key, c);
+		player.keyPressed(key, c);
 	}
 
 	@Override
