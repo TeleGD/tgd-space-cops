@@ -7,7 +7,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entity.projectile.Projectile;
-import fr.util.Movable;
 import fr.util.Rectangle;
 
 public class ProjectileType1 extends Projectile implements Rectangle {
@@ -16,8 +15,8 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 	private int amplitude;// Amplitude du sinus.
 	
 	public ProjectileType1(double x, double y) {
-		super(x, y, 1);
-		this.shotType = 0;
+		super(x, y);
+		shotType = 1;
 		speedY = -0.5;
 		spawnY = y;
 		amplitude = 64;

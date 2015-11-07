@@ -11,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.entity.character.Player;
 import fr.entity.character.enemy.Enemy;
 import fr.entity.character.enemy.EnemyGenerator;
-import fr.entity.projectile.Projectile;
+import fr.entity.projectile.type.ProjectileType0;
 
 
 public class World extends BasicGameState{
@@ -26,7 +26,7 @@ public class World extends BasicGameState{
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		player = new Player();
-		p1 = new Projectile(400,400,0);
+		p1 = new ProjectileType0(400,400,45);
 		enemies = new ArrayList<Enemy>();
 		enemyGen = new EnemyGenerator();
 		enemyGen.init(container,game);

@@ -11,10 +11,11 @@ import fr.util.Rectangle;
 
 public class ProjectileType0 extends Projectile implements Rectangle {
 // Ce projectile va tout droit selon l'angle donne.
+// L'angle est en degres, et est compte en sens horaire.
 	public ProjectileType0(double x, double y, double angle) {
-		super(x, y, 0);
-		this.shotType = 0;
-		speedY = -Math.sin(0.5*Math.PI-angle*(2*Math.PI)/360)*0.5; // Sens horaire pour l'angle
+		super(x, y);
+		shotType = 0;
+		speedY = -Math.sin(0.5*Math.PI-angle*(2*Math.PI)/360)*0.5;
 		speedX = Math.cos(0.5*Math.PI-angle*(2*Math.PI)/360)*0.5;
 	}
 	

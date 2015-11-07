@@ -26,12 +26,11 @@ public class Projectile extends Movable implements Rectangle {
 		 return shotType;
 	}
 	
-	public Projectile(double x, double y, int shotType) { //(x,y) Sont les coordonnees d'apparition du tir
+	public Projectile(double x, double y) { //(x,y) Sont les coordonnees d'apparition du tir
 		this.x = x;
 		this.y = y;
 		width = 16;
 		height = 16;
-		this.shotType = shotType;
 		this.setMoving(true);
 	}
 	
