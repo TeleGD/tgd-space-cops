@@ -1,5 +1,7 @@
 package fr.entity.character.enemy;
 
+import java.util.Random;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,25 +13,27 @@ import fr.entity.projectile.type.ProjectileType0;
 
 public class BasicEnemy extends Enemy{
 	
-	float rotation;
-	int timeShoot;
-	int timeLeft;
+	Random rand;
+	double targetX;
+	double targetY;
+	int marge = 10;
+	boolean xOk,yOk;
 
 	public BasicEnemy(double x, double y, double width, double height) {
 		super(x, y, width, height);
 		speedX = 0.3;
-		timeShoot = 1;
+		speedY = 0.3;
+		timeShoot = 20;
 		timeLeft = timeShoot;
+		rand = new Random();
+		moveArea(0, 0, 200, 200);
+		
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		super.update(container, game, delta);
-		rotation++;
 		if(timeLeft <= 0){
-			shoot(rotation+45);
-			shoot(rotation+135);
-			shoot(rotation+225);
-			shoot(rotation+315);
+			shoot();
 			timeLeft = timeShoot;
 		}else{
 			timeLeft--;
@@ -43,27 +47,45 @@ public class BasicEnemy extends Enemy{
 	
 	public void move(int delta){
 		moveX(delta);
-		if(x<0){
-			x = 0;
-			speedX = -speedX;
-		}
-		if(x>800-width){
-			x = 800 - width;
-			speedX = -speedX;
+		if(x<targetX-marge){
+			speedX = Math.abs(speedX);
+			xOk = false;
+		}else if(x > targetX+marge){
+			speedX = -Math.abs(speedX);
+			xOk = false;
+		}else{
+			speedX = 0;
+			xOk = true;
 		}
 		moveY(delta);
-		if(y<0){
-			y = 0;
-			speedY = -speedY;
+		if(y<targetY-marge){
+			speedY = Math.abs(speedY);
+			yOk = false;
+		}else if(y > targetY+marge){
+			speedY = -Math.abs(speedY);
+			yOk = false;
+		}else{
+			speedY = 0;
+			yOk = true;
 		}
-		if(y>600-height){
-			y = 600-height;
-			speedY = -speedY;
+		if(xOk && yOk){
+			moveArea(100 ,100 ,600 ,300);
+			speedX = 0.3;
+			speedY = 0.3;
 		}
 	}
 	
-	void shoot(float rot){
-		new ProjectileType0((double) x+(width/2)-8,(double)y+(height/2)-8,rot);
+	public void moveArea(double x, double y, double width, double height){
+		targetX = genDouble(x,x+width);
+		targetY = genDouble(y,y+height);
+	}
+	
+	public double genDouble(double min, double max){
+		return (min+rand.nextInt((int)(max - min)));
+	}
+	
+	public void shoot(){
+		new ProjectileType0((double) x+(width/2)-8,(double)y+(height/2)-8,180);
 	}
 
 

@@ -11,6 +11,9 @@ import fr.world.World;
 
 public abstract class Enemy extends Movable {
 	
+	int timeShoot;
+	int timeLeft;
+	
 	public Enemy(double x,double y,double width,double height){
 		isMoving = true;
 		this.x = x;
