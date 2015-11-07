@@ -11,6 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.entity.character.Player;
 import fr.entity.character.enemy.Enemy;
 import fr.entity.character.enemy.EnemyGenerator;
+import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
 
 
@@ -20,6 +21,7 @@ public class World extends BasicGameState{
 	private static Player player;
 	public static int ID=0;
 	private static Projectile p1;
+	private static ArrayList<Projectile> projectiles;
 	private static ArrayList<Enemy> enemies;
 	private static EnemyGenerator enemyGen;
 	
@@ -30,6 +32,7 @@ public class World extends BasicGameState{
 		enemies = new ArrayList<Enemy>();
 		enemyGen = new EnemyGenerator();
 		enemyGen.init(container,game);
+		projectiles = new ArrayList<Projectile>();
 	}
 
 	@Override
@@ -39,6 +42,9 @@ public class World extends BasicGameState{
 		for(int i = 0; i<enemies.size();i++){
 			enemies.get(i).render(container, game, g);
 		}
+		for(int i = 0; i<projectiles.size();i++){
+			projectiles.get(i).render(container, game, g);
+		}
 	}
 
 	@Override
@@ -47,6 +53,9 @@ public class World extends BasicGameState{
 		p1.update(container, game,delta);
 		for(int i = 0; i<enemies.size();i++){
 			enemies.get(i).update(container, game, delta);
+		}
+		for(int i = 0; i<projectiles.size();i++){
+			projectiles.get(i).update(container, game, delta);
 		}
 	}
 	
@@ -62,6 +71,10 @@ public class World extends BasicGameState{
 	public static ArrayList<Enemy> getEnemies(){
 		return enemies;
 	}
+	public static ArrayList<Projectile> getProjectiles(){
+		return projectiles;
+	}
+
 
 	@Override
 	public int getID() {

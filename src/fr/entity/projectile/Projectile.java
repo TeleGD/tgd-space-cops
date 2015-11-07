@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import fr.util.Movable;
 import fr.util.Rectangle;
+import fr.world.World;
 
 public class Projectile extends Movable implements Rectangle {
 
@@ -32,6 +33,7 @@ public class Projectile extends Movable implements Rectangle {
 		width = 16;
 		height = 16;
 		this.setMoving(true);
+		World.getProjectiles().add(this);
 	}
 	
 	@Override
