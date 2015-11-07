@@ -16,7 +16,7 @@ import fr.world.World;
 
 public class MainMenu extends BasicGameState{
 	
-	public static int ID = 0;
+	public static int ID = 2;
 	
 	static TrueTypeFont font1;
 
@@ -33,14 +33,16 @@ public class MainMenu extends BasicGameState{
 
 	static GameContainer container;
 	static StateBasedGame game;
+	
+	
 	int selection = 0;
 
 	 public void init(GameContainer container, StateBasedGame game) throws SlickException {
 	        this.container = container;
-	        container.setShowFPS(false);
+	        //container.setShowFPS(false);
 	        this.game=game;
 	        
-	        background = new Image("Images/background2.png");
+	        //background = new Image("Images/background2.png");
 	        
 	    	Font titre1Font = new Font("Kalinga", Font.BOLD, 26);
 	    	font1 = new TrueTypeFont(titre1Font, false);
@@ -52,7 +54,7 @@ public class MainMenu extends BasicGameState{
 	 }
 
 	 public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		 	g.drawImage(background, 0, 0);
+		 	//g.drawImage(background, 0, 0);
 		 
 		 	g.setColor(Color.red);
 		 	g.setFont(font1);
