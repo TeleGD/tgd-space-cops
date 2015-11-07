@@ -71,19 +71,19 @@ public class MainMenu extends BasicGameState{
 	 @Override
 	public void keyPressed(int key,char c) {
 		switch (key) {
-		case Input.KEY_DOWN: case Input.KEY_S:
+		case Input.KEY_DOWN: 
 			if (selection < nbrOption - 1)
 				selection++;
 			else
 				selection = 0;
 			break;
-		case Input.KEY_UP: case Input.KEY_Z:
+		case Input.KEY_UP:
 			if (selection > 0)
 				selection--;
 			else
 				selection = nbrOption - 1;
 			break;
-		case Input.KEY_ENTER: case Input.KEY_SPACE:
+		case Input.KEY_ENTER:
 			execOption();
 			break;
 			
@@ -103,7 +103,7 @@ public class MainMenu extends BasicGameState{
 			break;
 			/*
 		case 1:
-			game.enterState(ScoreMenu.ID);
+			game.enterState(ScoresMenu.ID);
 			break;
 		case 2:
 			game.enterState(HelpMenu.ID);
