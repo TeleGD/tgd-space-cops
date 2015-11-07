@@ -20,7 +20,7 @@ public class World extends BasicGameState{
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		player = new Player();
-		p1 = new Projectile();
+		p1 = new Projectile(400,400,0);
 	}
 
 	@Override
