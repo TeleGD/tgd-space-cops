@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -13,6 +14,7 @@ import fr.entity.character.enemy.Enemy;
 import fr.entity.character.enemy.EnemyGenerator;
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
+import fr.menus.MainMenu;
 
 
 public class World extends BasicGameState{
@@ -24,15 +26,19 @@ public class World extends BasicGameState{
 	private static ArrayList<Projectile> projectiles;
 	private static ArrayList<Enemy> enemies;
 	private static EnemyGenerator enemyGen;
+	private GameContainer container;
+	private StateBasedGame game;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		player = new Player();
-		p1 = new ProjectileType0(400,400,45);
 		enemies = new ArrayList<Enemy>();
 		enemyGen = new EnemyGenerator();
 		enemyGen.init(container,game);
 		projectiles = new ArrayList<Projectile>();
+		p1 = new ProjectileType0(400,400,45);
+		this.container = container;
+		this.game = game;
 	}
 
 	@Override
@@ -66,6 +72,9 @@ public class World extends BasicGameState{
 
 	public void keyPressed(int key, char c) {
 		player.keyPressed(key, c);
+		if(key == Input.KEY_ESCAPE){
+			game.enterState(MainMenu.ID);
+		}
 	}
 	
 	public static ArrayList<Enemy> getEnemies(){
