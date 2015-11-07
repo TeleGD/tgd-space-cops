@@ -6,7 +6,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class EnemyGenerator {
 	
 	public void init(GameContainer container,StateBasedGame game){
-		new CircleEnemy(400,200,32,32);
+		new BasicEnemy(400,200,32,32);
 	}
 
 }
