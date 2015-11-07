@@ -1,0 +1,26 @@
+La formation au jeu reste prévue la semaine après les vacances (45), la semaine de la Coding Night
+La CN aura lieu le soir du 6 novembre
+Pendant la formation on apprendra à faire un jeu en Java
+Aujourd'hui, le but est de trouver ce qu'on fera (un brainstorming, quoi)
+
+Sur le type de jeu :
+Casse-brique avec murs qui descendent - 2
+Jeu de plateforme - 8
+Shooter - 5
+Geometry Dash - 2
+
+Principe des jeux retenus :
+Plateforme :
+	? Portal fixe sur la map
+	V Gravité inversée (zones de changements de commande)
+	X Objets nécessaires pour avancer : capacités spéciales, clés, etc.
+	V Ennemis : objets à ramasser pour les lancer sur les ennemis, en nombre limité
+
+Shooter :
+	V type SHMUP
+	V il est quand même possible de bouger sur une petite zone de l'écran
+	V Bonus : tir plus rapide, plus large
+	V Obstacles à éviter
+
+
+	
