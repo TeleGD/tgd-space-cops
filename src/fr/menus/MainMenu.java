@@ -111,6 +111,7 @@ public class MainMenu extends BasicGameState{
 			*/
 		case 3:
 			//game.enterState(ConfirmMenu.ID);
+			container.exit();
 			break;
 		}
 	}
