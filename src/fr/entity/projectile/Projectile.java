@@ -11,13 +11,34 @@ import fr.util.Rectangle;
 import fr.world.World;
 
 public class Projectile extends Movable implements Rectangle {
+// Ce projectile va tout droit selon l'angle donne, a la vitesse speed,
+// a partir des coordonees (x,y)
+// L'angle est en degres, et est compte en sens horaire.
+	
+	protected double angle;
+	
+	public Projectile(double x, double y, double speed){
+	// Projectile de base : tout droit vers le haut.
+		
+		this.x = x;
+		this.y = y;
+		width = 16;
+		height = 16;
+		speedY = speed;
+		setMoving(true);
+		World.getProjectiles().add(this);
+	}
+	
+	public Projectile(double x, double y, double angle, double speed) { 
 
-	public Projectile(double x, double y) { //(x,y) Sont les coordonnees d'apparition du tir
 		this.x = x;
 		this.y = y;
 		width = 16;
 		height = 16;
 		setMoving(true);
+		this.angle = angle;
+		speedY = -speed*Math.sin(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
+		speedX = speed*Math.cos(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
 		World.getProjectiles().add(this);
 	}
 	
@@ -33,12 +54,4 @@ public class Projectile extends Movable implements Rectangle {
 		moveX(delta);
 	}
 	
-	public void keyReleased(int key, char c) {
-		
-	}
-
-	public void keyPressed(int key, char c) {
-		
-	}
-
 }
