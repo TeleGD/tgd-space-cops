@@ -8,7 +8,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import fr.entity.projectile.type.ProjectileType0;
+import fr.entity.projectile.Projectile;
 
 
 public class BasicEnemy extends Enemy{
@@ -85,7 +85,7 @@ public class BasicEnemy extends Enemy{
 	}
 	
 	public void shoot(){
-		new ProjectileType0((double) x+(width/2)-8,(double)y+(height/2)-8,180);
+		new Projectile((double) x+(width/2)-8,(double)y+(height/2)-8,180,0.3);
 	}
 
 

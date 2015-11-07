@@ -36,14 +36,17 @@ public abstract class Enemy extends Movable {
 	}
 	
 	public void move(int delta){
+		speedX+=accelX;
 		moveX(delta);
 		if(x<0){
 			x = 0;
 			speedX = -speedX;
+			accelX = -accelX;
 		}
 		if(x>800-width){
 			x = 800 - width;
 			speedX = -speedX;
+			accelX = -accelX;
 		}
 		moveY(delta);
 		if(y<0)

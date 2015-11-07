@@ -6,7 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import fr.entity.projectile.type.ProjectileType0;
+import fr.entity.projectile.Projectile;
 
 
 public class RotateEnemy extends Enemy{
@@ -61,7 +61,7 @@ public class RotateEnemy extends Enemy{
 	}
 	
 	void shoot(float rot){
-		new ProjectileType0((double) x+(width/2)-8,(double)y+(height/2)-8,rot);
+		new Projectile((double) x+(width/2)-8,(double)y+(height/2)-8,rot,0.3);
 	}
 
 
