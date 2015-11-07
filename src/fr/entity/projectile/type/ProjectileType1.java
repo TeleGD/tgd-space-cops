@@ -10,23 +10,23 @@ import fr.entity.projectile.Projectile;
 import fr.util.Rectangle;
 
 public class ProjectileType1 extends Projectile implements Rectangle {
+//Ce projectile la monte tout droit en oscillant de gauche a droite (avec une periode de 128).
+	
 	private double spawnX;// X d'apparition du projectile
 	private double spawnY;// Y d'apparition du projectile
 	private int amplitude;// Amplitude du sinus.
 	
-	public ProjectileType1(double x, double y) {
-		super(x, y);
-		shotType = 1;
+	public ProjectileType1(double x, double y, double speed) {
+		super(x, y, speed);
 		speedY = -0.5;
 		spawnY = y;
 		amplitude = 64;
 	}
 	
-	public void move(int delta) { // Ce projectile la oscille de gauche a droite (avec une periode de 128).
+	public void move(int delta) { 
 		y += speedY*delta;
 		x = spawnX + amplitude*Math.sin((spawnY-y)*(2*Math.PI)/128.0);
 	}
-	
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.setColor(Color.green);
