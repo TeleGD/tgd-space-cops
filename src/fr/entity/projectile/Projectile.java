@@ -25,23 +25,12 @@ public class Projectile extends Movable implements Rectangle {
 		 return shotType;
 	}
 	
-	public void moveType(int delta){
-		switch(this.getShotType()){
-		case 0: // Type de base, tout droit vers le haut.
-			this.setMoving(true);
-			this.setSpeedY(-10);
-			this.moveY(delta);
-			break;
-		
-		default:
-			break;
-		}
-	}
-	
 	public Projectile(double x, double y, int shotType) { // (x,y) Sont les coordonnees d'apparition du tir
 		this.x = x;
 		this.y = y;
 		this.shotType = shotType;
+		this.speedY = -0.5;
+		this.setMoving(true);
 	}
 	
 	@Override
@@ -51,7 +40,7 @@ public class Projectile extends Movable implements Rectangle {
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		moveType(0);
+		moveY(delta);
 	}
 	
 	public void keyReleased(int key, char c) {
