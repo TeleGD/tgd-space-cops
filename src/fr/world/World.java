@@ -36,7 +36,7 @@ public class World extends BasicGameState{
 		enemyGen = new EnemyGenerator();
 		enemyGen.init(container,game);
 		projectiles = new ArrayList<Projectile>();
-		p1 = new ProjectileType0(400,400,45);
+		p1 = new Projectile(400,400,45,0.5);
 		this.container = container;
 		this.game = game;
 	}
