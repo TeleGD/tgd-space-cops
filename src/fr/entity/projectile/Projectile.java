@@ -17,18 +17,6 @@ public class Projectile extends Movable implements Rectangle {
 	
 	protected double angle;
 	
-	public Projectile(double x, double y, double speed){
-	// Projectile de base : tout droit vers le haut.
-		
-		this.x = x;
-		this.y = y;
-		width = 16;
-		height = 16;
-		speedY = speed;
-		setMoving(true);
-		World.getProjectiles().add(this);
-	}
-	
 	public Projectile(double x, double y, double angle, double speed) { 
 
 		this.x = x;
