@@ -13,6 +13,7 @@ public class World extends BasicGameState{
 	
 	public enum direction {HAUT,DROITE,BAS,GAUCHE};
 	private static Player player;
+	public static int ID=0;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -40,7 +41,7 @@ public class World extends BasicGameState{
 
 	@Override
 	public int getID() {
-		return 0;
+		return ID;
 	}
 	
 }
