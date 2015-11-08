@@ -1,5 +1,6 @@
 package fr.explosion;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -15,9 +16,11 @@ public class Explosion extends Movable {
 	private double scale;
 	public Explosion(double x,double y,double scale)
 	{
-
+		this.x = x;
+		this.y = y;
 		this.scale=scale;
 		loadExplosion();
+		explosion = 179;
 	}
 	
 	public void loadExplosion(){
@@ -40,18 +43,26 @@ public class Explosion extends Movable {
 			}
 			image[i]=image[i].getScaledCopy((float) scale);
 		}
+
 	}
+
+	
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		if(explosion>=0)g.drawImage(image[59-(explosion/3)],(float) x, (float)y);
-		
+		if(explosion>=0){
+			g.drawImage(image[59-(explosion/3)],(float) (x-64), (float)(y-16));
+		}
+
+	}
+	public boolean finishTest(){
+		return  (explosion == 0);
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		if(explosion>=0)explosion--;
-		
+		if(explosion>0){
+			explosion--;
+		}	
 	}
-
 }
