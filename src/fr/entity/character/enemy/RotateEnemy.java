@@ -13,25 +13,13 @@ public class RotateEnemy extends Enemy{
 	
 	float rotation;
 
-	public RotateEnemy(double x, double y, double width, double height) {
-		super(x, y, width, height);
+	public RotateEnemy(double x, double y, double width, double height, int time) {
+		super(x, y, width, height,time);
 		speedX = 0.3;
-		timeShoot = 10;
-		timeLeft = timeShoot;
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		super.update(container, game, delta);
-		rotation++;
-		if(timeLeft <= 0){
-			shoot(rotation+45);
-			shoot(rotation+135);
-			shoot(rotation+225);
-			shoot(rotation+315);
-			timeLeft = timeShoot;
-		}else{
-			timeLeft--;
-		}
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
@@ -60,8 +48,8 @@ public class RotateEnemy extends Enemy{
 		}
 	}
 	
-	void shoot(float rot){
-		new Projectile((double) x+(width/2)-8,(double)y+(height/2)-8,rot,0.3);
+	void shoot(){
+		new Projectile((double) x+(width/2)-8,(double)y+(height/2)-8,rotation,0.3,false);
 	}
 
 

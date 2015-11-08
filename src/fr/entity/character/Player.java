@@ -117,7 +117,7 @@ public class Player extends Movable implements Rectangle {
 		moveX(delta);
 		moveY(delta);
 		
-		if(compteur%FRAME_TO_WAIT==0)new Projectile(x+width/2,y,0,1);
+		if(compteur%FRAME_TO_WAIT==0)new Projectile(x+width/2,y,0,1,true);
 		compteur++;
 	}
 

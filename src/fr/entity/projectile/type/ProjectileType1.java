@@ -1,6 +1,5 @@
 package fr.entity.projectile.type;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -16,27 +15,19 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 	private double spawnX;// X d'apparition du projectile.
 	private double spawnY;// Y d'apparition du projectile.
 	private int amplitude;// Amplitude du sinus.
-	private int period;// Periode du sinus.
+	private int period = 128;// Periode du sinus.
 	
 	private double speedXAlt;// speedX dans le repere alternatif (qui est tourne de angle)
 	private double speedYAlt;// speedY dans le repere alternatif
-	
-	public ProjectileType1(double x, double y, double angle, double speed) {
-		super(x, y, angle, speed);
-		spawnY = y;
-		amplitude = 64;
-		period = 128;
-	}
-	
-	public ProjectileType1(double x, double y, double angle, double speed, int period){
-		super(x, y, angle, speed);
+		
+	public ProjectileType1(double x, double y, double angle, double speed, int period, boolean allied){
+		super(x, y, angle, speed, allied);
 		spawnY = y;
 		amplitude = 64;
 		this.period = period;
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		//g.setColor(Color.green);
 		g.drawImage(image,(float)x,(float)y);
 	}
 	

@@ -1,6 +1,5 @@
 package fr.entity.projectile;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -18,8 +17,14 @@ public class Projectile extends Movable implements Rectangle {
 	
 	protected double angle;
 	protected Image image;
-	public Projectile(double x, double y, double angle, double speed) { 
-
+	protected boolean alliedShot;
+	protected int id;
+	protected static int projCounter;
+	
+	public Projectile(double x, double y, double angle, double speed, boolean allied) { 
+		alliedShot = allied;
+		id = projCounter;
+		projCounter++;
 		this.x = x;
 		this.y = y;
 		width = 16;
@@ -30,16 +35,29 @@ public class Projectile extends Movable implements Rectangle {
 		speedX = speed*Math.cos(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
 		World.getProjectiles().add(this);
 		try {
-			image=new Image("sprites/proj1.png");
+			if(alliedShot){
+				image=new Image("sprites/proj1.png");
+			}
+			else{
+				image=new Image("sprites/proj2.png");
+			}
 		} catch (SlickException e){
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public void destroy(){
+		int i =0;
+		while((i<World.getProjectiles().size())&&(World.getProjectiles().get(i).id!=this.id)){
+			i++;
+		}
+		if(i<World.getProjectiles().size()){
+			World.getProjectiles().remove(i);
 		}
 	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		//g.setColor(Color.green);
 		g.drawImage(image,(float)x,(float)y);
 	}
 
@@ -47,6 +65,9 @@ public class Projectile extends Movable implements Rectangle {
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
 		moveX(delta);
+		if(x>800||y>600||x<0||y<0){
+			destroy();
+		}
 	}
 	
 }
