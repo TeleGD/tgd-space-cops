@@ -115,7 +115,8 @@ public class PauseMenu extends BasicGameState {
 			break;
 		case 1:
 			game.enterState(MainMenu.ID, new FadeOutTransition(), new FadeInTransition());
-
+			World.MMenu.loop();
+			break;
 		}
 	}
 

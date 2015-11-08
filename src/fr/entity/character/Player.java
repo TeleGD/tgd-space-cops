@@ -122,6 +122,7 @@ public class Player extends Movable implements Rectangle {
 				{
 					NB_DE_VIE=5;
 					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
+					World.MMenu.loop();
 				}
 			}
 		}

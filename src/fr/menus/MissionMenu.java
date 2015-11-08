@@ -134,6 +134,7 @@ public class MissionMenu extends BasicGameState {
 		case Input.KEY_ENTER:
 			game.enterState(World.ID, new FadeOutTransition(),
 					new FadeInTransition());
+			World.reset();
 			break;
 		case Input.KEY_ESCAPE:
 			game.enterState(MainMenu.ID, new FadeOutTransition(),

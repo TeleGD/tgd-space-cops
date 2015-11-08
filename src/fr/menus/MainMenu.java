@@ -111,11 +111,11 @@ public class MainMenu extends BasicGameState {
 		case 0:
 			game.enterState(MissionMenu.ID, new FadeOutTransition(),
 					new FadeInTransition());
-			World.reset();
 			break;
 
 		case 1:
-			game.enterState(ScoresMenu.ID);
+			game.enterState(ScoresMenu.ID, new FadeOutTransition(),
+					new FadeInTransition());
 			break;
 		/*
 		 * case 2: game.enterState(HelpMenu.ID); break;
