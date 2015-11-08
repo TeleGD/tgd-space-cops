@@ -19,6 +19,8 @@ public abstract class Enemy extends Movable implements Rectangle{
 	protected Image skin;
 	protected int id;
 	protected static int enemyCounter;
+	protected boolean alive;
+	int hp;
 	
 	
 	
@@ -33,6 +35,7 @@ public abstract class Enemy extends Movable implements Rectangle{
 		World.getEnemies().add(this);
 		lastShoot = System.currentTimeMillis();
 		this.time = time;
+		alive = true;
 	}
 
 	@Override
@@ -47,7 +50,13 @@ public abstract class Enemy extends Movable implements Rectangle{
 		testShoot();
 		for(int i = 0; i< World.getProjectiles().size();i++){
 			if(World.getProjectiles().get(i).getAllied() && Collisions.isCollisionRectRect(this,World.getProjectiles().get(i))){
-				destroy();
+				if(hp > 1){
+					hp--;
+					World.getProjectiles().remove(i);
+				}else{
+					alive = false;
+					destroy();
+				}
 			}
 		}
 	}
@@ -76,10 +85,11 @@ public abstract class Enemy extends Movable implements Rectangle{
 			accelX = -accelX;
 		}
 		moveY(delta);
-		if(y<0)
+		if(y<0 && !(this instanceof CircleEnemy)){
 			y = 0;
 			speedY = -speedY;
-		if(y>600-height){
+		}
+		if(y>600-height && !(this instanceof CircleEnemy)){
 			y = 600-height;
 			speedY = -speedY;
 		}

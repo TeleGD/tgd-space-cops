@@ -22,15 +22,17 @@ public class CreditsMenu extends BasicGameState {
 
 	private String nom = "Credits :";
 	private String[] items = {
-			"la truelle",
-			"à",
-			"définir",
-			"plus",
-			"tard",
+			"saliwan",
+			"Medoc",
+			"Jérôme",
+			"BusyAnt",
+			"Arthur",
+			"Lala",
 			"",
-			"Club TeleGame Design,    Telecom Nancy",
+			"Club TeleGame Design,",
+			"      Telecom Nancy",
 			"",
-			"Retour Menu" };
+			" Retour Menu" };
 
 	public int nbrOption = items.length;
 
@@ -50,10 +52,10 @@ public class CreditsMenu extends BasicGameState {
 		this.game = game;
 		background = new Image("sprites/0004.png");
 		
-    	Font titre5Font = new Font("Courant", Font.BOLD, 26);
+    	Font titre5Font = new Font("Courant", Font.BOLD, 18);
     	font5 = new TrueTypeFont(titre5Font, false);
 		
-		Font titre6Font = new Font("Courant", Font.BOLD, 16);
+		Font titre6Font = new Font("Courant", Font.BOLD, 13);
     	font6 = new TrueTypeFont(titre6Font, false);
 	}
 
@@ -67,19 +69,19 @@ public class CreditsMenu extends BasicGameState {
 		
 		g.drawImage(background, 0, 0);
 
-		g.setColor(Color.blue);
+		g.setColor(Color.red);
 		g.setFont(font5);
 
-		g.drawString(this.nom, 200, 80);
+		g.drawString(this.nom, 255, 365);
 
 		g.setColor(Color.white);
 		g.setFont(font6);
 
 		for (int i = 0; i < nbrOption; i++) {
-			g.drawString(this.items[i], 150, 180 + 30 * i);
+			g.drawString(this.items[i], 238, 390 + 13 * i);
 		}
 		
-		g.drawString(">>", 80, 180 + 30 * selection);
+		g.drawString(">>", 225, 390 + 13 * selection);
 		
 		
 		

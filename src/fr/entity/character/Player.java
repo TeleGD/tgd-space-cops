@@ -1,11 +1,16 @@
 package fr.entity.character;
 
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioFileFormat;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -13,24 +18,22 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.entity.projectile.Projectile;
+import fr.menus.GOMenu;
 import fr.util.Collisions;
 import fr.util.Movable;
 import fr.util.Rectangle;
 import fr.world.World;
-import fr.world.World.direction;
-
-import fr.menus.GOMenu;
 
 public class Player extends Movable implements Rectangle {
 
 	
 	private final static int FRAME_TO_WAIT=5;
+	private static int TIME_DASH=10000;
 	private static int NB_DE_VIE=5;
 	private boolean droitegauche=false,hautbas=false;  /* hautbas= true si bas dernier mis, droitegauche= true si droite dernier mis*/
 	private boolean upPress = false;
@@ -43,6 +46,7 @@ public class Player extends Movable implements Rectangle {
 	private int compteur=0;
 	private Image imagegauche,imagecentrale,imagedroite,image,fond;
 	private long timeInvincible;
+	private int explosion=0;
 	
 	public Player() {
 		x = 400;
@@ -54,18 +58,20 @@ public class Player extends Movable implements Rectangle {
 		isMoving = true;
 		compteur=0;
 		
+		
 		try {
 			imagedroite=new Image("sprites/ship2.png");
 			imagegauche=new Image("sprites/ship0.png");
 			imagecentrale=new Image("sprites/ship1.png");
 			image=imagecentrale;
+
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-
+	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		
 
@@ -74,14 +80,63 @@ public class Player extends Movable implements Rectangle {
 		{
 			g.drawImage(image.getScaledCopy((float) 0.5),i*40,10);
 		}
+		g.setColor(Color.black);
+		g.fillRoundRect((float) 700, (float)10, 10, 30,1);
+		g.setColor(Color.white);
+		g.fillRoundRect((float) 702, (float)12, 6, 26,1);
 		g.drawImage(image,(float)x,(float)y);
-		g.setColor(Color.green);
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		
+		deplacement();
+
+		if(explosion>1)explosion--;
+		
+		if(System.currentTimeMillis()-timeInvincible>3000)invincible=false;
+		
+		dash();
+		
+		moveX(delta);
+		moveY(delta);
+		
+		if(compteur%FRAME_TO_WAIT==0){
+			new Projectile(x+width/2-2,y,0,1,true);
+			new Projectile(x+width/2-14,y,0,1,true);
+		}
+		compteur++;
+		
+		for(int i=0;i<World.getProjectiles().size();i++)
+		{
+			if(!invincible && !World.getProjectiles().get(i).getAllied() && Collisions.isCollisionRectRect(this,World.getProjectiles().get(i)))
+			{
+				World.getProjectiles().get(i).destroy();
+				NB_DE_VIE--;
+				invincible=true;
+				timeInvincible=System.currentTimeMillis();
+				if(NB_DE_VIE==0) //game over
+				{
+					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
+				}
+			}
+		}
+	}
+
+	private void dash()
+	{
+		if(System.currentTimeMillis()-timeDashInit>TIME_DASH+500){
+			dashDispo=true;
+		}
+		else if(dash && System.currentTimeMillis()-timeDashInit<500){
+			speedX*=4;
+			speedY*=4;
+		}else{
+			dash=false;
+		}
+	}
+	private void deplacement() {
 		speedX = 0;
 		speedY = 0;
-		
 		if((upPress && !downPress) || (upPress && downPress && !hautbas)) 
 		{
 			if(y>300){
@@ -116,40 +171,6 @@ public class Player extends Movable implements Rectangle {
 			image=imagecentrale;
 		}
 		
-		if(System.currentTimeMillis()-timeInvincible>3000)invincible=false;
-		if(System.currentTimeMillis()-timeDashInit>10500){
-			dashDispo=true;
-		}
-		else if(dash && System.currentTimeMillis()-timeDashInit<500){
-			speedX*=4;
-			speedY*=4;
-		}else{
-			dash=false;
-		}
-		
-		moveX(delta);
-		moveY(delta);
-		
-		if(compteur%FRAME_TO_WAIT==0){
-			new Projectile(x+width/2-2,y,0,1,true);
-			new Projectile(x+width/2-14,y,0,1,true);
-		}
-		compteur++;
-		
-		for(int i=0;i<World.getProjectiles().size();i++)
-		{
-			if(!invincible && !World.getProjectiles().get(i).getAllied() && Collisions.isCollisionRectRect(this,World.getProjectiles().get(i)))
-			{
-				World.getProjectiles().get(i).destroy();
-				NB_DE_VIE--;
-				invincible=true;
-				timeInvincible=System.currentTimeMillis();
-				if(NB_DE_VIE==0) //game over
-				{
-					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
-				}
-			}
-		}
 	}
 
 	public void keyReleased(int key, char c) {

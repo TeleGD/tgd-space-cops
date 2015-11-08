@@ -11,6 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
+import fr.world.World;
 
 public class BasicEnemy extends Enemy{
 	
@@ -27,10 +28,12 @@ public class BasicEnemy extends Enemy{
 		super(x, y, width, height, time);
 		speedX = 0.3;
 		speedY = 0.3;
+		hp = 1;
 		rand = new Random();
 		moveArea(0, 0, 800, 400);
 		try {
 			skin = new Image("sprites/ennemi1.png");
+			skin = skin.getScaledCopy((float) 1);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,10 +68,14 @@ public class BasicEnemy extends Enemy{
 			yOk = true;
 		}
 		if(xOk && yOk){
-			moveArea(0 ,0 ,800 ,400);
+			moveArea(0 ,0 ,800 ,300);
 			speedX = 0.3;
 			speedY = 0.3;
 		}
+	}
+	public void destroy(){
+		World.setScore(World.getScore()+1);
+		super.destroy();
 	}
 	
 	public void moveArea(double x, double y, double width, double height){
@@ -81,7 +88,7 @@ public class BasicEnemy extends Enemy{
 	}
 	
 	public void shoot(){
-		new Projectile(x,y,180,0.3, false);
+		new Projectile(x,y,180,0.8, false);
 	}
 
 

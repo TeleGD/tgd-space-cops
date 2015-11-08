@@ -9,6 +9,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
 import fr.entity.projectile.type.ProjectileType1;
+import fr.util.Collisions;
+import fr.world.World;
 
 public class CircleEnemy extends Enemy{
 	
@@ -17,7 +19,10 @@ public class CircleEnemy extends Enemy{
 	public CircleEnemy(double x, double y, double width, double height, int time,int nbrShoot) {
 		super(x, y, width, height,time);
 		this.nbrShoot = nbrShoot;
-		speedX = 0.3;
+		speedY = 0.05;
+	}
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		super.update(container,game,delta);
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
@@ -30,5 +35,4 @@ public class CircleEnemy extends Enemy{
 			new Projectile(x+(width/2)-8-Math.cos((Math.PI/2)+i*Math.PI/180)*30,y+(height/2)-8-Math.sin((Math.PI/2)+i*Math.PI/180)*30,i,0.3,false);
 		}
 	}
-
 }

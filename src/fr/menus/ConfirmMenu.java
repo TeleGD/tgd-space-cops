@@ -11,6 +11,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.main.Game;
 import fr.world.World;
@@ -108,7 +110,7 @@ public class ConfirmMenu extends BasicGameState {
 
 		switch (selection) {
 		case 0:
-			game.enterState(MainMenu.ID);
+			game.enterState(MainMenu.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 		case 1:
 			container.exit();
