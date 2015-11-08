@@ -1,10 +1,11 @@
 package fr.explosion;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.util.Movable;
@@ -64,5 +65,17 @@ public class Explosion extends Movable {
 		if(explosion>0){
 			explosion--;
 		}	
+	}
+	
+	public void bruit()
+	{
+		try {
+			Sound sound= new Sound("sons/explosion.ogg");
+			sound.play();
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

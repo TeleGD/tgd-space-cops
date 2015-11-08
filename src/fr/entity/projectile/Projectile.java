@@ -68,6 +68,7 @@ public class Projectile extends Movable implements Rectangle {
 	public void contact(boolean contact){
 		isExploding = true;
 		explo = new Explosion(x,y,1);
+		explo.bruit();
 	}
 	
 	@Override
