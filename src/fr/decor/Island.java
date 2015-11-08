@@ -18,7 +18,7 @@ public class Island extends Movable{
 		this.x=x;
 		this.y=y;
 		try {
-			image=new Image("sprites/island1.png");
+			image=new Image("sprites/island"+((int)(Math.random()*3)+1)+".png");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
