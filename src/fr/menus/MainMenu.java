@@ -11,6 +11,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.world.World;
 
@@ -21,7 +23,7 @@ public class MainMenu extends BasicGameState{
 	static TrueTypeFont font1;
 
 	private String nom = "Menu Principal";
-	private String[] items = { "Jouer", "Scores (Prochaine M‡J)", "Aide (DLC)", "Quitter" };
+	private String[] items = { "Jouer", "Scores (Nope)", "Aide (DLC)", "Quitter" };
 
 	public int nbrOption = items.length;
 
@@ -44,7 +46,7 @@ public class MainMenu extends BasicGameState{
 	        
 	        background = new Image("sprites/0001.png");
 	        
-	    	Font titre1Font = new Font("Kalinga", Font.BOLD, 26);
+	    	Font titre1Font = new Font("Kalinga", Font.BOLD, 12);
 	    	font1 = new TrueTypeFont(titre1Font, false);
 	    	
 	 }
@@ -58,14 +60,14 @@ public class MainMenu extends BasicGameState{
 		 
 		 	g.setColor(Color.red);
 		 	g.setFont(font1);
-			g.drawString(this.nom, 200, 220);
+			g.drawString(this.nom, 550, 320);
 
 			g.setColor(Color.white);
 
 			for (int i = 0; i < nbrOption; i++) {
-				g.drawString(this.items[i], 300, 280 + 50 * i);
+				g.drawString(this.items[i], 560, 360 + 30 * i);
 			}
-			g.drawString(">>", 230, 280 + 50 * selection);
+			g.drawString(">>", 540, 360 + 30 * selection);
 	 }
 
 	 @Override
@@ -88,13 +90,14 @@ public class MainMenu extends BasicGameState{
 			break;
 			
 		case Input.KEY_ESCAPE:
-			game.enterState(ConfirmMenu.ID);
+			game.enterState(ConfirmMenu.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 		case Input.KEY_C:
-			game.enterState(CreditsMenu.ID);
+//			game.enterState(CreditsMenu.ID);
+			game.enterState(CreditsMenu.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 		case Input.KEY_M:
-			game.enterState(MissionMenu.ID);
+			game.enterState(MissionMenu.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 		}
 	}
@@ -102,7 +105,7 @@ public class MainMenu extends BasicGameState{
 	public void execOption() {
 		switch (selection) {
 		case 0:
-			game.enterState(World.ID);
+			game.enterState(MissionMenu.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 			/*
 		case 1:
@@ -113,7 +116,7 @@ public class MainMenu extends BasicGameState{
 			break;
 			*/
 		case 3:
-			game.enterState(ConfirmMenu.ID);
+			game.enterState(ConfirmMenu.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 		}
 	}

@@ -11,6 +11,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.main.Game;
 import fr.world.World;
@@ -65,7 +67,7 @@ public class WelcomeMenu extends BasicGameState{
 	public void keyPressed(int key,char c) {
 		switch (key) {
 		case Input.KEY_ENTER:
-			game.enterState(MainMenu.ID);
+			game.enterState(MainMenu.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 		}
 	}
