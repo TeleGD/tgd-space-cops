@@ -15,12 +15,17 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.entity.projectile.Projectile;
+import fr.util.Collisions;
 import fr.util.Movable;
 import fr.util.Rectangle;
 import fr.world.World;
 import fr.world.World.direction;
+
+import fr.menus.GOMenu;
 
 public class Player extends Movable implements Rectangle {
 
@@ -33,9 +38,11 @@ public class Player extends Movable implements Rectangle {
 	private boolean leftPress = false;
 	private boolean rightPress = false;
 	private boolean dash=false,dashDispo=true;
+	private boolean invincible=false;
 	private long timeDashInit=0;
 	private int compteur=0;
 	private Image imagegauche,imagecentrale,imagedroite,image,fond;
+	private long timeInvincible;
 	
 	public Player() {
 		x = 400;
@@ -109,6 +116,7 @@ public class Player extends Movable implements Rectangle {
 			image=imagecentrale;
 		}
 		
+		if(System.currentTimeMillis()-timeInvincible>3000)invincible=false;
 		if(System.currentTimeMillis()-timeDashInit>10500){
 			dashDispo=true;
 		}
@@ -127,6 +135,21 @@ public class Player extends Movable implements Rectangle {
 			new Projectile(x+width/2-14,y,0,1,true);
 		}
 		compteur++;
+		
+		for(int i=0;i<World.getProjectiles().size();i++)
+		{
+			if(!invincible && !World.getProjectiles().get(i).getAllied() && Collisions.isCollisionRectRect(this,World.getProjectiles().get(i)))
+			{
+				World.getProjectiles().get(i).destroy();
+				NB_DE_VIE--;
+				invincible=true;
+				timeInvincible=System.currentTimeMillis();
+				if(NB_DE_VIE==0) //game over
+				{
+					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
+				}
+			}
+		}
 	}
 
 	public void keyReleased(int key, char c) {
