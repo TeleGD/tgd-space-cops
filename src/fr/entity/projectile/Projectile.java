@@ -48,7 +48,7 @@ public class Projectile extends Movable implements Rectangle {
 	
 	public void destroy(){
 		int i =0;
-		while(World.getProjectiles().get(i).id!=this.id){
+		while((i<World.getProjectiles().size())&&(World.getProjectiles().get(i).id!=this.id)){
 			i++;
 		}
 		World.getProjectiles().remove(i);
