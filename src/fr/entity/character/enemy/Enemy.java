@@ -7,10 +7,12 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.util.Collisions;
 import fr.util.Movable;
+import fr.util.Rectangle;
 import fr.world.World;
 
-public abstract class Enemy extends Movable {
+public abstract class Enemy extends Movable implements Rectangle{
 	
 	long lastShoot;
 	long time;
@@ -44,7 +46,9 @@ public abstract class Enemy extends Movable {
 		move(delta);
 		testShoot();
 		for(int i = 0; i< World.getProjectiles().size();i++){
-			if(World.getProjectiles().get(i).
+			if(World.getProjectiles().get(i).getAllied() && Collisions.isCollisionRectRect(this,World.getProjectiles().get(i))){
+				destroy();
+			}
 		}
 	}
 	
