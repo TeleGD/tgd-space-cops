@@ -14,6 +14,8 @@ public class EnemyGenerator {
 	boolean event[] = new boolean[10];
 	long timeStart;
 	boolean started = false;
+	boolean spawn = false;
+	
 	
 	public void init(GameContainer container,StateBasedGame game){
 		time = 1000;
@@ -26,15 +28,52 @@ public class EnemyGenerator {
 			timeStart = System.currentTimeMillis();
 			started = true;
 		}
-		if(System.currentTimeMillis() - lastSpawn > time){
-			lastSpawn = System.currentTimeMillis();
-			new BasicEnemy(genDouble(0,800),genDouble(0,300),32,32,500);
+		
+		if(spawn){
+			if(System.currentTimeMillis() - lastSpawn > time){
+				lastSpawn = System.currentTimeMillis();
+				new BasicEnemy(genDouble(0,800),genDouble(0,300),32,32,500);
+			}
 		}
 
-		if(!event[0] && (long)System.currentTimeMillis() - timeStart>5000){
-			new Boss(400-64,50,128,128,200);
+		
+		
+		if(condEvent(0,3000)){
+			spawn = true;
 			event[0]=true;
 		}
+		if(condEvent(1,5000)){
+			new Boss(400-64,50,128,128,200);
+			spawn = false;
+			event[1]=true;
+		}
+		if(condEvent(2,12000)){
+			spawn = true;
+			event[2]=true;
+		}
+		if(condEvent(3,25000)){
+			new Boss(400-64,50,128,128,200);
+			event[3]=true;
+		}
+		if(condEvent(4,45000)){
+			new Boss(200-64,50,128,128,200);
+			new Boss(600-64,50,128,128,200);
+			spawn = false;
+			event[4]=true;
+		}
+		if(condEvent(5,65000)){
+			spawn = true;
+			event[5]=true;
+		}
+		if(condEvent(6,75000)){
+			new Boss(200-64,50,128,128,200);
+			new Boss(600-64,50,128,128,200);
+			event[6]=true;
+		}
+		
+		
+		
+		
 	}
 	
 	public double genDouble(double min, double max){
