@@ -33,8 +33,6 @@ public abstract class Boss extends Enemy implements Rectangle{
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		super.update(container, game, delta);
-		if(y>50)
-			speedY = 0;
 		if(explo != null){
 			explo.update(container, game, delta);
 			if(explo.finishTest()){

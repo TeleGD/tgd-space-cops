@@ -1,7 +1,11 @@
 package fr.entity.character.enemy;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
+
+import fr.explosion.Explosion;
 
 public class MegaBigBoss extends Boss{
 	
@@ -16,22 +20,33 @@ public class MegaBigBoss extends Boss{
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		tour1 = new Tourret(x+8,y+26,32,32,time);
-		tour2 = new Tourret(x+88,y+26,32,32,time);
-		tour3 = new Tourret(x+8,y+26,32,32,time);
-		tour4 = new Tourret(x+88,y+26,32,32,time);
-		tour5 = new Tourret(x+8,y+26,32,32,time);
-		tour6 = new Tourret(x+88,y+26,32,32,time);
-		tour7 = new Tourret(x+8,y+26,32,32,time);
-		tour8 = new Tourret(x+88,y+26,32,32,time);
-		tour9 = new Tourret(x+8,y+26,32,32,time);
-		tour10 = new Tourret(x+88,y+26,32,32,time);
-		tour11 = new Tourret(x+8,y+26,32,32,time);
-		tour12 = new Tourret(x+88,y+26,32,32,time);
-		tour13 = new Tourret(x+8,y+26,32,32,time);
-		tour14 = new Tourret(x+88,y+26,32,32,time);
-		tour15 = new Tourret(x+8,y+26,32,32,time);
-		tour16 = new Tourret(x+88,y+26,32,32,time);
+		tour1 = new Tourret(x+8,y+26,32,32,time,0);
+		tour2 = new Tourret(x+8,y+26,32,32,time,0);
+		tour3 = new Tourret(x+8,y+26,32,32,time,0);
+		tour4 = new Tourret(x+8,y+26,32,32,time,0);
+		tour5 = new Tourret(x+8,y+26,32,32,time,0);
+		tour6 = new Tourret(x+8,y+26,32,32,time,0);
+		tour7 = new Tourret(x+8,y+26,32,32,time,0);
+		tour8 = new Tourret(x+8,y+26,32,32,time,0);
+		tour9 = new Tourret(x+8,y+26,32,32,time,0);
+		tour10 = new Tourret(x+8,y+26,32,32,time,0);
+		tour11 = new Tourret(x+8,y+26,32,32,time,0);
+		tour12 = new Tourret(x+8,y+26,32,32,time,0);
+		tour13 = new Tourret(x+8,y+26,32,32,time,0);
+		tour14 = new Tourret(x+8,y+26,32,32,time,0);
+		tour15 = new Tourret(x+8,y+26,32,32,time,0);
+		tour16 = new Tourret(x+8,y+26,32,32,time,0);
+	}
+	
+	public void update(GameContainer container, StateBasedGame game, int delta)
+			throws SlickException {
+		super.update(container, game, delta);
+		if(y>50)
+			speedY = 0;
+		if(!tour1.alive && !tour2.alive && this.alive){
+			explo = new Explosion(x-64,y-80,3);
+			alive = false;
+		}
 	}
 
 }

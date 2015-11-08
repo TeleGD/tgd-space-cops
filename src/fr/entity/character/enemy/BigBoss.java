@@ -21,8 +21,8 @@ public class BigBoss extends Boss{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		tour1 = new Tourret(x+8,y+26,32,32,time);
-		tour2 = new Tourret(x+88,y+26,32,32,time);
+		tour1 = new Tourret(x+8,y+26,32,32,time,0);
+		tour2 = new Tourret(x+88,y+26,32,32,time,0);
 	}
 	
 
@@ -30,6 +30,8 @@ public class BigBoss extends Boss{
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		super.update(container, game, delta);
+		if(y>50)
+			speedY = 0;
 		if(!tour1.alive && !tour2.alive && this.alive){
 			explo = new Explosion(x-64,y-80,3);
 			alive = false;
