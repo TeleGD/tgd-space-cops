@@ -41,7 +41,7 @@ public class Tourret extends Enemy{
 	}
 	
 	public void destroy(){
-		Game.setScore(Game.getScore()+15);
+		World.setScore(World.getScore()+15);
 		super.destroy();
 	}
 	

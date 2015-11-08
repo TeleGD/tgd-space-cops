@@ -32,6 +32,8 @@ public class World extends BasicGameState{
 	private StateBasedGame game;
 	private Decor decor;
 	
+	private static int score = 0;
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
@@ -56,7 +58,7 @@ public class World extends BasicGameState{
 			projectiles.get(i).render(container, game, g);
 		}
 		g.setColor(Color.white);
-		g.drawString(""+Game.getScore(), 10, 50);
+		g.drawString(""+World.getScore(), 10, 50);
 	}
 
 	@Override
@@ -94,6 +96,14 @@ public class World extends BasicGameState{
 	@Override
 	public int getID() {
 		return ID;
+	}
+	
+	public static int getScore() {
+		return score;
+	}
+
+	public static void setScore(int scoreP) {
+		score = scoreP;
 	}
 	
 }
