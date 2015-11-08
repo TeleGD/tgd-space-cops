@@ -28,9 +28,12 @@ public class MissionMenu extends BasicGameState {
 	public static String[] txt1 = new String[2];
 	public static String[] txt2 = new String[2];
 	public static String[] txt3 = new String[2];
-	public static String[] planetName = {"Kepler-770-C", "Utopia", "Balmoran", "Sulituan", "Naeco", "Nihpuad"};
-	public static String[] postName = {"général 6 étoiles en chef", "capitaine de section", "grand administrateur", "chef artilleur"};
+	public static String[] planetName = { "Kepler-770-C", "Utopia", "Balmoran",
+			"Sulituan", "Naeco", "Nihpuad" };
+	public static String[] postName = { "général 6 étoiles en chef",
+			"capitaine de section", "grand administrateur", "chef artilleur" };
 	public static ArrayList<String> textList;
+	public static int numMessage;
 
 	private String nom = "Mission :";
 
@@ -38,38 +41,39 @@ public class MissionMenu extends BasicGameState {
 	static GameContainer container;
 	static StateBasedGame game;
 
-	
 	public static ArrayList<String> generateText(int lineSize) {
 		ArrayList<String> res = new ArrayList<String>();
 		Random r = new Random();
-		
+
 		int numMission = r.nextInt(2);
+		numMessage = numMission;
 		int numPlanet = r.nextInt(planetName.length);
 		int numPost = r.nextInt(postName.length);
-		
-		String text = txt1[numMission]+planetName[numPlanet]+txt2[numMission]+postName[numPost]+txt3[numMission];
+
+		String text = txt1[numMission] + planetName[numPlanet]
+				+ txt2[numMission] + postName[numPost] + txt3[numMission];
 		int lastSpaceIndex = 0;
 		int chunkStart = 0;
 		String tmp = "";
-		
-		for (int i=0; i<text.length(); i++) {
+
+		for (int i = 0; i < text.length(); i++) {
 			char c = text.charAt(i);
-			
+
 			if (c == ' ') {
 				lastSpaceIndex = i;
 			}
-			
-			if (i-chunkStart == lineSize) {
+
+			if (i - chunkStart == lineSize) {
 				tmp = text.substring(chunkStart, lastSpaceIndex);
 				res.add(tmp);
 				chunkStart = lastSpaceIndex;
-			} 
-			
+			}
+
 		}
 
 		tmp = text.substring(chunkStart, text.length());
 		res.add(tmp);
-		
+
 		return res;
 	}
 
@@ -93,9 +97,9 @@ public class MissionMenu extends BasicGameState {
 		txt1[1] = "Des idéalistes soviétiques tentent de mettre en place une nouvelle révolution communiste ! Après la migration de l'humanité vers la planète ";
 		txt2[1] = ", des groupuscules armés ont tenté de prendre le pouvoir par la force. Grâce à la puissance du grand chef suprême, les camarades tentent d'envahir les bastions de l'ennemi capitaliste depuis leurs vaisseaux spatiaux. Si rien n'est fait pour les arrêter, la face de ce nouveau monde pourrait changer à jamais ! En tant que ";
 		txt3[1] = " de la contre-révolte capitaliste, vous avez la charge de tuer dans l'oeuf ce soulèvement prolétaire. Soyez fort, le sort de la planète est entre vos mains.";
-		
+
 		textList = generateText(40);
-		
+
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta)
@@ -116,16 +120,16 @@ public class MissionMenu extends BasicGameState {
 		g.setColor(Color.white);
 		g.setFont(font6);
 
-		for (int j = 0; j<textList.size(); j++) {
-			g.drawString(textList.get(j), 75, 258+13*j);
+		for (int j = 0; j < textList.size(); j++) {
+			g.drawString(textList.get(j), 75, 258 + 13 * j);
 		}
 
-		g.drawString(">>  Continuer", 75, 255 + 25 + textList.size()*13);
+		g.drawString(">>  Continuer", 75, 255 + 25 + textList.size() * 13);
 
 	}
-	
+
 	public static void reset() {
-		textList = generateText(40);
+		
 	}
 
 	@Override
