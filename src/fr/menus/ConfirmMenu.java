@@ -71,7 +71,7 @@ public class ConfirmMenu extends BasicGameState {
 		g.setColor(Color.white);
 		g.setFont(font9);
 
-		g.drawString(this.nom, 200, 200);
+		g.drawString(this.nom, 100, 200);
 
 		g.setFont(font6);
 
