@@ -37,8 +37,7 @@ public class Nuage extends Movable{
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		
-		System.out.println("passe par la :"+speedY+"  "+y);
-		y+=speedY*delta;
+		y+=speedY*delta+Decor.defilement;
 		if(y>600)Decor.nuages.remove(this);
 	}
 
