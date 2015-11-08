@@ -17,6 +17,7 @@ public class CircleEnemy extends Enemy{
 	public CircleEnemy(double x, double y, double width, double height, int time,int nbrShoot) {
 		super(x, y, width, height,time);
 		this.nbrShoot = nbrShoot;
+		speedX = 0.3;
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
@@ -26,8 +27,8 @@ public class CircleEnemy extends Enemy{
 	
 	public void shoot(){
 		for(int i = 0; i<360; i+=360/nbrShoot){
-
-		new ProjectileType1(x+(width/2)-8-Math.cos((Math.PI/2)+i*Math.PI/180)*30,y+(height/2)-8-Math.sin((Math.PI/2)+i*Math.PI/180)*30,i,0.1,16,false);
+			
+			new Projectile(x+(width/2)-8-Math.cos((Math.PI/2)+i*Math.PI/180)*30,y+(height/2)-8-Math.sin((Math.PI/2)+i*Math.PI/180)*30,i,0.3,false);
 
 		}
 	}

@@ -1,11 +1,11 @@
 package fr.entity.character.enemy;
 
-import java.awt.Image;
 import java.util.Random;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -29,12 +29,17 @@ public class BasicEnemy extends Enemy{
 		speedX = 0.3;
 		speedY = 0.3;
 		rand = new Random();
-		moveArea(0, 0, 200, 200);
+		moveArea(0, 0, 800, 400);
+		try {
+			skin = new Image("sprites/ennemi1.png");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.setColor(Color.red);
-		g.fillRect((float)x,(float)y,(float)width,(float)height);
+		g.drawImage(skin,(float)x,(float)y);
 	}
 	
 	public void move(int delta){
@@ -61,7 +66,7 @@ public class BasicEnemy extends Enemy{
 			yOk = true;
 		}
 		if(xOk && yOk){
-			moveArea(100 ,100 ,600 ,300);
+			moveArea(0 ,0 ,800 ,400);
 			speedX = 0.3;
 			speedY = 0.3;
 		}
