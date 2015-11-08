@@ -9,8 +9,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.entity.projectile.Projectile;
 
 public class CircleEnemy extends Enemy{
-	
-	boolean a = false;
 
 	public CircleEnemy(double x, double y, double width, double height) {
 		super(x, y, width, height);
@@ -22,13 +20,7 @@ public class CircleEnemy extends Enemy{
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		super.update(container, game, delta);
 		if(timeLeft <= 0){
-			if(a){
 				shoot(90);
-				a = false;
-			}else{
-				shoot(90);
-				a = true;
-			}
 			timeLeft = timeShoot;
 		}else{
 			timeLeft--;
