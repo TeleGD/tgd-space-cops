@@ -13,11 +13,12 @@ public class Island extends Movable{
 	
 	private Image image;
 
+	private int compteur;
 	public Island(double x,double y)
 	{
 		this.x=x;
 		this.y=y;
-		speedY=0.5;
+		speedY=0.7;
 		try {
 			image=new Image("sprites/island1.png");
 		} catch (SlickException e) {
@@ -25,20 +26,22 @@ public class Island extends Movable{
 			e.printStackTrace();
 		}
 		
-		image=image.getScaledCopy((int) (Math.random()*360)+100,(int) (Math.random()*360)+100);
+		image=image.getScaledCopy((int) (Math.random()*200)+200,(int) (Math.random()*200)+200);
 		image.rotate((float) (Math.random()*360));
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.drawImage(image,(float) x, (float)y);
-		
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		y+=speedY*delta;
+		y+=5;
 		if(y>600)Decor.islands.remove(this);
+		
+
+		compteur+=1;
 		
 	}
 
