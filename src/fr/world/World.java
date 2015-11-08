@@ -28,9 +28,9 @@ public class World extends BasicGameState{
 	private static ArrayList<Projectile> projectiles;
 	private static ArrayList<Enemy> enemies;
 	private static EnemyGenerator enemyGen;
-	private GameContainer container;
-	private StateBasedGame game;
-	private Decor decor;
+	private static GameContainer container;
+	private static StateBasedGame game;
+	private static Decor decor;
 	
 	private static int score = 0;
 	
@@ -45,6 +45,17 @@ public class World extends BasicGameState{
 		this.container = container;
 		this.game = game;
 		decor = new Decor();
+	}
+	
+	public static void reset(){
+		projectiles = new ArrayList<Projectile>();
+		player = new Player();
+		enemies = new ArrayList<Enemy>();
+		enemyGen = new EnemyGenerator();
+		enemyGen.init(container,game);
+		enemyGen.reset();
+		decor = new Decor();
+		score = 0;
 	}
 
 	@Override

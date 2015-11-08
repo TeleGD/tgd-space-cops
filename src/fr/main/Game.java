@@ -15,6 +15,7 @@ public class Game extends StateBasedGame {
 		AppGameContainer app = new AppGameContainer(new Game(),800, 600, false);
 		app.setTargetFrameRate(60);
 		app.setVSync(true);
+		app.setShowFPS(true);
 		app.start();
 	}
 	
@@ -34,7 +35,7 @@ public class Game extends StateBasedGame {
 		addState(new GOMenu());
 		//addState(new HelpMenu());
 		addState(new PauseMenu());
-		//addState(new ScoresMenu());
+		addState(new ScoresMenu());
 		addState(new MissionMenu());
 		addState(new World());
 	}

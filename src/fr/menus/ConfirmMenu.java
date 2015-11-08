@@ -26,7 +26,7 @@ public class ConfirmMenu extends BasicGameState {
 	
 	public static int ID = 1;
 
-	private String nom = "Etes-vous sûr(e)?";
+	private String nom = "Etes-vous sûr(e)? Tous les scores seront perdus";
 	private String[] items = { "Non", "Oui" };
 
 	public int nbrOption = items.length;
