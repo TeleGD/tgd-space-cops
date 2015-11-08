@@ -42,7 +42,7 @@ public class MainMenu extends BasicGameState{
 	        //container.setShowFPS(false);
 	        this.game=game;
 	        
-	        //background = new Image("Images/background2.png");
+	        background = new Image("sprites/0001.png");
 	        
 	    	Font titre1Font = new Font("Kalinga", Font.BOLD, 26);
 	    	font1 = new TrueTypeFont(titre1Font, false);
@@ -54,7 +54,7 @@ public class MainMenu extends BasicGameState{
 	 }
 
 	 public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		 	//g.drawImage(background, 0, 0);
+		 	g.drawImage(background, 0, 0);
 		 
 		 	g.setColor(Color.red);
 		 	g.setFont(font1);
