@@ -37,6 +37,7 @@ public class Tourret extends Enemy{
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.drawImage(skinCannon, (float)x, (float)y);
+		g.setColor(Color.green);
 		g.fillRect((float)x-12, (float)y-20, (float)hp/2, (float)10);
 	}
 	

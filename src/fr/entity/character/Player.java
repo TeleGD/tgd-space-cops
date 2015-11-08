@@ -115,7 +115,7 @@ public class Player extends Movable implements Rectangle {
 		{
 			if(!invincible && !World.getProjectiles().get(i).getAllied() && Collisions.isCollisionRectRect(this,World.getProjectiles().get(i)))
 			{
-				World.getProjectiles().get(i).destroy(true);
+				World.getProjectiles().get(i).contact(true);
 				NB_DE_VIE--;
 				invincible=true;
 				timeInvincible=System.currentTimeMillis();
@@ -123,6 +123,7 @@ public class Player extends Movable implements Rectangle {
 				{
 					NB_DE_VIE=5;
 					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
+					World.MMenu.loop();
 				}
 			}
 		}
