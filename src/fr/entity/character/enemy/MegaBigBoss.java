@@ -16,7 +16,6 @@ public class MegaBigBoss extends Boss{
 		speedY = 0.05;
 		try {
 			skin = new Image("sprites/bIGbOSS.png");
-			skin = skin.getScaledCopy((float) 4); 
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -49,7 +48,7 @@ public class MegaBigBoss extends Boss{
 		super.update(container, game, delta);
 		if(y>50)
 			speedY = 0;
-		if(!tour1.alive && !tour2.alive && this.alive){
+		if(!tour1.alive && !tour2.alive && this.alive && !tour3.alive && !tour4.alive && !tour5.alive && !tour6.alive && !tour7.alive && !tour8.alive && !tour9.alive && !tour10.alive && !tour11.alive && !tour12.alive && !tour13.alive && !tour14.alive && !tour15.alive && !tour16.alive){
 			explo = new Explosion(x-64,y-80,3);
 			alive = false;
 		}

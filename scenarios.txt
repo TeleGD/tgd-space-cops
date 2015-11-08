@@ -30,4 +30,4 @@ Message mission 0 :
 Vous avez eu beau brûler mes sbires, vous ne m'attraperez pas ! La forêt est à moi, je vous détruirai !
 
 Message mission 1 :
-Mes camarades sont morts en défendant la mère patrie, mais je vous brûlerai ! Les rouges vaicront !
+Mes camarades sont morts en défendant la mère patrie, mais je vous brûlerai ! Les rouges vaincront !

@@ -80,6 +80,7 @@ public class World extends BasicGameState{
 		}
 		g.setColor(Color.white);
 		g.drawString(""+World.getScore(), 10, 50);
+		enemyGen.render(container, game, g);
 	}
 
 	@Override
