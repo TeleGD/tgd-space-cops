@@ -51,7 +51,7 @@ public class EnemyGenerator {
 			event[0]=true;
 		}
 		if(condEvent(1,5000+4000)){
-			new Boss(400-64,50,128,128,300);
+			new Boss(400-64,-100,128,128,350);
 			spawn = false;
 			event[1]=true;
 		}
@@ -60,12 +60,12 @@ public class EnemyGenerator {
 			event[2]=true;
 		}
 		if(condEvent(3,25000+4000)){
-			new Boss(400-64,50,128,128,300);
+			new Boss(400-64,-100,128,128,350);
 			event[3]=true;
 		}
 		if(condEvent(4,45000+4000)){
-			new Boss(200-64,50,128,128,300);
-			new Boss(600-64,50,128,128,300);
+			new Boss(200-64,-100,128,128,350);
+			new Boss(600-64,-100,128,128,350);
 			spawn = false;
 			event[4]=true;
 		}
@@ -74,9 +74,13 @@ public class EnemyGenerator {
 			event[5]=true;
 		}
 		if(condEvent(6,75000+4000)){
-			new Boss(200-64,50,128,128,250);
-			new Boss(600-64,50,128,128,250);
+			new Boss(200-64,-100,128,128,350);
+			new Boss(600-64,-100,128,128,350);
 			event[6]=true;
+		}
+		if(condEvent(7,100000+4000)){
+			time = 300;
+			event[7]=true;
 		}
 		
 		
