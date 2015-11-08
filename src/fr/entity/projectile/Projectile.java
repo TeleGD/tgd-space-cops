@@ -12,7 +12,7 @@ import fr.world.World;
 
 public class Projectile extends Movable implements Rectangle {
 // Ce projectile va tout droit selon l'angle donne, a la vitesse speed,
-// a partir des coordonees (x,y)
+// a partir des coordonees (x,y).
 // L'angle est en degres, et est compte en sens horaire.
 	
 	protected double angle;
@@ -37,9 +37,11 @@ public class Projectile extends Movable implements Rectangle {
 		try {
 			if(alliedShot){
 				image=new Image("sprites/proj1.png");
+				image.rotate((float) angle);
 			}
 			else{
 				image=new Image("sprites/proj2.png");
+				image.rotate((float)(angle+180));
 			}
 		} catch (SlickException e){
 			e.printStackTrace();
