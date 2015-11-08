@@ -16,15 +16,23 @@ public class EnemyGenerator {
 	boolean started = false;
 	boolean spawn = false;
 	
+	public void reset(){
+		for(int i = 0; i < event.length;i++){
+			event[i] = false;
+			started = false;
+			spawn = false;
+		}
+	}
+	
 	
 	public void init(GameContainer container,StateBasedGame game){
 		time = 1000;
-		lastSpawn = System.currentTimeMillis();
 		rand = new Random();	
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		if(!started){
+			lastSpawn = System.currentTimeMillis();
 			timeStart = System.currentTimeMillis();
 			started = true;
 		}

@@ -23,7 +23,7 @@ public class MainMenu extends BasicGameState{
 	static TrueTypeFont font1;
 
 	private String nom = "Menu Principal";
-	private String[] items = { "Jouer", "Scores (Nope)", "Aide (DLC)", "Quitter" };
+	private String[] items = { "Jouer", "Scores", "Aide (DLC)", "Quitter" };
 
 	public int nbrOption = items.length;
 
@@ -93,7 +93,6 @@ public class MainMenu extends BasicGameState{
 			game.enterState(ConfirmMenu.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 		case Input.KEY_C:
-//			game.enterState(CreditsMenu.ID);
 			game.enterState(CreditsMenu.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 		case Input.KEY_M:
@@ -106,11 +105,13 @@ public class MainMenu extends BasicGameState{
 		switch (selection) {
 		case 0:
 			game.enterState(MissionMenu.ID, new FadeOutTransition(), new FadeInTransition());
+			World.reset();
 			break;
-			/*
+			
 		case 1:
 			game.enterState(ScoresMenu.ID);
 			break;
+			/*
 		case 2:
 			game.enterState(HelpMenu.ID);
 			break;
