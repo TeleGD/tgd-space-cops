@@ -15,6 +15,7 @@ import fr.entity.character.enemy.EnemyGenerator;
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
 import fr.menus.*;
+import fr.decor.Decor
 
 
 public class World extends BasicGameState{
@@ -22,47 +23,49 @@ public class World extends BasicGameState{
 	public enum direction {HAUT,DROITE,BAS,GAUCHE};
 	private static Player player;
 	public static int ID=0;
-	private static Projectile p1;
 	private static ArrayList<Projectile> projectiles;
 	private static ArrayList<Enemy> enemies;
 	private static EnemyGenerator enemyGen;
 	private GameContainer container;
 	private StateBasedGame game;
+	private Decor decor;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+
 		player = new Player();
 		enemies = new ArrayList<Enemy>();
 		enemyGen = new EnemyGenerator();
 		enemyGen.init(container,game);
 		projectiles = new ArrayList<Projectile>();
-		p1 = new Projectile(400,400,45,0.3);
 		this.container = container;
 		this.game = game;
+		decor = new Decor();
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		decor.render(container, game,g);
 		player.render(container, game, g);
-		p1.render(container,game,g);
 		for(int i = 0; i<enemies.size();i++){
 			enemies.get(i).render(container, game, g);
 		}
 		for(int i = 0; i<projectiles.size();i++){
 			projectiles.get(i).render(container, game, g);
 		}
+
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		player.update(container, game, delta);
-		p1.update(container, game,delta);
 		for(int i = 0; i<enemies.size();i++){
 			enemies.get(i).update(container, game, delta);
 		}
 		for(int i = 0; i<projectiles.size();i++){
 			projectiles.get(i).update(container, game, delta);
 		}
+		decor.update(container,game,delta);
 	}
 	
 	public void keyReleased(int key, char c) {

@@ -16,23 +16,25 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.entity.projectile.Projectile;
 import fr.util.Movable;
 import fr.util.Rectangle;
+import fr.world.World;
 import fr.world.World.direction;
 
 public class Player extends Movable implements Rectangle {
 
-	private direction dir=direction.GAUCHE;
-	private boolean ispressedHaut,ispressedBas,ispressedDroite,ispressedGauche;
+	
+	private final static int FRAME_TO_WAIT=5;
 	private boolean droitegauche=false,hautbas=false;  /* hautbas= true si bas dernier mis, droitegauche= true si droite dernier mis*/
 	private boolean upPress = false;
 	private boolean downPress = false;
 	private boolean leftPress = false;
 	private boolean rightPress = false;
-	private boolean dash=false;
+	private boolean dash=false,dashDispo=true;
 	private long timeDashInit=0;
-	
-	private Image imagegauche,imagecentrale,imagedroite,image;
+	private int compteur=0;
+	private Image imagegauche,imagecentrale,imagedroite,image,fond;
 	
 	public Player() {
 		x = 400;
@@ -42,6 +44,8 @@ public class Player extends Movable implements Rectangle {
 		speedX = 0;
 		speedY = 0;
 		isMoving = true;
+		compteur=0;
+		
 		try {
 			imagedroite=new Image("sprites/ship2.png");
 			imagegauche=new Image("sprites/ship0.png");
@@ -51,11 +55,12 @@ public class Player extends Movable implements Rectangle {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.setColor(Color.blue);
 		
+			
 		
 		g.drawImage(image,(float)x,(float)y);
 		g.setColor(Color.green);
@@ -99,17 +104,21 @@ public class Player extends Movable implements Rectangle {
 			image=imagecentrale;
 		}
 		
-		if(dash && System.currentTimeMillis()-timeDashInit>10500){
-			dash=false;
+		if(System.currentTimeMillis()-timeDashInit>10500){
+			dashDispo=true;
 		}
 		else if(dash && System.currentTimeMillis()-timeDashInit<500){
 			speedX*=4;
 			speedY*=4;
+		}else{
+			dash=false;
 		}
 		
 		moveX(delta);
 		moveY(delta);
 		
+		if(compteur%FRAME_TO_WAIT==0)new Projectile(x+width/2,y,0,1,true);
+		compteur++;
 	}
 
 	public void keyReleased(int key, char c) {
@@ -130,6 +139,9 @@ public class Player extends Movable implements Rectangle {
 			
 			case Input.KEY_RIGHT:
 				rightPress=false;
+			break;
+			case Input.KEY_LSHIFT:
+				dash=false;
 			break;
 			
 		}
@@ -159,9 +171,10 @@ public class Player extends Movable implements Rectangle {
 			droitegauche=true;
 		break;
 		case Input.KEY_LSHIFT:
-			if(!dash)
+			if(dashDispo)
 			{
 				dash=true;
+				dashDispo=false;
 				timeDashInit=System.currentTimeMillis();
 			}
 		break;
