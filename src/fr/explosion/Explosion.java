@@ -22,6 +22,7 @@ public class Explosion extends Movable {
 		this.scale=scale;
 		loadExplosion();
 		explosion = 179;
+		bruit();
 	}
 	
 	public void loadExplosion(){

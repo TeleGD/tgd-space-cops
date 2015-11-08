@@ -78,6 +78,10 @@ public class EnemyGenerator {
 			new Boss(600-64,-100,128,128,350);
 			event[6]=true;
 		}
+		if(condEvent(7,100000+4000)){
+			time = 300;
+			event[7]=true;
+		}
 		
 		
 		
