@@ -26,6 +26,7 @@ public class Player extends Movable implements Rectangle {
 
 	
 	private final static int FRAME_TO_WAIT=5;
+	private static int NB_DE_VIE=5;
 	private boolean droitegauche=false,hautbas=false;  /* hautbas= true si bas dernier mis, droitegauche= true si droite dernier mis*/
 	private boolean upPress = false;
 	private boolean downPress = false;
@@ -60,8 +61,12 @@ public class Player extends Movable implements Rectangle {
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		
-			
-		
+
+
+		for(int i=0;i<NB_DE_VIE;i++)
+		{
+			g.drawImage(image.getScaledCopy((float) 0.5),i*40,10);
+		}
 		g.drawImage(image,(float)x,(float)y);
 		g.setColor(Color.green);
 	}
@@ -117,7 +122,10 @@ public class Player extends Movable implements Rectangle {
 		moveX(delta);
 		moveY(delta);
 		
-		if(compteur%FRAME_TO_WAIT==0)new Projectile(x+width/2,y,0,1,true);
+		if(compteur%FRAME_TO_WAIT==0){
+			new Projectile(x+width/2-2,y,0,1,true);
+			new Projectile(x+width/2-14,y,0,1,true);
+		}
 		compteur++;
 	}
 
