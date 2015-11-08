@@ -13,22 +13,22 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
-public class CreditsMenu extends BasicGameState {
+public class MissionMenu extends BasicGameState {
 
-	public static int ID = 8;
+	public static int ID = 9;
 	
 	static TrueTypeFont font5;
 	static TrueTypeFont font6;
 
-	private String nom = "Credits :";
+	private String nom = "Mission :";
 	private String[] items = {
-			"la truelle",
+			"texte mission",
 			"à",
 			"définir",
 			"plus",
 			"tard",
 			"",
-			"Club TeleGame Design,    Telecom Nancy",
+			"fbjvnsk,bledsfpnvsfnvsnv nsvo sfnibo",
 			"",
 			"Retour Menu" };
 
@@ -48,7 +48,7 @@ public class CreditsMenu extends BasicGameState {
 		this.container = container;
 		container.setShowFPS(false);
 		this.game = game;
-		background = new Image("sprites/0004.png");
+		background = new Image("sprites/0005.png");
 		
     	Font titre5Font = new Font("Courant", Font.BOLD, 26);
     	font5 = new TrueTypeFont(titre5Font, false);

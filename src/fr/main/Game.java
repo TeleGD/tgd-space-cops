@@ -34,6 +34,7 @@ public class Game extends StateBasedGame {
 		//addState(new HelpMenu());
 		addState(new PauseMenu());
 		//addState(new ScoresMenu());
+		addState(new MissionMenu());
 		addState(new World());
 	}
 
