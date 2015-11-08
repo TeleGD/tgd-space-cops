@@ -47,11 +47,12 @@ public class Player extends Movable implements Rectangle {
 	private int compteur=0;
 	private Image imagegauche,imagecentrale,imagedroite,image,fond;
 	private long timeInvincible;
-	
+	private int width2; // largeur image
 	public Player() {
 		x = 400;
 		y = 500;
-		width = 64;
+		width = 16;
+		width2 = 64;
 		height = 64;
 		speedX = 0;
 		speedY = 0;
@@ -164,7 +165,7 @@ public class Player extends Movable implements Rectangle {
 		}
 		if((!leftPress && rightPress)|| (leftPress && rightPress && droitegauche))
 		{
-			if(x< 800 - width)
+			if(x< 800 - width2)
 			{
 
 				image=imagedroite;
