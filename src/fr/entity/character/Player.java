@@ -23,6 +23,7 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.entity.projectile.Projectile;
+import fr.explosion.Explosion;
 import fr.menus.GOMenu;
 import fr.util.Collisions;
 import fr.util.Movable;
@@ -46,7 +47,6 @@ public class Player extends Movable implements Rectangle {
 	private int compteur=0;
 	private Image imagegauche,imagecentrale,imagedroite,image,fond;
 	private long timeInvincible;
-	private int explosion=0;
 	
 	public Player() {
 		x = 400;
@@ -81,17 +81,21 @@ public class Player extends Movable implements Rectangle {
 			g.drawImage(image.getScaledCopy((float) 0.5),i*40,10);
 		}
 		g.setColor(Color.black);
-		g.fillRoundRect((float) 700, (float)10, 10, 30,1);
+		g.fillRoundRect((float) 750, (float)10, 16, 28,1);
 		g.setColor(Color.white);
-		g.fillRoundRect((float) 702, (float)12, 6, 26,1);
+		g.fillRoundRect((float) 752, (float)12, 12, 24,1);
+		g.setColor(Color.yellow);
+		
+		if(System.currentTimeMillis()-timeDashInit<TIME_DASH+500)g.fillRoundRect((float) 752, (float)36, 12, -24*(System.currentTimeMillis()-timeDashInit)/TIME_DASH,1);
+		else g.fillRoundRect((float) 752, (float)12, 12, 24,1);
+
+		
 		g.drawImage(image,(float)x,(float)y);
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		
 		deplacement();
-
-		if(explosion>1)explosion--;
 		
 		if(System.currentTimeMillis()-timeInvincible>3000)invincible=false;
 		
@@ -116,6 +120,7 @@ public class Player extends Movable implements Rectangle {
 				timeInvincible=System.currentTimeMillis();
 				if(NB_DE_VIE==0) //game over
 				{
+					NB_DE_VIE=5;
 					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
 				}
 			}

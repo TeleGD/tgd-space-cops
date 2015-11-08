@@ -16,15 +16,23 @@ public class EnemyGenerator {
 	boolean started = false;
 	boolean spawn = false;
 	
+	public void reset(){
+		for(int i = 0; i < event.length;i++){
+			event[i] = false;
+			started = false;
+			spawn = false;
+		}
+	}
+	
 	
 	public void init(GameContainer container,StateBasedGame game){
 		time = 1000;
-		lastSpawn = System.currentTimeMillis();
 		rand = new Random();	
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		if(!started){
+			lastSpawn = System.currentTimeMillis();
 			timeStart = System.currentTimeMillis();
 			started = true;
 		}
@@ -43,7 +51,7 @@ public class EnemyGenerator {
 			event[0]=true;
 		}
 		if(condEvent(1,5000+4000)){
-			new Boss(400-64,50,128,128,250);
+			new Boss(400-64,50,128,128,300);
 			spawn = false;
 			event[1]=true;
 		}
@@ -52,12 +60,12 @@ public class EnemyGenerator {
 			event[2]=true;
 		}
 		if(condEvent(3,25000+4000)){
-			new Boss(400-64,50,128,128,250);
+			new Boss(400-64,50,128,128,300);
 			event[3]=true;
 		}
 		if(condEvent(4,45000+4000)){
-			new Boss(200-64,50,128,128,250);
-			new Boss(600-64,50,128,128,250);
+			new Boss(200-64,50,128,128,300);
+			new Boss(600-64,50,128,128,300);
 			spawn = false;
 			event[4]=true;
 		}
