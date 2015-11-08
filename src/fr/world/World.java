@@ -62,6 +62,9 @@ public class World extends BasicGameState{
 		decor = new Decor();
 		score = 0;
 	    Mbackground.loop();
+	    GOMenu.reset();
+	    MissionMenu.reset();
+	    ScoresMenu.reset();
 	}
 
 	@Override

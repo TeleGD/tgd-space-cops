@@ -124,7 +124,7 @@ public class MissionMenu extends BasicGameState {
 
 	}
 	
-	public void reset() {
+	public static void reset() {
 		textList = generateText(40);
 	}
 

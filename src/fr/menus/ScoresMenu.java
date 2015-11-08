@@ -104,7 +104,7 @@ public class ScoresMenu extends BasicGameState {
 
 	}
 
-	public void reset() {
+	public static void reset() {
 		firstTime = true;
 	}
 
