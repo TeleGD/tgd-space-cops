@@ -60,7 +60,9 @@ public class ScoresMenu extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		if (firstTime) {
+			
 			if (World.getScore() > scoresList[4]) {
+				
 				scoresList[4] = World.getScore();
 				int i = 4; int tmp;
 				while (i>0 && scoresList[i]>scoresList[i-1]) {
@@ -72,7 +74,7 @@ public class ScoresMenu extends BasicGameState {
 			}
 			
 			for (int k=0; k<5; k++)
-				items[k] = items[k]+scoresList[k];
+				items[k] = (k+1)+". "+scoresList[k];
 			firstTime = false;
 		}
 	}
