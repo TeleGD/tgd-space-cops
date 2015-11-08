@@ -22,13 +22,13 @@ public class MissionMenu extends BasicGameState {
 
 	private String nom = "Mission :";
 	private String[] items = {
-			"la truelle",
+			"texte mission",
 			"à",
 			"définir",
 			"plus",
 			"tard",
 			"",
-			"Club TeleGame Design,    Telecom Nancy",
+			"fbjvnsk,bledsfpnvsfnvsnv nsvo sfnibo",
 			"",
 			"Retour Menu" };
 

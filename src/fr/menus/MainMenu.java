@@ -93,6 +93,9 @@ public class MainMenu extends BasicGameState{
 		case Input.KEY_C:
 			game.enterState(CreditsMenu.ID);
 			break;
+		case Input.KEY_M:
+			game.enterState(MissionMenu.ID);
+			break;
 		}
 	}
 	
