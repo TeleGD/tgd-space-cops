@@ -21,8 +21,8 @@ public class BigBoss extends Boss{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		tour1 = new Tourret(x+8,y+26,32,32,time,0);
-		tour2 = new Tourret(x+88,y+26,32,32,time,0);
+		tour1 = new Tourret(x+8,y+26,32,32,(int) (-y+50),0,time,0);
+		tour2 = new Tourret(x+88,y+26,32,32,(int) (-y+50),0,time,0);
 	}
 	
 

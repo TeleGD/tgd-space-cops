@@ -16,26 +16,32 @@ public class MegaBigBoss extends Boss{
 		speedY = 0.05;
 		try {
 			skin = new Image("sprites/bIGbOSS.png");
-			skin = skin.getScaledCopy((float) 2); 
+			skin = skin.getScaledCopy((float) 4); 
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		tour1 = new Tourret(x+8,y+26,32,32,time,0);
-		tour2 = new Tourret(x+8,y+26,32,32,time,0);
-		tour3 = new Tourret(x+8,y+26,32,32,time,0);
-		tour4 = new Tourret(x+8,y+26,32,32,time,0);
-		tour5 = new Tourret(x+8,y+26,32,32,time,0);
-		tour6 = new Tourret(x+8,y+26,32,32,time,0);
-		tour7 = new Tourret(x+8,y+26,32,32,time,0);
-		tour8 = new Tourret(x+8,y+26,32,32,time,0);
-		tour9 = new Tourret(x+8,y+26,32,32,time,0);
-		tour10 = new Tourret(x+8,y+26,32,32,time,0);
-		tour11 = new Tourret(x+8,y+26,32,32,time,0);
-		tour12 = new Tourret(x+8,y+26,32,32,time,0);
-		tour13 = new Tourret(x+8,y+26,32,32,time,0);
-		tour14 = new Tourret(x+8,y+26,32,32,time,0);
-		tour15 = new Tourret(x+8,y+26,32,32,time,0);
-		tour16 = new Tourret(x+8,y+26,32,32,time,0);
+		tour1 = new Tourret(x+8,y+36,32,32,(int) (-y+50),180,time,0);
+		tour2 = new Tourret(x+40,y+75,32,32,(int) (-y+50),180,time,0);
+		tour3 = new Tourret(x+60,y+86,32,32,(int) (-y+50),180,time,0);
+		
+		tour4 = new Tourret(x+64*4-8-32,y+36,32,32,(int) (-y+50),180,time,0);
+		tour5 = new Tourret(x+64*4-40-32,y+75,32,32,(int) (-y+50),180,time,0);
+		tour6 = new Tourret(x+64*4-60-32,y+86,32,32,(int) (-y+50),180,time,0);
+		
+		
+		tour7 = new Tourret(x+8,y+180,32,32,(int) (-y+50),0,time,0);
+		tour8 = new Tourret(x+48,y+128,32,32,(int) (-y+50),0,time,0);
+		
+		tour9 = new Tourret(x+64*4-8-32,y+180,32,32,(int) (-y+50),0,time,0);
+		tour10 = new Tourret(x+64*4-48-32,y+128,32,32,(int) (-y+50),0,time,0);
+		
+		tour11 = new Tourret(x+95,y+144,32,32,(int) (-y+50),0,time,2);
+		tour12 = new Tourret(x+95,y+187,32,32,(int) (-y+50),0,time,2);
+		tour13 = new Tourret(x+57,y+213,32,32,(int) (-y+50),0,time,2);
+		
+		tour14 = new Tourret(x+64*4-32-95,y+144,32,32,(int) (-y+50),0,time,2);
+		tour15 = new Tourret(x+64*4-32-95,y+187,32,32,(int) (-y+50),0,time,2);
+		tour16 = new Tourret(x+64*4-32-57,y+213,32,32,(int) (-y+50),0,time,2);
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta)

@@ -46,11 +46,11 @@ public class EnemyGenerator {
 
 		
 		
-		if(condEvent(0,3000+4000)){
-			spawn = true;
+		if(condEvent(0,2000)){
+			new MegaBigBoss(290,-100,128,128,350);
 			event[0]=true;
 		}
-		if(condEvent(1,5000+4000)){
+		/*if(condEvent(1,2000)){
 			new BigBoss(400-64,-100,128,128,350);
 			spawn = false;
 			event[1]=true;
@@ -81,7 +81,7 @@ public class EnemyGenerator {
 		if(condEvent(7,100000+4000)){
 			time = 300;
 			event[7]=true;
-		}
+		}*/
 		
 		
 		
