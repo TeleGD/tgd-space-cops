@@ -18,6 +18,9 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 	private int amplitude;// Amplitude du sinus.
 	private int period;// Periode du sinus.
 	
+	private double speedXAlt;// speedX dans le repere alternatif (qui est tourne de angle)
+	private double speedYAlt;// speedY dans le repere alternatif
+	
 	public ProjectileType1(double x, double y, double angle, double speed) {
 		super(x, y, angle, speed);
 		spawnY = y;
@@ -32,17 +35,29 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 		this.period = period;
 	}
 	
-	public void move(int delta) { 
-		y += speedY*delta;
-		x = spawnX + amplitude*Math.sin((spawnY-y)*(2*Math.PI)/128.0);
+	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		//g.setColor(Color.green);
+		g.drawImage(image,(float)x,(float)y);
 	}
 	
-	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.setColor(Color.green);
-		g.fillRect((float)x, (float)y, (float)width, (float)height);
+	public void goAlt() {
+	// Calcul des coordonnees dans le repere alternatif, application du sinus.
+		speedXAlt = speedX*Math.cos((angle-90)*2*Math.PI/360.0)+speedY*Math.sin((angle-90)*2*Math.PI/360.0); 
+		speedYAlt = amplitude*Math.sin(speedXAlt*2*Math.PI/period);
+	}
+	
+	public void goNormal() {
+	// Retour aux coordonnees dans le repere normal
+		speedX = speedXAlt*Math.cos((angle-90)*2*Math.PI/360.0)+speedYAlt*Math.sin((angle-90)*2*Math.PI/360.0);
+		speedY = speedYAlt*Math.cos((angle-90)*2*Math.PI/360.0)-speedXAlt*Math.sin((angle-90)*2*Math.PI/360.0);
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		move(delta);
+	// On passe dans le repere alternatif tourne de angle degres, on applique la transformation,
+	// puis on repasse dans le repere normal
+		goAlt();
+		goNormal();
+		moveY(delta);
+		moveX(delta);
 	}
 }
