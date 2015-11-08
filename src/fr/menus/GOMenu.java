@@ -41,6 +41,7 @@ public class GOMenu extends BasicGameState {
 
 	static GameContainer container;
 	int selection = 0;
+	private static boolean firstTime;
 
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -55,18 +56,24 @@ public class GOMenu extends BasicGameState {
     	
     	Font titre4Font = new Font("Kristen ITC", Font.BOLD, 20);
 		font4 = new TrueTypeFont(titre4Font, false);
+		
+		firstTime = true;
     	
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
+		if (firstTime) {
+			items[3] = "Score : "+World.getScore();
+			firstTime = false;
+		}
 
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		//g.drawImage(background, 0, 0);
-		items[3] = "Score : "+World.getScore();
+
 		
 		g.setColor(Color.red);
 		g.setFont(font3);
@@ -82,6 +89,10 @@ public class GOMenu extends BasicGameState {
 
 		g.drawString(">>", 230, 280 + 50 * selection);
 
+	}
+	
+	public void reset() {
+		firstTime = true;
 	}
 
 	public void keyPressed(int key, char c) {
