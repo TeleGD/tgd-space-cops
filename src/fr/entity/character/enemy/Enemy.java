@@ -1,10 +1,9 @@
 package fr.entity.character.enemy;
 
-import java.awt.Image;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -15,11 +14,16 @@ public abstract class Enemy extends Movable {
 	
 	long lastShoot;
 	long time;
-	Image skin;
+	protected Image skin;
+	protected int id;
+	protected static int enemyCounter;
+	
 	
 	
 	public Enemy(double x,double y,double width,double height,int time){
 		isMoving = true;
+		id = enemyCounter;
+		enemyCounter++;
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -39,6 +43,19 @@ public abstract class Enemy extends Movable {
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		move(delta);
 		testShoot();
+		for(int i = 0; i< World.getProjectiles().size();i++){
+			if(World.getProjectiles().get(i).
+		}
+	}
+	
+	public void destroy(){
+		int i =0;
+		while((i<World.getEnemies().size())&&(World.getEnemies().get(i).id!=this.id)){
+			i++;
+		}
+		if(i<World.getEnemies().size()){
+			World.getEnemies().remove(i);
+		}
 	}
 	
 	public void move(int delta){
