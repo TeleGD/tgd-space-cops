@@ -34,8 +34,8 @@ public class Player extends Movable implements Rectangle {
 
 	
 	private final static int FRAME_TO_WAIT=5;
-	private static int TIME_DASH=10000;
-	private static int NB_DE_VIE=5;
+	private static int TIME_DASH=10000; // à ré-initialiser
+	private static int NB_DE_VIE=5; // à ré-initialiser
 	private boolean droitegauche=false,hautbas=false;  /* hautbas= true si bas dernier mis, droitegauche= true si droite dernier mis*/
 	private boolean upPress = false;
 	private boolean downPress = false;
@@ -43,13 +43,13 @@ public class Player extends Movable implements Rectangle {
 	private boolean rightPress = false;
 	private boolean dash=false,dashDispo=true;
 	private boolean invincible=false;
-	private long timeDashInit=0;
-	private int compteur=0;
+	private long timeDashInit=0; // à ré-initialiser
+	private static int compteur=0; // à ré-initialiser
 	private Image imagegauche,imagecentrale,imagedroite,image,fond;
 	private long timeInvincible;
 	private int width2; // largeur image
 	public Player() {
-		x = 400;
+		x = 408;
 		y = 500;
 		width = 16;
 		width2 = 64;
@@ -91,7 +91,7 @@ public class Player extends Movable implements Rectangle {
 		else g.fillRoundRect((float) 752, (float)12, 12, 24,1);
 
 		
-		g.drawImage(image,(float)x,(float)y);
+		g.drawImage(image,(float)(x-24),(float)y);
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
@@ -123,7 +123,6 @@ public class Player extends Movable implements Rectangle {
 				{
 					NB_DE_VIE=5;
 					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
-					World.MMenu.loop();
 				}
 			}
 		}
@@ -158,7 +157,7 @@ public class Player extends Movable implements Rectangle {
 		}
 		if((leftPress && !rightPress)|| (leftPress && rightPress && !droitegauche))
 		{
-			if(x>0){
+			if(x>24){
 				speedX = -0.5;
 				image=imagegauche;
 			}
@@ -166,7 +165,7 @@ public class Player extends Movable implements Rectangle {
 		}
 		if((!leftPress && rightPress)|| (leftPress && rightPress && droitegauche))
 		{
-			if(x< 800 - width2)
+			if(x< 800+24 - width2)
 			{
 
 				image=imagedroite;
@@ -242,7 +241,11 @@ public class Player extends Movable implements Rectangle {
 		
 	}
 	
-	
+	public static void reset(){
+		NB_DE_VIE=5;
+		compteur=0;
+		
+	}
 
 
 
