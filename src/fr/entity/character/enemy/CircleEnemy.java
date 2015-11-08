@@ -26,7 +26,11 @@ public class CircleEnemy extends Enemy{
 	
 	public void shoot(){
 		for(int i = 0; i<360; i+=360/nbrShoot){
+<<<<<<< HEAD
 			new ProjectileType1(x+(width/2)-8-Math.cos((Math.PI/2)+i*Math.PI/180)*30,y+(height/2)-8-Math.sin((Math.PI/2)+i*Math.PI/180)*30,i,0.3,128,64,false);
+=======
+			new Projectile(x+(width/2)-8-Math.cos((Math.PI/2)+i*Math.PI/180)*30,y+(height/2)-8-Math.sin((Math.PI/2)+i*Math.PI/180)*30,i,0.3,false);
+>>>>>>> 3937f5c77b52c6ceea6ad7784e4c79f5aa3f78f3
 		}
 	}
 

@@ -15,6 +15,7 @@ import fr.entity.character.enemy.EnemyGenerator;
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
 import fr.menus.*;
+import fr.decor.Decor;
 
 
 public class World extends BasicGameState{
@@ -27,9 +28,11 @@ public class World extends BasicGameState{
 	private static EnemyGenerator enemyGen;
 	private GameContainer container;
 	private StateBasedGame game;
+	private Decor decor;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+
 		player = new Player();
 		enemies = new ArrayList<Enemy>();
 		enemyGen = new EnemyGenerator();
@@ -37,10 +40,12 @@ public class World extends BasicGameState{
 		projectiles = new ArrayList<Projectile>();
 		this.container = container;
 		this.game = game;
+		decor = new Decor();
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		decor.render(container, game,g);
 		player.render(container, game, g);
 		for(int i = 0; i<enemies.size();i++){
 			enemies.get(i).render(container, game, g);
@@ -48,6 +53,7 @@ public class World extends BasicGameState{
 		for(int i = 0; i<projectiles.size();i++){
 			projectiles.get(i).render(container, game, g);
 		}
+
 	}
 
 	@Override
@@ -59,7 +65,7 @@ public class World extends BasicGameState{
 		for(int i = 0; i<projectiles.size();i++){
 			projectiles.get(i).update(container, game, delta);
 		}
-		System.out.println(projectiles.size());
+		decor.update(container,game,delta);
 	}
 	
 	public void keyReleased(int key, char c) {

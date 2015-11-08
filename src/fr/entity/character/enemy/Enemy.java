@@ -1,5 +1,7 @@
 package fr.entity.character.enemy;
 
+import java.awt.Image;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,6 +15,7 @@ public abstract class Enemy extends Movable {
 	
 	long lastShoot;
 	long time;
+	Image skin;
 	
 	
 	public Enemy(double x,double y,double width,double height,int time){
