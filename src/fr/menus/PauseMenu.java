@@ -11,6 +11,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.world.World;
 
@@ -99,7 +101,7 @@ public class PauseMenu extends BasicGameState {
 			execOption();
 			break;
 		case Input.KEY_ESCAPE:
-			game.enterState(World.ID);
+			game.enterState(World.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 
 		}
@@ -109,10 +111,10 @@ public class PauseMenu extends BasicGameState {
 
 		switch (selection) {
 		case 0:
-			game.enterState(World.ID);
+			game.enterState(World.ID, new FadeOutTransition(), new FadeInTransition());
 			break;
 		case 1:
-			game.enterState(MainMenu.ID);
+			game.enterState(MainMenu.ID, new FadeOutTransition(), new FadeInTransition());
 
 		}
 	}

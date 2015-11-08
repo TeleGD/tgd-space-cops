@@ -2,6 +2,7 @@ package fr.world;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -29,6 +30,7 @@ public class World extends BasicGameState{
 	private GameContainer container;
 	private StateBasedGame game;
 	private Decor decor;
+	private static int score;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -41,6 +43,7 @@ public class World extends BasicGameState{
 		this.container = container;
 		this.game = game;
 		decor = new Decor();
+		score = 0;
 	}
 
 	@Override
@@ -53,7 +56,8 @@ public class World extends BasicGameState{
 		for(int i = 0; i<projectiles.size();i++){
 			projectiles.get(i).render(container, game, g);
 		}
-
+		g.setColor(Color.white);
+		g.drawString(""+score, 10, 50);
 	}
 
 	@Override
@@ -66,6 +70,7 @@ public class World extends BasicGameState{
 			projectiles.get(i).update(container, game, delta);
 		}
 		decor.update(container,game,delta);
+		enemyGen.update(container, game, delta);
 	}
 	
 	public void keyReleased(int key, char c) {
@@ -87,6 +92,14 @@ public class World extends BasicGameState{
 		return projectiles;
 	}
 
+
+	public static int getScore() {
+		return score;
+	}
+
+	public static void setScore(int scoreP) {
+		score = scoreP;
+	}
 
 	@Override
 	public int getID() {

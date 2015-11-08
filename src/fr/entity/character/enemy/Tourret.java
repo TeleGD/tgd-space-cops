@@ -3,28 +3,45 @@ package fr.entity.character.enemy;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entity.projectile.Projectile;
+import fr.world.World;
 
 
-public class RotateEnemy extends Enemy{
+public class Tourret extends Enemy{
 	
 	float rotation;
+	Image skinCannon;
+	
 
-	public RotateEnemy(double x, double y, double width, double height, int time) {
+	public Tourret(double x, double y, double width, double height, int time) {
 		super(x, y, width, height,time);
-		speedX = 0.3;
+		hp = 100;
+		try {
+			skinCannon = new Image("sprites/cannon1.png");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		super.update(container, game, delta);
+		skinCannon.rotate(1);
+		rotation++;
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.setColor(Color.red);
-		g.fillRect((float)x,(float)y,(float)width,(float)height);
+		g.drawImage(skinCannon, (float)x, (float)y);
+		g.fillRect((float)x-12, (float)y-20, (float)hp/2, (float)10);
+	}
+	
+	public void destroy(){
+		World.setScore(World.getScore()+15);
+		super.destroy();
 	}
 	
 	public void move(int delta){
@@ -49,7 +66,7 @@ public class RotateEnemy extends Enemy{
 	}
 	
 	void shoot(){
-		new Projectile((double) x+(width/2)-8,(double)y+(height/2)-8,rotation,0.3,false);
+		new Projectile(x+(width/2)-8+Math.cos((Math.PI/2)+rotation*Math.PI/180)*15,y+(height/2)-8+Math.sin((Math.PI/2)+rotation*Math.PI/180)*15,rotation-180,0.3,false);
 	}
 
 
