@@ -110,7 +110,7 @@ public class Player extends Movable implements Rectangle {
 		{
 			if(!invincible && !World.getProjectiles().get(i).getAllied() && Collisions.isCollisionRectRect(this,World.getProjectiles().get(i)))
 			{
-				World.getProjectiles().get(i).destroy();
+				World.getProjectiles().get(i).destroy(true);
 				NB_DE_VIE--;
 				invincible=true;
 				timeInvincible=System.currentTimeMillis();
