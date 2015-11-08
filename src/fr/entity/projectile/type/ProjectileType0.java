@@ -54,8 +54,8 @@ public class ProjectileType0 extends Projectile implements Rectangle {
 		moveX(delta);
 		distance += delta*Math.sqrt(Math.pow(speedX, 2)+Math.pow(speedY, 2));
 		cut(distance,numberOfChildren);
-		for(int i = 0; i<children.size(); i++){
-			children.get(i).update(container, game, delta);
-		}
+			for(int i = 0; i<children.size(); i++){
+				children.get(i).update(container, game, delta);
+			}
 	}
 }
