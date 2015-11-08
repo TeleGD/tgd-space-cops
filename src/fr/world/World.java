@@ -15,7 +15,7 @@ import fr.entity.character.enemy.EnemyGenerator;
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
 import fr.menus.*;
-import fr.decor.Decor
+import fr.decor.Decor;
 
 
 public class World extends BasicGameState{

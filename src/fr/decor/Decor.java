@@ -21,7 +21,8 @@ public class Decor extends Movable{
 	public Decor()
 	{
 		try {
-			fond=new Image("sprites/ocean_tex.png");
+			fond=new Image("sprites/ocean2.png");
+			fond=fond.getScaledCopy(800, 600);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,14 +31,9 @@ public class Decor extends Movable{
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.setColor(Color.blue);
-		for(int i=0;i<7;i++)
-		{
-			for(int j=-1;j<7;j++)
-			{
-				g.drawImage(fond,i*128,j*128+(6*compteur)%128);
-			}
-		}
+		
+		g.drawImage(fond,0,0+compteur%600);
+		g.drawImage(fond,0,-600+compteur%600);
 		for(int i=0;i<nuages.size();i++)
 		{
 			nuages.get(i).render(container, game, g);
