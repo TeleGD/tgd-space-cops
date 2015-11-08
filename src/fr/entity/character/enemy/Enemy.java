@@ -48,6 +48,7 @@ public abstract class Enemy extends Movable implements Rectangle{
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		move(delta);
 		testShoot();
+		if(!(this instanceof Boss)){
 		for(int i = 0; i< World.getProjectiles().size();i++){
 			if(World.getProjectiles().get(i).getAllied() && Collisions.isCollisionRectRect(this,World.getProjectiles().get(i))){
 				if(hp > 1){
@@ -58,6 +59,7 @@ public abstract class Enemy extends Movable implements Rectangle{
 					destroy();
 				}
 			}
+		}
 		}
 	}
 	
@@ -85,11 +87,11 @@ public abstract class Enemy extends Movable implements Rectangle{
 			accelX = -accelX;
 		}
 		moveY(delta);
-		if(y<0 && !(this instanceof CircleEnemy)){
+		if(y<0 && this instanceof BasicEnemy){
 			y = 0;
 			speedY = -speedY;
 		}
-		if(y>600-height && !(this instanceof CircleEnemy)){
+		if(y>600-height && this instanceof BasicEnemy){
 			y = 600-height;
 			speedY = -speedY;
 		}

@@ -21,6 +21,7 @@ public class Tourret extends Enemy{
 	public Tourret(double x, double y, double width, double height, int time) {
 		super(x, y, width, height,time);
 		hp = 100;
+		speedY = 0.05;
 		try {
 			skinCannon = new Image("sprites/cannon1.png");
 		} catch (SlickException e) {
@@ -57,14 +58,8 @@ public class Tourret extends Enemy{
 			speedX = -speedX;
 		}
 		moveY(delta);
-		if(y<0){
-			y = 0;
-			speedY = -speedY;
-		}
-		if(y>600-height){
-			y = 600-height;
-			speedY = -speedY;
-		}
+		if(y>76)
+			speedY = 0;
 	}
 	
 	void shoot(){

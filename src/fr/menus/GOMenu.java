@@ -118,6 +118,7 @@ public class GOMenu extends BasicGameState {
 		switch (selection) {
 		case 0:
 			game.enterState(World.ID, new FadeOutTransition(), new FadeInTransition());
+			World.reset();
 			break;
 		case 1:
 			game.enterState(MainMenu.ID, new FadeOutTransition(), new FadeInTransition());

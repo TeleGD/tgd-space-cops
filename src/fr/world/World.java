@@ -65,6 +65,7 @@ public class World extends BasicGameState{
 	    GOMenu.reset();
 	    MissionMenu.reset();
 	    ScoresMenu.reset();
+	    //Player.reset();
 	}
 
 	@Override
