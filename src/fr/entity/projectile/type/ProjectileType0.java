@@ -2,7 +2,6 @@ package fr.entity.projectile.type;
 
 import java.util.ArrayList;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -14,7 +13,7 @@ import fr.util.Rectangle;
 public class ProjectileType0 extends Projectile implements Rectangle {
 // Ce projectile va tout droit selon l'angle donne,
 // puis se separe apres une distance d en n sous-projectiles qui font un eventail 
-// (avec un angle de 90/n entre chaque sous projectile).
+// (avec un angle de 90/(n-1) entre chaque sous projectile).
 // L'angle est en degres, et est compte en sens horaire.
 	
 	private double maxDistance;
@@ -22,10 +21,9 @@ public class ProjectileType0 extends Projectile implements Rectangle {
 	private double numberOfChildren;
 	private boolean forked;
 	private ArrayList<Projectile> children;
-	private boolean even;
 	
-	public ProjectileType0(double x, double y, double angle, double speed, double d, double n) {
-		super(x, y, angle, speed);
+	public ProjectileType0(double x, double y, double angle, double speed, double d, double n, boolean allied) {
+		super(x, y, angle, speed, allied);
 		maxDistance = d;
 		distance = 0;
 		numberOfChildren = n;
@@ -38,14 +36,13 @@ public class ProjectileType0 extends Projectile implements Rectangle {
 	// et qu'on est alles assez loin
 		if((!forked)&&(d>maxDistance)){
 			for(int i = 0; i<n; i++){
-				children.add(new Projectile(x,y,angle+45-i*(90/(n-1)),Math.sqrt(Math.pow(speedY, 2)+Math.pow(speedX, 2))));
+				children.add(new Projectile(x,y,angle+45-i*(90/(n-1)),Math.sqrt(Math.pow(speedY, 2)+Math.pow(speedX, 2)), alliedShot));
 			}
 			forked = true;
 		}
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		//g.setColor(Color.green);
 		g.drawImage(image,(float)x,(float)y);
 		for(int i = 0; i<children.size(); i++){
 			children.get(i).render(container, game, g);

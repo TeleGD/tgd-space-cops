@@ -36,7 +36,6 @@ public class World extends BasicGameState{
 		enemyGen = new EnemyGenerator();
 		enemyGen.init(container,game);
 		projectiles = new ArrayList<Projectile>();
-		p1 = new Projectile(400,400,45,0.3);
 		this.container = container;
 		this.game = game;
 	}
@@ -63,6 +62,7 @@ public class World extends BasicGameState{
 		for(int i = 0; i<projectiles.size();i++){
 			projectiles.get(i).update(container, game, delta);
 		}
+		System.out.println(projectiles.size());
 	}
 	
 	public void keyReleased(int key, char c) {
