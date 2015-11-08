@@ -37,9 +37,11 @@ public class Projectile extends Movable implements Rectangle {
 		try {
 			if(alliedShot){
 				image=new Image("sprites/proj1.png");
+				image.rotate((float) angle);
 			}
 			else{
 				image=new Image("sprites/proj2.png");
+				image.rotate((float)(angle+180));
 			}
 		} catch (SlickException e){
 			e.printStackTrace();
