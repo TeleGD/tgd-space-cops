@@ -44,6 +44,7 @@ public class World extends BasicGameState{
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		decor.render(container, game,g);
 		player.render(container, game, g);
 		for(int i = 0; i<enemies.size();i++){
 			enemies.get(i).render(container, game, g);
@@ -51,7 +52,7 @@ public class World extends BasicGameState{
 		for(int i = 0; i<projectiles.size();i++){
 			projectiles.get(i).render(container, game, g);
 		}
-		decor.render(container, game,g);
+
 	}
 
 	@Override
