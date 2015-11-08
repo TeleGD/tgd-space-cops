@@ -11,7 +11,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
+import fr.explosion.Explosion;
 import fr.main.Game;
+import fr.util.Collisions;
 import fr.world.World;
 
 public class BasicEnemy extends Enemy{
@@ -21,10 +23,12 @@ public class BasicEnemy extends Enemy{
 	double targetX; //Coordonnées de la prochaine position
 	double targetY;
 	
+	boolean explosed = false;
+	
 	boolean xOk,yOk; //Si les coordonées x et y sont atteintes
 	
 	int marge = 10; //Marge d'erreur
-
+private Explosion explo;
 	public BasicEnemy(double x, double y, double width, double height, int time) {
 		super(x, y, width, height, time);
 		speedX = 0.3;
@@ -41,8 +45,28 @@ public class BasicEnemy extends Enemy{
 		}
 	}
 	
+	
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		super.update(container, game, delta);
+		if(!explosed && !this.alive){
+			explo = new Explosion(x,y,0.75);
+			explosed = true;
+		}
+		if(explo!=null)
+		{
+			explo.update(container,game,delta);
+			if(explo.finishTest()){
+				super.destroy();
+			}
+		}
+		
+	}
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		if(alive)
 		g.drawImage(skin,(float)x,(float)y);
+		if(explo!=null)
+			explo.render(container,game,g);
 	}
 	
 	public void move(int delta){
@@ -76,7 +100,6 @@ public class BasicEnemy extends Enemy{
 	}
 	public void destroy(){
 		World.setScore(World.getScore()+1);
-		super.destroy();
 	}
 	
 	public void moveArea(double x, double y, double width, double height){

@@ -25,6 +25,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import fr.entity.projectile.Projectile;
 import fr.explosion.Explosion;
 import fr.menus.GOMenu;
+import fr.menus.ScoresMenu;
 import fr.util.Collisions;
 import fr.util.Movable;
 import fr.util.Rectangle;
@@ -122,6 +123,7 @@ public class Player extends Movable implements Rectangle {
 				if(NB_DE_VIE==0) //game over
 				{
 					NB_DE_VIE=5;
+					ScoresMenu.addScoreToList();
 					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
 				}
 			}

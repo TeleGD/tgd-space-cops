@@ -24,7 +24,7 @@ public class ScoresMenu extends BasicGameState {
 	static TrueTypeFont font6;
 
 	private String nom = "Scores :";
-	private String[] items = { "1. ", "2. ", "3. ", "4. ", "5. ", "",
+	private static String[] items = { "1. ", "2. ", "3. ", "4. ", "5. ", "",
 			" Retour Menu" };
 
 	public int nbrOption = items.length;
@@ -41,6 +41,24 @@ public class ScoresMenu extends BasicGameState {
 	private static boolean firstTime;
 	private static int[] scoresList = {0, 0, 0, 0, 0};
 
+	public static void addScoreToList() {
+		if (World.getScore() > scoresList[4]) {
+			
+			scoresList[4] = World.getScore();
+			int i = 4; int tmp;
+			while (i>0 && scoresList[i]>scoresList[i-1]) {
+				tmp = scoresList[i];
+				scoresList[i] = scoresList[i-1];
+				scoresList[i-1] = tmp;
+				i--;
+			}
+		}
+		
+		for (int k=0; k<5; k++)
+			items[k] = (k+1)+". "+scoresList[k];
+		firstTime = false;
+	}
+	
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.container = container;
@@ -57,26 +75,9 @@ public class ScoresMenu extends BasicGameState {
 		firstTime = true;
 	}
 
+
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		if (firstTime) {
-			
-			if (World.getScore() > scoresList[4]) {
-				
-				scoresList[4] = World.getScore();
-				int i = 4; int tmp;
-				while (i>0 && scoresList[i]>scoresList[i-1]) {
-					tmp = scoresList[i];
-					scoresList[i] = scoresList[i-1];
-					scoresList[i-1] = tmp;
-					i--;
-				}
-			}
-			
-			for (int k=0; k<5; k++)
-				items[k] = (k+1)+". "+scoresList[k];
-			firstTime = false;
-		}
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
