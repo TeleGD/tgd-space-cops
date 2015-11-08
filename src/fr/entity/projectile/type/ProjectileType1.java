@@ -10,21 +10,17 @@ import fr.util.Rectangle;
 
 public class ProjectileType1 extends Projectile implements Rectangle {
 // Ce projectile avance selon l'angle donne
-// en oscillant de gauche a droite (avec une periode de p ou 128 par defaut).
+// en oscillant (avec une periode de p ou 128 par defaut).
 	
-	private double spawnX;// X d'apparition du projectile.
-	private double spawnY;// Y d'apparition du projectile.
-	private int amplitude = 64;// Amplitude du sinus.
-	private int period = 128;// Periode du sinus.
-	private double distance;// Distance parcourue sur l'axe de l'angle.
-	private double modifier;// Modificateur pour generer le mouvement sinusoidal.
+	private int amplitude = 1;// Amplitude du sinus.
+	private int period = 16;// Periode du sinus.
+	private double altX;// X alternatif (dans le repere tourne de angle)
+	private double altY;// Y alternatif
 		
-	public ProjectileType1(double x, double y, double angle, double speed, int period, int amplitude, boolean allied){
+	public ProjectileType1(double x, double y, double angle, double speed, int period, boolean allied){
 		super(x, y, angle, speed, allied);
-		spawnY = y;
-		spawnX = x;
-		distance = 0;
-		this.amplitude = amplitude;
+		altX=0;
+		altY=0;
 		this.period = period;
 	}
 	
@@ -33,23 +29,16 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-	// On passe dans le repere alternatif tourne de angle degres, on applique la transformation,
-	// puis on repasse dans le repere normal
-		
 		//On avance selon l'axe :
-		speedY = -Math.sqrt(Math.pow(speedX, 2)+Math.pow(speedY, 2))*Math.sin(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
-		speedX = Math.sqrt(Math.pow(speedX, 2)+Math.pow(speedY, 2))*Math.cos(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
+		altX += Math.sqrt(Math.pow(speedX, 2)+Math.pow(speedY, 2));
+		//On applique la sinusoide :
+		altY = amplitude*Math.sin(altX*2*Math.PI/period);
+		//On repercute les changements aux vitesses dans le vrai repere :
+		speedX = altY*Math.sin((angle-90)*(2*Math.PI)/360.0)+Math.cos((angle-90)*(2*Math.PI)/360.0);
+		speedY = altY*Math.cos((angle-90)*(2*Math.PI)/360.0)-Math.sin((angle-90)*(2*Math.PI)/360.0);
+		// On bouge
 		moveY(delta);
 		moveX(delta);
 		
-		//On met a jour la distance parcourue sur l'axe
-		distance += delta*Math.sqrt(Math.pow(speedX, 2)+Math.pow(speedY, 2));
-		
-		//On applique le modificateur :
-		modifier = amplitude*Math.sin(distance*2*Math.PI/period);
-		speedY = modifier*Math.cos((angle-90)*2*Math.PI/360.0);
-		speedX = modifier*Math.sin((angle-90)*2*Math.PI/360.0);
-		moveY(delta);
-		moveX(delta);
 	}
 }
