@@ -22,7 +22,6 @@ public class World extends BasicGameState{
 	public enum direction {HAUT,DROITE,BAS,GAUCHE};
 	private static Player player;
 	public static int ID=0;
-	private static Projectile p1;
 	private static ArrayList<Projectile> projectiles;
 	private static ArrayList<Enemy> enemies;
 	private static EnemyGenerator enemyGen;
@@ -43,7 +42,6 @@ public class World extends BasicGameState{
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		player.render(container, game, g);
-		p1.render(container,game,g);
 		for(int i = 0; i<enemies.size();i++){
 			enemies.get(i).render(container, game, g);
 		}
@@ -55,7 +53,6 @@ public class World extends BasicGameState{
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		player.update(container, game, delta);
-		p1.update(container, game,delta);
 		for(int i = 0; i<enemies.size();i++){
 			enemies.get(i).update(container, game, delta);
 		}

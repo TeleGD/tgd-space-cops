@@ -49,7 +49,7 @@ public class RotateEnemy extends Enemy{
 	}
 	
 	void shoot(){
-		new Projectile((double) x+(width/2)-8,(double)y+(height/2)-8,rotation,0.3);
+		new Projectile((double) x+(width/2)-8,(double)y+(height/2)-8,rotation,0.3,false);
 	}
 
 

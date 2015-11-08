@@ -77,7 +77,7 @@ public class BasicEnemy extends Enemy{
 	}
 	
 	public void shoot(){
-		new ProjectileType0(100,100,180,0.3, 200, 5);
+		new ProjectileType0(100,100,180,0.3, 200, 5, false);
 	}
 
 
