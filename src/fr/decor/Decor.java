@@ -49,10 +49,10 @@ public class Decor extends Movable{
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		
 		compteur+=1;
-		if(compteur%10==0 && ((int)Math.random()*2)==0)// on genere aleatoirement les nuages 1chance sur 8 tous les 100 frames
+		if(compteur%30==0 && ((int)Math.random()*2)==0)// on genere aleatoirement les nuages 1chance sur 8 tous les 100 frames
 		{
 			double scale=Math.random()*10.5+1.4;
-			nuages.add(new Nuage(Math.random()*800-64*scale,-400, (Math.random()*1.5+0.5),(int) (Math.random()*3),scale));
+			nuages.add(new Nuage(Math.random()*800-32*scale,-400, (Math.random()*1.5+0.5),(int) (Math.random()*3),scale));
 		}
 
 		

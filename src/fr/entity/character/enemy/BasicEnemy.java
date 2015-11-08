@@ -1,5 +1,6 @@
 package fr.entity.character.enemy;
 
+import java.awt.Image;
 import java.util.Random;
 
 import org.newdawn.slick.Color;
@@ -29,7 +30,6 @@ public class BasicEnemy extends Enemy{
 		speedY = 0.3;
 		rand = new Random();
 		moveArea(0, 0, 200, 200);
-		
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
