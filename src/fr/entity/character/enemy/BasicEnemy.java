@@ -23,6 +23,8 @@ public class BasicEnemy extends Enemy{
 	double targetX; //Coordonnées de la prochaine position
 	double targetY;
 	
+	boolean explosed = false;
+	
 	boolean xOk,yOk; //Si les coordonées x et y sont atteintes
 	
 	int marge = 10; //Marge d'erreur
@@ -47,6 +49,10 @@ private Explosion explo;
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		super.update(container, game, delta);
+		if(!explosed && !this.alive){
+			explo = new Explosion(x,y,0.75);
+			explosed = true;
+		}
 		if(explo!=null)
 		{
 			explo.update(container,game,delta);
@@ -57,6 +63,7 @@ private Explosion explo;
 		
 	}
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		if(alive)
 		g.drawImage(skin,(float)x,(float)y);
 		if(explo!=null)
 			explo.render(container,game,g);
@@ -93,7 +100,6 @@ private Explosion explo;
 	}
 	public void destroy(){
 		World.setScore(World.getScore()+1);
-		explo = new Explosion(x,y,0.75);
 	}
 	
 	public void moveArea(double x, double y, double width, double height){
