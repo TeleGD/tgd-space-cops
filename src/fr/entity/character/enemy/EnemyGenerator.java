@@ -30,8 +30,6 @@ public class EnemyGenerator {
 			lastSpawn = System.currentTimeMillis();
 			new BasicEnemy(genDouble(0,800),genDouble(0,300),32,32,500);
 		}
-		
-		System.out.println((long)System.currentTimeMillis() - timeStart);
 
 		if(!event[0] && (long)System.currentTimeMillis() - timeStart>5000){
 			new Boss(400-64,50,128,128,200);
