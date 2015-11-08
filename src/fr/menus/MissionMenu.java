@@ -123,6 +123,10 @@ public class MissionMenu extends BasicGameState {
 		g.drawString(">>  Continuer", 75, 255 + 25 + textList.size()*13);
 
 	}
+	
+	public void reset() {
+		textList = generateText(40);
+	}
 
 	@Override
 	public void keyPressed(int key, char c) {

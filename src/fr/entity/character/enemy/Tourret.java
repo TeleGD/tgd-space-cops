@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entity.projectile.Projectile;
+import fr.main.Game;
 import fr.world.World;
 
 

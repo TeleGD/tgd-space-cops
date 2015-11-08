@@ -11,6 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
+import fr.main.Game;
 import fr.world.World;
 
 public class BasicEnemy extends Enemy{

@@ -16,6 +16,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.world.World;
 import fr.menus.MainMenu;
+import fr.main.Game;
 
 
 public class GOMenu extends BasicGameState {
@@ -26,7 +27,7 @@ public class GOMenu extends BasicGameState {
 	static TrueTypeFont font4;
 
 	private String nom = "GAME OVER";
-	private String[] items = { "Rejouer", "Retour au menu" };
+	private String[] items = { "Rejouer", "Retour au menu", "", "Score : "};
 
 	public int nbrOption = items.length;
 
@@ -40,6 +41,7 @@ public class GOMenu extends BasicGameState {
 
 	static GameContainer container;
 	int selection = 0;
+	private static boolean firstTime;
 
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -54,17 +56,24 @@ public class GOMenu extends BasicGameState {
     	
     	Font titre4Font = new Font("Kristen ITC", Font.BOLD, 20);
 		font4 = new TrueTypeFont(titre4Font, false);
+		
+		firstTime = true;
     	
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
+		if (firstTime) {
+			items[3] = "Score : "+World.getScore();
+			firstTime = false;
+		}
 
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		//g.drawImage(background, 0, 0);
+
 		
 		g.setColor(Color.red);
 		g.setFont(font3);
@@ -81,22 +90,18 @@ public class GOMenu extends BasicGameState {
 		g.drawString(">>", 230, 280 + 50 * selection);
 
 	}
+	
+	public void reset() {
+		firstTime = true;
+	}
 
 	public void keyPressed(int key, char c) {
 		switch (key) {
-		case Input.KEY_DOWN: case Input.KEY_S:
-			if (selection < nbrOption - 1)
-				selection++;
-			else
-				selection = 0;
+		case Input.KEY_DOWN:
+		case Input.KEY_UP:
+			selection = 1-selection;
 			break;
-		case Input.KEY_UP: case Input.KEY_Z:
-			if (selection > 0)
-				selection--;
-			else
-				selection = nbrOption - 1;
-			break;
-		case Input.KEY_ENTER: case Input.KEY_SPACE:
+		case Input.KEY_ENTER:
 			execOption();
 			break;
 		case Input.KEY_ESCAPE:

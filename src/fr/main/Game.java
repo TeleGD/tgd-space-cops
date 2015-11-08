@@ -17,6 +17,7 @@ public class Game extends StateBasedGame {
 		app.setVSync(true);
 		app.start();
 	}
+	
 
 	public Game() {
 		super("GeneralGame");
@@ -37,5 +38,6 @@ public class Game extends StateBasedGame {
 		addState(new MissionMenu());
 		addState(new World());
 	}
+
 
 }
