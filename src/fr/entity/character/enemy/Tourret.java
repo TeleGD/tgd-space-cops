@@ -16,10 +16,12 @@ public class Tourret extends Enemy{
 	
 	float rotation;
 	Image skinCannon;
+	int type;
 	
 
-	public Tourret(double x, double y, double width, double height, int time) {
+	public Tourret(double x, double y, double width, double height, int time,int type) {
 		super(x, y, width, height,time);
+		this.type = type;
 		hp = 100;
 		speedY = 0.05;
 		try {
@@ -63,7 +65,11 @@ public class Tourret extends Enemy{
 	}
 	
 	void shoot(){
-		new Projectile(x+(width/2)-8+Math.cos((Math.PI/2)+rotation*Math.PI/180)*15,y+(height/2)-8+Math.sin((Math.PI/2)+rotation*Math.PI/180)*15,rotation-180,0.3,false);
+		switch(type){
+		case 0:
+			new Projectile(x+(width/2)-8+Math.cos((Math.PI/2)+rotation*Math.PI/180)*15,y+(height/2)-8+Math.sin((Math.PI/2)+rotation*Math.PI/180)*15,rotation-180,0.3,false);
+			break;
+		}
 	}
 
 
