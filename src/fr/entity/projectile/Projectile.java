@@ -6,10 +6,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.explosion.Explosion;
 import fr.util.Movable;
 import fr.util.Rectangle;
 import fr.world.World;
-import fr.explosion;
 
 public class Projectile extends Movable implements Rectangle {
 // Ce projectile va tout droit selon l'angle donne, a la vitesse speed,
@@ -21,7 +21,8 @@ public class Projectile extends Movable implements Rectangle {
 	protected boolean alliedShot;
 	protected int id;
 	protected static int projCounter;
-	protected explosion.Explosion explo;
+	protected Explosion explo;
+	protected boolean isExploding;
 	
 	public Projectile(double x, double y, double angle, double speed, boolean allied) { 
 		alliedShot = allied;
@@ -64,23 +65,32 @@ public class Projectile extends Movable implements Rectangle {
 		}
 	}
 	
-	public void destroy(boolean contact){
-		explo = new explosion.Explosion(x,y,1);
-		destroy();
+	public void contact(boolean contact){
+		isExploding = true;
+		explo = new Explosion(x,y,1);
 	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.drawImage(image,(float)x,(float)y);
-		explo.render(GameContainer container, StateBasedGame game, Graphics g)
+		if(isExploding){
+			explo.render(container,game,g);
+		}
+		else{
+			g.drawImage(image,(float)x,(float)y);
+		}
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
 		moveX(delta);
-		explo.update(GameContainer container, StateBasedGame game, int delta)
-		if(x>800||y>600||x<0||y<0){
+		if(isExploding){
+			explo.update(container,game,delta);
+			if(explo.finishTest()){
+				destroy();
+			}
+		}
+		else if(x>800||y>600||x<0||y<0){
 			destroy();
 		}
 	}
