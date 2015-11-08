@@ -10,10 +10,10 @@ import fr.util.Rectangle;
 
 public class ProjectileType1 extends Projectile implements Rectangle {
 // Ce projectile avance selon l'angle donne
-// en oscillant (avec une periode de p ou 128 par defaut).
+// en oscillant (avec une periode de p).
 	
-	private int amplitude = 1;// Amplitude du sinus.
-	private int period = 16;// Periode du sinus.
+	private int amplitude;// Amplitude du sinus. (1 marche bien)
+	private int period;// Periode du sinus. (16 marche bien)
 	private double altX;// X alternatif (dans le repere tourne de angle)
 	private double altY;// Y alternatif
 		
@@ -39,6 +39,10 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 		// On bouge
 		moveY(delta);
 		moveX(delta);
+		
+		if(x>800||y>600||x<0||y<0){
+			destroy();
+		}
 		
 	}
 }
