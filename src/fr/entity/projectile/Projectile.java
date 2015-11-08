@@ -46,6 +46,10 @@ public class Projectile extends Movable implements Rectangle {
 		}
 	}
 	
+	public boolean getAllied(){
+		return alliedShot;
+	}
+	
 	public void destroy(){
 		int i =0;
 		while((i<World.getProjectiles().size())&&(World.getProjectiles().get(i).id!=this.id)){
