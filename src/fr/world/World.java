@@ -14,7 +14,7 @@ import fr.entity.character.enemy.Enemy;
 import fr.entity.character.enemy.EnemyGenerator;
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
-import fr.menus.MainMenu;
+import fr.menus.*;
 
 
 public class World extends BasicGameState{
@@ -36,7 +36,11 @@ public class World extends BasicGameState{
 		enemyGen = new EnemyGenerator();
 		enemyGen.init(container,game);
 		projectiles = new ArrayList<Projectile>();
+<<<<<<< HEAD
 		p1 = new ProjectileType0(400,400,45,0.5,10,3);
+=======
+		p1 = new Projectile(400,400,45,0.3);
+>>>>>>> 26b70c5db1ec61f50de174bdbbb012e779d66b0c
 		this.container = container;
 		this.game = game;
 	}
@@ -73,7 +77,7 @@ public class World extends BasicGameState{
 	public void keyPressed(int key, char c) {
 		player.keyPressed(key, c);
 		if(key == Input.KEY_ESCAPE){
-			game.enterState(MainMenu.ID);
+			game.enterState(PauseMenu.ID);
 		}
 	}
 	
