@@ -66,6 +66,7 @@ public class World extends BasicGameState{
 			projectiles.get(i).update(container, game, delta);
 		}
 		decor.update(container,game,delta);
+		enemyGen.update(container, game, delta);
 	}
 	
 	public void keyReleased(int key, char c) {

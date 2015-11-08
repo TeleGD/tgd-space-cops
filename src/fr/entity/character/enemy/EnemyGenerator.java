@@ -1,15 +1,32 @@
 package fr.entity.character.enemy;
 
+import java.util.Random;
+
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class EnemyGenerator {
 	
+	long lastSpawn;
+	long time;
+	Random rand;
+	
 	public void init(GameContainer container,StateBasedGame game){
-		new BasicEnemy(400-16,300-16,32,32,1000);
-		new BasicEnemy(400-16,300-16,32,32,1000);
-		new BasicEnemy(400-16,300-16,32,32,1000);
-		new CircleEnemy(400, 200, 32, 32, 500, 8);
+		time = 250;
+		lastSpawn = System.currentTimeMillis();
+		rand = new Random();
+	}
+	
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		if(System.currentTimeMillis() - lastSpawn > time){
+			lastSpawn = System.currentTimeMillis();
+			new BasicEnemy(genDouble(0,800),genDouble(0,300),32,32,500);
+		}
+	}
+	
+	public double genDouble(double min, double max){
+		return (min+rand.nextInt((int)(max - min)));
 	}
 
 }

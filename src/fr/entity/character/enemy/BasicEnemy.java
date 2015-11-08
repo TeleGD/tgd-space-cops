@@ -66,7 +66,7 @@ public class BasicEnemy extends Enemy{
 			yOk = true;
 		}
 		if(xOk && yOk){
-			moveArea(0 ,0 ,800 ,400);
+			moveArea(0 ,0 ,800 ,300);
 			speedX = 0.3;
 			speedY = 0.3;
 		}
@@ -82,7 +82,7 @@ public class BasicEnemy extends Enemy{
 	}
 	
 	public void shoot(){
-		new Projectile(x,y,180,0.3, false);
+		new Projectile(x,y,180,0.8, false);
 	}
 
 
