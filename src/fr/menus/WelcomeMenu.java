@@ -61,6 +61,7 @@ public class WelcomeMenu extends BasicGameState {
 		}
 		cpt++;
 		
+		
 		int floatingSize = 10;
 
 		if (Math.abs(xs) == floatingSize)
