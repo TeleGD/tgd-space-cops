@@ -2,7 +2,9 @@ package fr.entity.projectile.type;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -40,10 +42,21 @@ public class ProjectileType0 extends Projectile implements Rectangle {
 		}
 	}
 	
+	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		g.setColor(Color.green);
+		g.fillRect((float)x, (float)y, (float)width, (float)height);
+		for(int i = 0; i<children.size(); i++){
+			children.get(i).render(container, game, g);
+		}
+	}
+	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
 		moveX(delta);
 		distance += delta*Math.sqrt(Math.pow(speedX, 2)+Math.pow(speedY, 2));
 		cut(distance,numberOfChildren);
+		for(int i = 0; i<children.size(); i++){
+			children.get(i).update(container, game, delta);
+		}
 	}
 }

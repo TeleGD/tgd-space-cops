@@ -88,10 +88,10 @@ public class MainMenu extends BasicGameState{
 			break;
 			
 		case Input.KEY_ESCAPE:
-			//game.enterState(ConfirmMenu.ID);
+			game.enterState(ConfirmMenu.ID);
 			break;
 		case Input.KEY_C:
-			//game.enterState(CreditsMenu.ID);
+			game.enterState(CreditsMenu.ID);
 			break;
 		}
 	}
@@ -110,8 +110,7 @@ public class MainMenu extends BasicGameState{
 			break;
 			*/
 		case 3:
-			//game.enterState(ConfirmMenu.ID);
-			container.exit();
+			game.enterState(ConfirmMenu.ID);
 			break;
 		}
 	}
