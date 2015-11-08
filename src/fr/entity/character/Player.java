@@ -22,7 +22,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
+import fr.bonus.Bonus;
 import fr.entity.projectile.Projectile;
+import fr.entity.projectile.type.ProjectileType0;
 import fr.explosion.Explosion;
 import fr.menus.GOMenu;
 import fr.menus.MissionMenu;
@@ -36,8 +38,8 @@ public class Player extends Movable implements Rectangle {
 
 	
 	private final static int FRAME_TO_WAIT=5;
-	private static int TIME_DASH=10000; // à ré-initialiser
-	private static int NB_DE_VIE=5; // à ré-initialiser
+	private static int TIME_DASH=10000; //  re-initialiser
+	private static int NB_DE_VIE=5; //  re-initialiser
 	private boolean droitegauche=false,hautbas=false;  /* hautbas= true si bas dernier mis, droitegauche= true si droite dernier mis*/
 	private boolean upPress = false;
 	private boolean downPress = false;
@@ -45,11 +47,13 @@ public class Player extends Movable implements Rectangle {
 	private boolean rightPress = false;
 	private boolean dash=false,dashDispo=true;
 	private boolean invincible=false;
-	private long timeDashInit=0; // à ré-initialiser
-	private static int compteur=0; // à ré-initialiser
+	private long timeDashInit=0; // re-initialiser
+	private static int compteur=0; // re-initialiser
 	private Image imagegauche,imagecentrale,imagedroite,image,fond;
 	private long timeInvincible;
 	private int width2; // largeur image
+	private Bonus bonus;
+	private int MISSILE=2;
 	public Player() {
 		x = 408;
 		y = 500;
@@ -84,19 +88,21 @@ public class Player extends Movable implements Rectangle {
 			g.drawImage(image.getScaledCopy((float) 0.5),i*40,10);
 		}
 		g.setColor(Color.black);
-		g.fillRoundRect((float) 750, (float)10, 16, 28,1);
+		g.fillRoundRect((float) 780, (float)10, 16, 28,1);
 		g.setColor(Color.white);
-		g.fillRoundRect((float) 752, (float)12, 12, 24,1);
+		g.fillRoundRect((float) 782, (float)12, 12, 24,1);
 		g.setColor(Color.yellow);
 		
-		if(System.currentTimeMillis()-timeDashInit<TIME_DASH+500)g.fillRoundRect((float) 752, (float)36, 12, -24*(System.currentTimeMillis()-timeDashInit)/TIME_DASH,1);
-		else g.fillRoundRect((float) 752, (float)12, 12, 24,1);
+		if(System.currentTimeMillis()-timeDashInit<TIME_DASH+500)g.fillRoundRect((float) 782, (float)36, 12, -24*(System.currentTimeMillis()-timeDashInit)/TIME_DASH,1);
+		else g.fillRoundRect((float) 782, (float)12, 12, 24,1);
 
+		if(bonus!=null)bonus.render(container, game, g);
+		if((invincible && compteur%64>35 )|| !invincible)g.drawImage(image,(float)(x-24),(float)y);
 		
-		g.drawImage(image,(float)(x-24),(float)y);
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		
 		
 		deplacement();
 		
@@ -108,8 +114,16 @@ public class Player extends Movable implements Rectangle {
 		moveY(delta);
 		
 		if(compteur%FRAME_TO_WAIT==0){
-			new Projectile(x+width/2-2,y,0,1,true);
-			new Projectile(x+width/2-14,y,0,1,true);
+			if(MISSILE==2)
+			{
+				new Projectile(x+width/2-2,y,0,1,true);
+				new Projectile(x+width/2-14,y,0,1,true);
+			}else{
+				if(MISSILE==4)
+				{
+					new ProjectileType0(x+width/2-2,y,0,0.5,0,4,true);
+				}
+			}
 		}
 		compteur++;
 		
@@ -120,7 +134,9 @@ public class Player extends Movable implements Rectangle {
 				World.getProjectiles().get(i).contact(true);
 				NB_DE_VIE--;
 				invincible=true;
+				MISSILE=2;
 				timeInvincible=System.currentTimeMillis();
+				TIME_DASH=5500;
 				if(NB_DE_VIE==0) //game over
 				{
 					NB_DE_VIE=5;
@@ -128,6 +144,32 @@ public class Player extends Movable implements Rectangle {
 					ScoresMenu.addScoreToList();
 					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
 				}
+			}
+			
+			
+		}
+		
+		if(bonus==null &&(int)(Math.random()*1000)==0)
+		{
+			bonus=new Bonus(Math.random()*760,-400);
+		}
+		
+		if(bonus!=null)
+		{
+			bonus.update(container, game, delta);
+			if(Collisions.isCollisionRectRect(this,bonus))
+			{
+				if(bonus.type==bonus.TYPE_PLUS_DE_MISSILE)
+				{
+					MISSILE=4;
+				}else if(bonus.type==bonus.TYPE_PLUS_DE_DASH)
+				{
+					TIME_DASH=5500;
+				}else if(bonus.type==bonus.TYPE_PLUS_UNE_VIE)
+				{
+					if(NB_DE_VIE<5)NB_DE_VIE++;
+				}
+				bonus=null;
 			}
 		}
 	}

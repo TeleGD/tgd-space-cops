@@ -24,7 +24,7 @@ public class Island extends Movable{
 			e.printStackTrace();
 		}
 		
-		image=image.getScaledCopy((int) (Math.random()*300)+150,(int) (Math.random()*300)+150);
+		image=image.getScaledCopy((int) (Math.random()*250)+150,(int) (Math.random()*250)+150);
 		image.rotate((float) (Math.random()*360));
 	}
 
