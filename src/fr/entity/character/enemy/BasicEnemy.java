@@ -32,6 +32,7 @@ public class BasicEnemy extends Enemy{
 		moveArea(0, 0, 800, 400);
 		try {
 			skin = new Image("sprites/ennemi1.png");
+			skin = skin.getScaledCopy((float) 1);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

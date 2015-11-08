@@ -76,10 +76,11 @@ public abstract class Enemy extends Movable implements Rectangle{
 			accelX = -accelX;
 		}
 		moveY(delta);
-		if(y<0)
+		if(y<0 && !(this instanceof CircleEnemy)){
 			y = 0;
 			speedY = -speedY;
-		if(y>600-height){
+		}
+		if(y>600-height && !(this instanceof CircleEnemy)){
 			y = 600-height;
 			speedY = -speedY;
 		}

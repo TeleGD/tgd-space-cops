@@ -16,6 +16,7 @@ public class EnemyGenerator {
 		time = 250;
 		lastSpawn = System.currentTimeMillis();
 		rand = new Random();
+		new RotateEnemy(200, 200, 32, 32, 200);
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {

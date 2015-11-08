@@ -15,11 +15,11 @@ public class RotateEnemy extends Enemy{
 
 	public RotateEnemy(double x, double y, double width, double height, int time) {
 		super(x, y, width, height,time);
-		speedX = 0.3;
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		super.update(container, game, delta);
+		rotation ++;
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
@@ -50,6 +50,7 @@ public class RotateEnemy extends Enemy{
 	
 	void shoot(){
 		new Projectile((double) x+(width/2)-8,(double)y+(height/2)-8,rotation,0.3,false);
+		new Projectile((double) x+(width/2)-8,(double)y+(height/2)-8,rotation+180,0.3,false);
 	}
 
 
