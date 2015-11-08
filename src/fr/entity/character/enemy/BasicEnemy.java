@@ -11,6 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
+import fr.main.Game;
 import fr.world.World;
 
 public class BasicEnemy extends Enemy{
@@ -74,7 +75,7 @@ public class BasicEnemy extends Enemy{
 		}
 	}
 	public void destroy(){
-		World.setScore(World.getScore()+1);
+		Game.setScore(Game.getScore()+1);
 		super.destroy();
 	}
 	

@@ -17,6 +17,9 @@ public class Game extends StateBasedGame {
 		app.setVSync(true);
 		app.start();
 	}
+	
+
+	private static int score = 0;
 
 	public Game() {
 		super("GeneralGame");
@@ -36,6 +39,14 @@ public class Game extends StateBasedGame {
 		//addState(new ScoresMenu());
 		addState(new MissionMenu());
 		addState(new World());
+	}
+
+	public static int getScore() {
+		return score;
+	}
+
+	public static void setScore(int scoreP) {
+		score = scoreP;
 	}
 
 }

@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entity.projectile.Projectile;
+import fr.main.Game;
 import fr.world.World;
 
 
@@ -40,7 +41,7 @@ public class Tourret extends Enemy{
 	}
 	
 	public void destroy(){
-		World.setScore(World.getScore()+15);
+		Game.setScore(Game.getScore()+15);
 		super.destroy();
 	}
 	

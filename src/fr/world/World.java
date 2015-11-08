@@ -15,6 +15,7 @@ import fr.entity.character.enemy.Enemy;
 import fr.entity.character.enemy.EnemyGenerator;
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
+import fr.main.Game;
 import fr.menus.*;
 import fr.decor.Decor;
 
@@ -30,7 +31,6 @@ public class World extends BasicGameState{
 	private GameContainer container;
 	private StateBasedGame game;
 	private Decor decor;
-	private static int score;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -43,7 +43,6 @@ public class World extends BasicGameState{
 		this.container = container;
 		this.game = game;
 		decor = new Decor();
-		score = 0;
 	}
 
 	@Override
@@ -57,7 +56,7 @@ public class World extends BasicGameState{
 			projectiles.get(i).render(container, game, g);
 		}
 		g.setColor(Color.white);
-		g.drawString(""+score, 10, 50);
+		g.drawString(""+Game.getScore(), 10, 50);
 	}
 
 	@Override
@@ -90,15 +89,6 @@ public class World extends BasicGameState{
 	}
 	public static ArrayList<Projectile> getProjectiles(){
 		return projectiles;
-	}
-
-
-	public static int getScore() {
-		return score;
-	}
-
-	public static void setScore(int scoreP) {
-		score = scoreP;
 	}
 
 	@Override
