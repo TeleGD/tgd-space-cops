@@ -16,10 +16,10 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.world.World;
 
-public class MainMenu extends BasicGameState{
-	
+public class MainMenu extends BasicGameState {
+
 	public static int ID = 2;
-	
+
 	static TrueTypeFont font1;
 
 	private String nom = "Menu Principal";
@@ -30,50 +30,52 @@ public class MainMenu extends BasicGameState{
 	public String[] getItems() {
 		return this.items;
 	}
-	
+
 	private Image background;
 
 	static GameContainer container;
 	static StateBasedGame game;
-	
-	
+
 	int selection = 0;
 
-	 public void init(GameContainer container, StateBasedGame game) throws SlickException {
-	        this.container = container;
-	        //container.setShowFPS(false);
-	        this.game=game;
-	        
-	        background = new Image("sprites/0001.png");
-	        
-	    	Font titre1Font = new Font("Kalinga", Font.BOLD, 12);
-	    	font1 = new TrueTypeFont(titre1Font, false);
-	    	
-	 }
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		this.container = container;
+		// container.setShowFPS(false);
+		this.game = game;
 
-	 public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-	    	//let this empty
-	 }
+		background = new Image("sprites/0001.png");
 
-	 public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		 	g.drawImage(background, 0, 0);
-		 
-		 	g.setColor(Color.red);
-		 	g.setFont(font1);
-			g.drawString(this.nom, 550, 320);
+		Font titre1Font = new Font("Kalinga", Font.BOLD, 12);
+		font1 = new TrueTypeFont(titre1Font, false);
 
-			g.setColor(Color.white);
+	}
 
-			for (int i = 0; i < nbrOption; i++) {
-				g.drawString(this.items[i], 560, 360 + 30 * i);
-			}
-			g.drawString(">>", 540, 360 + 30 * selection);
-	 }
+	public void update(GameContainer container, StateBasedGame game, int delta)
+			throws SlickException {
+		// let this empty
+	}
 
-	 @Override
-	public void keyPressed(int key,char c) {
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+		g.drawImage(background, 0, 0);
+
+		g.setColor(Color.red);
+		g.setFont(font1);
+		g.drawString(this.nom, 550, 320);
+
+		g.setColor(Color.white);
+
+		for (int i = 0; i < nbrOption; i++) {
+			g.drawString(this.items[i], 560, 360 + 30 * i);
+		}
+		g.drawString(">>", 540, 360 + 30 * selection);
+	}
+
+	@Override
+	public void keyPressed(int key, char c) {
 		switch (key) {
-		case Input.KEY_DOWN: 
+		case Input.KEY_DOWN:
 			if (selection < nbrOption - 1)
 				selection++;
 			else
@@ -88,41 +90,44 @@ public class MainMenu extends BasicGameState{
 		case Input.KEY_ENTER:
 			execOption();
 			break;
-			
+
 		case Input.KEY_ESCAPE:
-			game.enterState(ConfirmMenu.ID, new FadeOutTransition(), new FadeInTransition());
+			game.enterState(ConfirmMenu.ID, new FadeOutTransition(),
+					new FadeInTransition());
 			break;
 		case Input.KEY_C:
-			game.enterState(CreditsMenu.ID, new FadeOutTransition(), new FadeInTransition());
+			game.enterState(CreditsMenu.ID, new FadeOutTransition(),
+					new FadeInTransition());
 			break;
 		case Input.KEY_M:
-			game.enterState(MissionMenu.ID, new FadeOutTransition(), new FadeInTransition());
+			game.enterState(MissionMenu.ID, new FadeOutTransition(),
+					new FadeInTransition());
 			break;
 		}
 	}
-	
+
 	public void execOption() {
 		switch (selection) {
 		case 0:
-			game.enterState(MissionMenu.ID, new FadeOutTransition(), new FadeInTransition());
+			game.enterState(MissionMenu.ID, new FadeOutTransition(),
+					new FadeInTransition());
 			World.reset();
 			break;
-			
+
 		case 1:
 			game.enterState(ScoresMenu.ID);
 			break;
-			/*
-		case 2:
-			game.enterState(HelpMenu.ID);
-			break;
-			*/
+		/*
+		 * case 2: game.enterState(HelpMenu.ID); break;
+		 */
 		case 3:
-			game.enterState(ConfirmMenu.ID, new FadeOutTransition(), new FadeInTransition());
+			game.enterState(ConfirmMenu.ID, new FadeOutTransition(),
+					new FadeInTransition());
 			break;
 		}
 	}
-	
-	public int getID(){
+
+	public int getID() {
 		return ID;
 	}
 

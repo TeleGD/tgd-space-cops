@@ -20,7 +20,7 @@ public class ScoresMenu extends BasicGameState {
 	static TrueTypeFont font5;
 	static TrueTypeFont font6;
 
-	private String nom = "Score :";
+	private String nom = "Scores :";
 	private String[] items = {
 			"1. ",
 			"2. ",
@@ -68,16 +68,16 @@ public class ScoresMenu extends BasicGameState {
 		g.setColor(Color.red);
 		g.setFont(font5);
 
-		g.drawString(this.nom, 255, 365);
+		g.drawString(this.nom, 190, 370);
 
 		g.setColor(Color.white);
 		g.setFont(font6);
 
 		for (int i = 0; i < nbrOption; i++) {
-			g.drawString(this.items[i], 238, 390 + 13 * i);
+			g.drawString(this.items[i], 175, 420 + 13 * i);
 		}
 		
-		g.drawString(">>", 225, 390 + 13 * selection);
+		g.drawString(">>", 165, 420 + 13 * selection);
 		
 		
 		
