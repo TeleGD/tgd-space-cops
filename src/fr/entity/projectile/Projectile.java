@@ -20,6 +20,9 @@ public class Projectile extends Movable implements Rectangle {
 	protected boolean alliedShot;
 	protected int id;
 	protected static int projCounter;
+	protected Image[] explosion;
+	protected int explosionCounter;
+	
 	
 	public Projectile(double x, double y, double angle, double speed, boolean allied) { 
 		alliedShot = allied;
@@ -30,6 +33,9 @@ public class Projectile extends Movable implements Rectangle {
 		width = 16;
 		height = 16;
 		setMoving(true);
+		explosion = new Image[60];
+		loadExplosion();
+		explosionCounter = 0;
 		this.angle = angle;
 		speedY = -speed*Math.sin(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
 		speedX = speed*Math.cos(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
@@ -61,16 +67,54 @@ public class Projectile extends Movable implements Rectangle {
 			World.getProjectiles().remove(i);
 		}
 	}
+	public void destroy(boolean contact){
+		explosionCounter = 179;
+		System.out.println("Explo");
+	}
+
+	public void loadExplosion(){
+		for(int i = 0; i<60; i++){
+			if(i<8){
+				try {
+					explosion[i] = new Image("sprites/explosion/000"+(i+2)+".png");
+				} catch (SlickException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else{
+				try {
+					explosion[i] = new Image("sprites/explosion/00"+(i+2)+".png");
+				} catch (SlickException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.drawImage(image,(float)x,(float)y);
+		if(explosionCounter>1){
+			g.drawImage(explosion[59-(explosionCounter/3)],(float) x,(float) y);
+		}
+		else if(explosionCounter == 1){
+			this.destroy();
+		}
+		else{
+			g.drawImage(image,(float)x,(float)y);
+		}
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		if(explosionCounter>1){
+			explosionCounter --;
+		}
 		moveY(delta);
 		moveX(delta);
+		
+		
 		if(x>800||y>600||x<0||y<0){
 			destroy();
 		}
