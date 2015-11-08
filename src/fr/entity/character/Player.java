@@ -33,7 +33,7 @@ public class Player extends Movable implements Rectangle {
 	private long timeDashInit=0;
 	private int compteur=0;
 	private Image imagegauche,imagecentrale,imagedroite,image,fond;
-	private Image[] imageexplosion =new Image[64];
+	private Image[] imageexplosion =new Image[60];
 	private long timeInvincible;
 	private int explosion=0;
 	
@@ -52,7 +52,8 @@ public class Player extends Movable implements Rectangle {
 			imagegauche=new Image("sprites/ship0.png");
 			imagecentrale=new Image("sprites/ship1.png");
 			image=imagecentrale;
-			
+
+			chargerImageExplosion();
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,10 +63,10 @@ public class Player extends Movable implements Rectangle {
 
 	private void chargerImageExplosion() throws SlickException
 	{
-		for(int i=0;i<64;i++)
+		for(int i=2;i<62;i++)
 		{
-			if(i<10)imageexplosion[i]=new Image("sprites/explosion/000"+i+".png");
-			else imageexplosion[i]=new Image("sprites/explosion/00"+i+".png");
+			if(i<10)imageexplosion[i-2]=new Image("sprites/explosion/000"+i+".png");
+			else imageexplosion[i-2]=new Image("sprites/explosion/00"+i+".png");
 		}
 	}
 	
@@ -84,14 +85,14 @@ public class Player extends Movable implements Rectangle {
 		g.fillRoundRect((float) 702, (float)12, 6, 26,1);
 		g.drawImage(image,(float)x,(float)y);
 
-		if(explosion!=-1)g.drawImage(imageexplosion[explosion/3], (float)x, (float)y);
+		if(explosion>=1)g.drawImage(imageexplosion[59-(int)explosion/3], (float)(x-width/2), (float)(y-height/2));
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		
 		deplacement();
 
-		if(explosion>-1)explosion--;
+		if(explosion>1)explosion--;
 		
 		if(System.currentTimeMillis()-timeInvincible>3000)invincible=false;
 		
@@ -114,7 +115,7 @@ public class Player extends Movable implements Rectangle {
 				NB_DE_VIE--;
 				invincible=true;
 				timeInvincible=System.currentTimeMillis();
-				explosion=191;
+				explosion=179;
 				if(NB_DE_VIE==0) //game over
 				{
 					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
