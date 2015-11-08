@@ -50,7 +50,6 @@ public class Player extends Movable implements Rectangle {
 			imagedroite=new Image("sprites/ship2.png");
 			imagegauche=new Image("sprites/ship0.png");
 			imagecentrale=new Image("sprites/ship1.png");
-			fond=new Image("sprites/ocean_tex.png");
 			image=imagecentrale;
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
@@ -60,14 +59,7 @@ public class Player extends Movable implements Rectangle {
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.setColor(Color.blue);
-		for(int i=0;i<7;i++)
-		{
-			for(int j=0;j<7;j++)
-			{
-				g.drawImage(fond,i*128,j*128);
-			}
-		}
+		
 			
 		
 		g.drawImage(image,(float)x,(float)y);
