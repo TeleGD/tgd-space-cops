@@ -15,7 +15,7 @@ public class MegaBigBoss extends Boss{
 		super(x, y, width, height, time);
 		speedY = 0.05;
 		try {
-			skin = new Image("sprites/ennemi2.png");
+			skin = new Image("sprites/bIGbOSS.png");
 			skin = skin.getScaledCopy((float) 2); 
 		} catch (SlickException e) {
 			e.printStackTrace();

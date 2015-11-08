@@ -28,7 +28,7 @@ public class BasicEnemy extends Enemy{
 	boolean xOk,yOk; //Si les coordonées x et y sont atteintes
 	
 	int marge = 10; //Marge d'erreur
-private Explosion explo;
+	private Explosion explo;
 	public BasicEnemy(double x, double y, double width, double height, int time) {
 		super(x, y, width, height, time);
 		speedX = 0.3;
@@ -99,6 +99,7 @@ private Explosion explo;
 		}
 	}
 	public void destroy(){
+		if(alive)
 		World.setScore(World.getScore()+1);
 	}
 	
@@ -112,6 +113,7 @@ private Explosion explo;
 	}
 	
 	public void shoot(){
+		if(alive)
 		new Projectile(x,y,180,0.8, false);
 	}
 

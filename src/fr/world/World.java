@@ -93,6 +93,7 @@ public class World extends BasicGameState{
 		}
 		decor.update(container,game,delta);
 		enemyGen.update(container, game, delta);
+		System.out.println(enemies.size());
 	}
 	
 	public void keyReleased(int key, char c) {

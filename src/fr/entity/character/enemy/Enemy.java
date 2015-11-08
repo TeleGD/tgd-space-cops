@@ -55,8 +55,9 @@ public abstract class Enemy extends Movable implements Rectangle{
 					hp--;
 					World.getProjectiles().remove(i);
 				}else{
-					alive = false;
 					destroy();
+					alive = false;
+					
 				}
 			}
 		}
