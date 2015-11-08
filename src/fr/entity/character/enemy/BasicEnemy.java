@@ -75,7 +75,7 @@ public class BasicEnemy extends Enemy{
 		}
 	}
 	public void destroy(){
-		Game.setScore(Game.getScore()+1);
+		World.setScore(World.getScore()+1);
 		super.destroy();
 	}
 	
