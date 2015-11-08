@@ -80,6 +80,7 @@ public class World extends BasicGameState{
 		}
 		g.setColor(Color.white);
 		g.drawString(""+World.getScore(), 10, 50);
+		enemyGen.render(container, game, g);
 	}
 
 	@Override
@@ -93,6 +94,7 @@ public class World extends BasicGameState{
 		}
 		decor.update(container,game,delta);
 		enemyGen.update(container, game, delta);
+		System.out.println(enemies.size());
 	}
 	
 	public void keyReleased(int key, char c) {
