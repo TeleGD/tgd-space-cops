@@ -5,6 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.util.Movable;
@@ -68,13 +69,13 @@ public class Explosion extends Movable {
 	
 	public void bruit()
 	{
-		Music mus;
 		try {
-			mus = new Music("sons/explosion.ogg");
-			mus.play();
+			Sound sound= new Sound("sons/explosion.ogg");
+			sound.play();
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 }

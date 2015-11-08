@@ -6,6 +6,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -33,6 +34,8 @@ public class World extends BasicGameState{
 	private static Decor decor;
 	
 	private static int score = 0;
+	public static Music Mbackground;
+	public static Music MMenu;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -45,8 +48,10 @@ public class World extends BasicGameState{
 		this.container = container;
 		this.game = game;
 		decor = new Decor();
+		Mbackground = new Music("musiques/battle_theme.ogg");
+		MMenu = new Music("musiques/menu_theme.ogg");
+		MMenu.loop();
 	}
-	
 	public static void reset(){
 		projectiles = new ArrayList<Projectile>();
 		player = new Player();
@@ -56,6 +61,10 @@ public class World extends BasicGameState{
 		enemyGen.reset();
 		decor = new Decor();
 		score = 0;
+	    Mbackground.loop();
+	    GOMenu.reset();
+	    MissionMenu.reset();
+	    ScoresMenu.reset();
 	}
 
 	@Override

@@ -91,7 +91,7 @@ public class GOMenu extends BasicGameState {
 
 	}
 	
-	public void reset() {
+	public static void reset() {
 		firstTime = true;
 	}
 
