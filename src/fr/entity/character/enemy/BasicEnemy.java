@@ -23,25 +23,13 @@ public class BasicEnemy extends Enemy{
 	
 	int marge = 10; //Marge d'erreur
 
-	public BasicEnemy(double x, double y, double width, double height) {
-		super(x, y, width, height);
+	public BasicEnemy(double x, double y, double width, double height, int time) {
+		super(x, y, width, height, time);
 		speedX = 0.3;
 		speedY = 0.3;
-		timeShoot = 20;
-		timeLeft = timeShoot;
 		rand = new Random();
 		moveArea(0, 0, 200, 200);
 		
-	}
-	
-	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		super.update(container, game, delta);
-		if(timeLeft <= 0){
-			shoot();
-			timeLeft = timeShoot;
-		}else{
-			timeLeft--;
-		}
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
@@ -89,7 +77,7 @@ public class BasicEnemy extends Enemy{
 	}
 	
 	public void shoot(){
-		new ProjectileType0(100,100,180,0.3, 200, 3);
+		new ProjectileType0(100,100,180,0.3, 200, 5);
 	}
 
 
