@@ -65,7 +65,7 @@ public class Decor extends Movable{
 			nuages.add(new Nuage(Math.random()*800-32*scale,-800, (Math.random()*0.3+0.2),(int) (Math.random()*3),scale));
 		}
 		
-		if(compteur%100==0 && ((int)Math.random()*2)==0)// on genere aleatoirement les nuages 1chance sur 8 tous les 100 frames
+		if(compteur%100==0 && ((int)Math.random()*3)==0)// on genere aleatoirement les nuages 1chance sur 8 tous les 100 frames
 		{
 			islands.add(new Island(Math.random()*800-32,-800));
 		}

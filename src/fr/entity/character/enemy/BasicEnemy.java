@@ -20,12 +20,12 @@ public class BasicEnemy extends Enemy{
 	
 	Random rand;
 	
-	double targetX; //Coordonnées de la prochaine position
+	double targetX; //Coordonnees de la prochaine position
 	double targetY;
 	
 	boolean explosed = false;
 	
-	boolean xOk,yOk; //Si les coordonées x et y sont atteintes
+	boolean xOk,yOk; //Si les coordonees x et y sont atteintes
 	
 	int marge = 10; //Marge d'erreur
 private Explosion explo;
