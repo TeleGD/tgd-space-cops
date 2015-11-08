@@ -3,6 +3,7 @@ package fr.entity.projectile;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -16,7 +17,7 @@ public class Projectile extends Movable implements Rectangle {
 // L'angle est en degres, et est compte en sens horaire.
 	
 	protected double angle;
-	
+	protected Image image;
 	public Projectile(double x, double y, double angle, double speed) { 
 
 		this.x = x;
@@ -28,12 +29,18 @@ public class Projectile extends Movable implements Rectangle {
 		speedY = -speed*Math.sin(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
 		speedX = speed*Math.cos(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
 		World.getProjectiles().add(this);
+		try {
+			image=new Image("sprites/proj1.png");
+		} catch (SlickException e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.setColor(Color.green);
-		g.fillRect((float)x, (float)y, (float)width, (float)height);
+		//g.setColor(Color.green);
+		g.drawImage(image,(float)x,(float)y);
 	}
 
 	@Override
