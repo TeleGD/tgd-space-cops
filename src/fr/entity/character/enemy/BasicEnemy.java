@@ -12,7 +12,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.entity.projectile.Projectile;
 import fr.entity.projectile.type.ProjectileType0;
 
-
 public class BasicEnemy extends Enemy{
 	
 	Random rand;

@@ -12,7 +12,7 @@ import fr.world.World;
 
 public class Projectile extends Movable implements Rectangle {
 // Ce projectile va tout droit selon l'angle donne, a la vitesse speed,
-// a partir des coordonees (x,y)
+// a partir des coordonees (x,y).
 // L'angle est en degres, et est compte en sens horaire.
 	
 	protected double angle;
