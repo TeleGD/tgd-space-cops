@@ -24,7 +24,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.bonus.Bonus;
 import fr.entity.projectile.Projectile;
-import fr.entity.projectile.type.ProjectileType0;
+import fr.entity.projectile.type.*;
 import fr.explosion.Explosion;
 import fr.menus.GOMenu;
 import fr.menus.ScoresMenu;

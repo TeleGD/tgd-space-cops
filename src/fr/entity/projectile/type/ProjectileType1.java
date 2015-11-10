@@ -16,12 +16,14 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 	private int period;// Periode du sinus. (16 marche bien)
 	private double altX;// X alternatif (dans le repere tourne de angle)
 	private double altY;// Y alternatif
+	private double distance;// Distance par rapport au point de tir.
 		
 	public ProjectileType1(double x, double y, double angle, double speed, int period, boolean allied){
 		super(x, y, angle, speed, allied);
 		altX=0;
 		altY=0;
 		this.period = period;
+		amplitude = 1;
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
@@ -29,14 +31,11 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		//On avance selon l'axe :
-		altX += Math.sqrt(Math.pow(speedX, 2)+Math.pow(speedY, 2));
-		//On applique la sinusoide :
-		altY = amplitude*Math.sin(altX*2*Math.PI/period);
-		//On repercute les changements aux vitesses dans le vrai repere :
-		speedX = altY*Math.sin((angle-90)*(2*Math.PI)/360.0)+Math.cos((angle-90)*(2*Math.PI)/360.0);
-		speedY = altY*Math.cos((angle-90)*(2*Math.PI)/360.0)-Math.sin((angle-90)*(2*Math.PI)/360.0);
-		// On bouge
+		distance += speed*delta;
+		//En dessous, c'est les projections du sinus du repere tourne de l'angle voulu dans le repere d'origine.
+		//Je sais que c'est moche, mais ca marche, et c'est mathematiquement correct, en plus. (les deux points etant probablement lies)
+		speedX = speed*(Math.cos((angle-90)*2*Math.PI/360.0)-amplitude*Math.sin(distance*2*Math.PI/period)*Math.sin((angle-90)*2*Math.PI/360.0));
+		speedY = speed*(Math.sin((angle-90)*2*Math.PI/360.0)-amplitude*Math.sin(distance*2*Math.PI/period)*Math.cos((angle-90)*2*Math.PI/360.0));
 		moveY(delta);
 		moveX(delta);
 		

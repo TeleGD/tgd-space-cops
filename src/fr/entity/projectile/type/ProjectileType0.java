@@ -52,7 +52,7 @@ public class ProjectileType0 extends Projectile implements Rectangle {
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
 		moveX(delta);
-		distance += delta*Math.sqrt(Math.pow(speedX, 2)+Math.pow(speedY, 2));
+		distance += delta*speed;
 		cut(distance,numberOfChildren);
 		for(int i = 0; i<children.size(); i++){
 			children.get(i).update(container, game, delta);

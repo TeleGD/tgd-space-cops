@@ -23,6 +23,7 @@ public class Projectile extends Movable implements Rectangle {
 	protected static int projCounter;
 	protected Explosion explo;
 	protected boolean isExploding;
+	protected double speed;// Norme de la vitesse, pour eviter les calculs chiants a repetition
 	
 	public Projectile(double x, double y, double angle, double speed, boolean allied) { 
 		alliedShot = allied;
@@ -34,6 +35,7 @@ public class Projectile extends Movable implements Rectangle {
 		height = 16;
 		setMoving(true);
 		this.angle = angle;
+		this.speed = speed;
 		speedY = -speed*Math.sin(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
 		speedX = speed*Math.cos(0.5*Math.PI-(angle*(2*Math.PI)/360.0))*0.5;
 		World.getProjectiles().add(this);
