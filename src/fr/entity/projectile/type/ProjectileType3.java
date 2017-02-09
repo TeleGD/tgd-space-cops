@@ -29,8 +29,8 @@ public class ProjectileType3 extends Projectile implements Rectangle{
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.drawImage(image,(float)x,(float)y);
-		for(int i = 0;i<shotCount-1; i++){
-			shot.get(i).render(container, game, g);
+		for(Projectile p : shot){
+			p.render(container, game, g);
 		}
 	}
 
@@ -38,8 +38,8 @@ public class ProjectileType3 extends Projectile implements Rectangle{
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
 		moveX(delta);
-		for(int i = 0;i<shotCount-1; i++){
-			shot.get(i).update(container, game, delta);
+		for(Projectile p : shot){
+			p.update(container, game, delta);
 		}
 		if(x>800||y>600||x<0||y<0){
 			destroy();

@@ -44,8 +44,8 @@ public class ProjectileType0 extends Projectile implements Rectangle {
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.drawImage(image,(float)x,(float)y);
-		for(int i = 0; i<children.size(); i++){
-			children.get(i).render(container, game, g);
+		for(Projectile p : children){
+			p.render(container, game, g);
 		}
 	}
 	
@@ -54,8 +54,8 @@ public class ProjectileType0 extends Projectile implements Rectangle {
 		moveX(delta);
 		distance += delta*speed;
 		cut(distance,numberOfChildren);
-		for(int i = 0; i<children.size(); i++){
-			children.get(i).update(container, game, delta);
+		for(Projectile p : children){
+			p.update(container, game, delta);
 		}
 		if(x>800||y>600||x<0||y<0){
 			destroy();

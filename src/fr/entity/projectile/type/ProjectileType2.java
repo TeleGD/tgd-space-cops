@@ -41,7 +41,7 @@ public class ProjectileType2 extends Projectile implements Rectangle{
 		angle += modifier*Math.sqrt(Math.pow(speedX, 2)+Math.pow(speedY, 2));
 		y =Y0 + radius*Math.sin(angle*2*Math.PI/360);
 		x =X0 + radius*Math.cos(angle*2*Math.PI/360);
-		System.out.println("Rayon : "+radius+" angle : "+angle+" trigo : "+modifier+"---------");
+		//System.out.println("Rayon : "+radius+" angle : "+angle+" trigo : "+modifier+"---------");
 		if(x>800||y>600||x<0||y<0){
 			destroy();
 		}
