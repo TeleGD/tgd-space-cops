@@ -9,7 +9,7 @@ import fr.entity.Entity;
 import fr.util.Rectangle;
 
 public class Wall extends Entity implements Rectangle{
-	
+
 	public Wall(double x,double y,double width,double height){
 		super();
 		this.x = x;
@@ -20,12 +20,12 @@ public class Wall extends Entity implements Rectangle{
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)  throws SlickException {
-		
+
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		
+
 	}
 
 }

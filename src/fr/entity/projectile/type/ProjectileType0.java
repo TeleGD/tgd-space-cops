@@ -12,16 +12,16 @@ import fr.util.Rectangle;
 
 public class ProjectileType0 extends Projectile implements Rectangle {
 // Ce projectile va tout droit selon l'angle donne,
-// puis se separe apres une distance d en n sous-projectiles qui font un eventail 
+// puis se separe apres une distance d en n sous-projectiles qui font un eventail
 // (avec un angle de 90/(n-1) entre chaque sous projectile).
 // L'angle est en degres, et est compte en sens horaire.
-	
+
 	private double maxDistance;
 	private double distance;
 	private double numberOfChildren;
 	private boolean forked;
 	private ArrayList<Projectile> children;
-	
+
 	public ProjectileType0(double x, double y, double angle, double speed, double d, double n, boolean allied) {
 		super(x, y, angle, speed, allied);
 		maxDistance = d;
@@ -30,7 +30,7 @@ public class ProjectileType0 extends Projectile implements Rectangle {
 		children = new ArrayList<Projectile>();
 		forked = false;
 	}
-	
+
 	public void cut(double d, double n) {
 	// Verifie si le projectile s'est deja scinde, et le scinde si ce n'est pas le cas
 	// et qu'on est alles assez loin
@@ -41,14 +41,14 @@ public class ProjectileType0 extends Projectile implements Rectangle {
 			forked = true;
 		}
 	}
-	
+
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.drawImage(image,(float)x,(float)y);
 		for(Projectile p : children){
 			p.render(container, game, g);
 		}
 	}
-	
+
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
 		moveX(delta);

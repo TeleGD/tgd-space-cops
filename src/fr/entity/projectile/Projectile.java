@@ -15,7 +15,7 @@ public class Projectile extends Movable implements Rectangle {
 // Ce projectile va tout droit selon l'angle donne, a la vitesse speed,
 // a partir des coordonees (x,y).
 // L'angle est en degres, et est compte en sens horaire.
-	
+
 	protected double angle;
 	protected Image image;
 	protected boolean alliedShot;
@@ -24,8 +24,8 @@ public class Projectile extends Movable implements Rectangle {
 	protected Explosion explo;
 	protected boolean isExploding;
 	protected double speed;// Norme de la vitesse, pour eviter les calculs chiants a repetition
-	
-	public Projectile(double x, double y, double angle, double speed, boolean allied) { 
+
+	public Projectile(double x, double y, double angle, double speed, boolean allied) {
 		alliedShot = allied;
 		id = projCounter;
 		projCounter++;
@@ -52,11 +52,11 @@ public class Projectile extends Movable implements Rectangle {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean getAllied(){
 		return alliedShot;
 	}
-	
+
 	public void destroy(){
 		int i =0;
 		while((i<World.getProjectiles().size())&&(World.getProjectiles().get(i).id!=this.id)){
@@ -66,13 +66,13 @@ public class Projectile extends Movable implements Rectangle {
 			World.getProjectiles().remove(i);
 		}
 	}
-	
+
 	public void contact(boolean contact){
 		isExploding = true;
 		explo = new Explosion(x,y,1);
 		explo.bruit();
 	}
-	
+
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		if(isExploding){
@@ -97,5 +97,5 @@ public class Projectile extends Movable implements Rectangle {
 			destroy();
 		}
 	}
-	
+
 }

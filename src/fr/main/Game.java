@@ -9,7 +9,7 @@ import fr.world.World;
 import fr.menus.*;
 
 public class Game extends StateBasedGame {
-	
+
 
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new Game(),800, 600, false);
@@ -18,7 +18,7 @@ public class Game extends StateBasedGame {
 		app.setShowFPS(true);
 		app.start();
 	}
-	
+
 
 	public Game() {
 		super("GeneralGame");

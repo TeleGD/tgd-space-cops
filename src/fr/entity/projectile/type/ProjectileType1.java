@@ -11,13 +11,13 @@ import fr.util.Rectangle;
 public class ProjectileType1 extends Projectile implements Rectangle {
 // Ce projectile avance selon l'angle donne
 // en oscillant (avec une periode de p).
-	
+
 	private int amplitude;// Amplitude du sinus. (1 marche bien)
 	private int period;// Periode du sinus. (16 marche bien)
 	private double altX;// X alternatif (dans le repere tourne de angle)
 	private double altY;// Y alternatif
 	private double distance;// Distance par rapport au point de tir.
-		
+
 	public ProjectileType1(double x, double y, double angle, double speed, int period, boolean allied){
 		super(x, y, angle, speed, allied);
 		altX=0;
@@ -25,11 +25,11 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 		this.period = period;
 		amplitude = 1;
 	}
-	
+
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.drawImage(image,(float)x,(float)y);
 	}
-	
+
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		distance += speed*delta;
 		//En dessous, c'est les projections du sinus du repere tourne de l'angle voulu dans le repere d'origine.
@@ -38,10 +38,10 @@ public class ProjectileType1 extends Projectile implements Rectangle {
 		speedY = speed*(Math.sin((angle-90)*2*Math.PI/360.0)-amplitude*Math.sin(distance*2*Math.PI/period)*Math.cos((angle-90)*2*Math.PI/360.0));
 		moveY(delta);
 		moveX(delta);
-		
+
 		if(x>800||y>600||x<0||y<0){
 			destroy();
 		}
-		
+
 	}
 }

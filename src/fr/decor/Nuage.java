@@ -24,19 +24,19 @@ public class Nuage extends Movable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		image=image.getScaledCopy((float) taille);
 		image.rotate((float) (Math.random()*360));
 	}
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.drawImage(image,(float) x, (float)y);
-		
+
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		
+
 		y+=speedY*delta+Decor.defilement;
 		if(y>600)Decor.nuages.remove(this);
 	}

@@ -35,7 +35,7 @@ import fr.world.World;
 
 public class Player extends Movable implements Rectangle {
 
-	
+
 	private final static int FRAME_TO_WAIT=5;
 	private static int TIME_DASH=10000; //  re-initialiser
 	private static int NB_DE_VIE=5; //  re-initialiser
@@ -63,8 +63,8 @@ public class Player extends Movable implements Rectangle {
 		speedY = 0;
 		isMoving = true;
 		compteur=0;
-		
-		
+
+
 		try {
 			imagedroite=new Image("sprites/ship2.png");
 			imagegauche=new Image("sprites/ship0.png");
@@ -75,11 +75,11 @@ public class Player extends Movable implements Rectangle {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		
+
 
 
 		for(int i=0;i<NB_DE_VIE;i++)
@@ -91,27 +91,27 @@ public class Player extends Movable implements Rectangle {
 		g.setColor(Color.white);
 		g.fillRoundRect((float) 782, (float)12, 12, 24,1);
 		g.setColor(Color.yellow);
-		
+
 		if(System.currentTimeMillis()-timeDashInit<TIME_DASH+500)g.fillRoundRect((float) 782, (float)36, 12, -24*(System.currentTimeMillis()-timeDashInit)/TIME_DASH,1);
 		else g.fillRoundRect((float) 782, (float)12, 12, 24,1);
 
 		if(bonus!=null)bonus.render(container, game, g);
 		if((invincible && compteur%64>35 )|| !invincible)g.drawImage(image,(float)(x-24),(float)y);
-		
+
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		
-		
+
+
 		deplacement();
-		
+
 		if(System.currentTimeMillis()-timeInvincible>3000)invincible=false;
-		
+
 		dash();
-		
+
 		moveX(delta);
 		moveY(delta);
-		
+
 		if(compteur%FRAME_TO_WAIT==0){
 			if(MISSILE==2)
 			{
@@ -125,7 +125,7 @@ public class Player extends Movable implements Rectangle {
 			}
 		}
 		compteur++;
-		
+
 		for(int i=0;i<World.getProjectiles().size();i++)
 		{
 			if(!invincible && !World.getProjectiles().get(i).getAllied() && Collisions.isCollisionRectRect(this,World.getProjectiles().get(i)))
@@ -143,15 +143,15 @@ public class Player extends Movable implements Rectangle {
 					game.enterState(GOMenu.ID, new FadeOutTransition(), new FadeInTransition());
 				}
 			}
-			
-			
+
+
 		}
-		
+
 		if(bonus==null &&(int)(Math.random()*1000)==0)
 		{
 			bonus=new Bonus(Math.random()*760,-400);
 		}
-		
+
 		if(bonus!=null)
 		{
 			bonus.update(container, game, delta);
@@ -187,12 +187,12 @@ public class Player extends Movable implements Rectangle {
 	private void deplacement() {
 		speedX = 0;
 		speedY = 0;
-		if((upPress && !downPress) || (upPress && downPress && !hautbas)) 
+		if((upPress && !downPress) || (upPress && downPress && !hautbas))
 		{
 			if(y>300){
 				speedY=-0.5;
 			}
-			
+
 		}
 		if((downPress && !upPress) || (upPress && downPress && hautbas)){
 			if(y< 600- height){
@@ -205,7 +205,7 @@ public class Player extends Movable implements Rectangle {
 				speedX = -0.5;
 				image=imagegauche;
 			}
-			
+
 		}
 		if((!leftPress && rightPress)|| (leftPress && rightPress && droitegauche))
 		{
@@ -220,50 +220,50 @@ public class Player extends Movable implements Rectangle {
 		{
 			image=imagecentrale;
 		}
-		
+
 	}
 
 	public void keyReleased(int key, char c) {
-		
+
 		switch (key){
-		
+
 			case Input.KEY_UP:
 				upPress=false;
 			break;
-			
+
 			case Input.KEY_DOWN:
 				downPress=false;
 			break;
-			
+
 			case Input.KEY_LEFT:
 				leftPress=false;
 			break;
-			
+
 			case Input.KEY_RIGHT:
 				rightPress=false;
 			break;
 			case Input.KEY_LSHIFT:
 				dash=false;
 			break;
-			
+
 		}
-		
-		
+
+
 	}
 
 	public void keyPressed(int key, char c) {
 		switch (key){
-		
+
 		case Input.KEY_UP:
 			upPress=true;
 			hautbas=false;
 		break;
-		
+
 		case Input.KEY_DOWN:
 			downPress=true;
 			hautbas=true;
 		break;
-		
+
 		case Input.KEY_LEFT:
 			leftPress=true;
 			droitegauche=false;
@@ -282,13 +282,13 @@ public class Player extends Movable implements Rectangle {
 		break;
 
 		}
-		
+
 	}
-	
+
 	public static void reset(){
 		NB_DE_VIE=5;
 		compteur=0;
-		
+
 	}
 
 

@@ -19,7 +19,7 @@ public class Decor extends Movable{
 	protected static int defilement=3;
 	static ArrayList<Nuage> nuages=new ArrayList<Nuage>();
 	static ArrayList<Island> islands=new ArrayList<Island>();
-	
+
 	public Decor()
 	{
 		try {
@@ -30,10 +30,10 @@ public class Decor extends Movable{
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		
+
 		for(int i=0;i<7;i++)
 		{
 			for(int j=-1;j<6;j++)
@@ -44,33 +44,33 @@ public class Decor extends Movable{
 		for(int i=0;i<islands.size();i++)
 		{
 			islands.get(i).render(container, game, g);
-			
+
 		}
 		for(int i=0;i<nuages.size();i++)
 		{
 			nuages.get(i).render(container, game, g);
-			
+
 		}
-		
+
 
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		
+
 		compteur+=1;
 		if(compteur%10==0 && ((int)Math.random()*2)==0)// on genere aleatoirement les nuages 1chance sur 8 tous les 100 frames
 		{
 			double scale=Math.random()*13+0.5;
 			nuages.add(new Nuage(Math.random()*800-32*scale,-800, (Math.random()*0.3+0.2),(int) (Math.random()*3),scale));
 		}
-		
+
 		if(compteur%100==0 && ((int)Math.random()*3)==0)// on genere aleatoirement les nuages 1chance sur 8 tous les 100 frames
 		{
 			islands.add(new Island(Math.random()*800-32,-800));
 		}
 
-		
+
 		for(int i=0;i<nuages.size();i++)
 		{
 			nuages.get(i).update(container, game, delta);
@@ -79,9 +79,9 @@ public class Decor extends Movable{
 		{
 			islands.get(i).update(container, game, delta);
 		}
-		
+
 	}
-	
-	
+
+
 
 }

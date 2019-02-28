@@ -3,7 +3,7 @@ package fr.util;
 import fr.entity.Entity;
 
 public abstract class Movable extends Entity{
-	
+
 	protected double oldX,oldY;
 	protected double speedX,speedY;
 	protected double accelX,accelY;
@@ -13,26 +13,26 @@ public abstract class Movable extends Entity{
 	protected int jumpMax;
 	protected double jumpPower;
 	protected boolean collision;
-	
+
 	public void moveX(int delta){
 		if(isMoving){
 			x+=speedX*delta;
 		}
 	}
-	
+
 	public void moveY(int delta){
 		if(isMoving){
 			y+=speedY*delta;
 		}
 	}
-	
+
 	public void jump(int delta){
 		if(jumpLeft > 0){
 		speedY = -jumpPower*delta;
 		jumpLeft--;
 		}
 	}
-	
+
 	public boolean isMoving() {
 		return isMoving;
 	}

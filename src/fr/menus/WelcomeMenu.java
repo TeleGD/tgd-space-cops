@@ -47,7 +47,7 @@ public class WelcomeMenu extends BasicGameState {
 		this.container = container;
 		container.setShowFPS(false);
 		this.game = game;
-		
+
 		xs = 5; ys = 0; xc = 0; yc = 5;
 		dir_h_s = 1; dir_v_s = 1; dir_h_c = -1; dir_v_c = -1;
 
@@ -60,8 +60,8 @@ public class WelcomeMenu extends BasicGameState {
 			disp = !disp;
 		}
 		cpt++;
-		
-		
+
+
 		int floatingSize = 10;
 
 		if (Math.abs(xs) == floatingSize)
@@ -72,13 +72,13 @@ public class WelcomeMenu extends BasicGameState {
 			dir_h_c = -dir_h_c;
 		if (Math.abs(yc) == floatingSize)
 			dir_v_c = -dir_v_c;
-		
+
 		xs += dir_h_s;
 		ys += dir_v_s;
 		xc += dir_h_c;
 		yc += dir_v_c;
-		
-		
+
+
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)

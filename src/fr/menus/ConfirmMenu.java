@@ -20,13 +20,13 @@ import fr.menus.MainMenu;
 
 
 public class ConfirmMenu extends BasicGameState {
-	
+
 	static TrueTypeFont font9;
 	static TrueTypeFont font6;
-	
+
 	public static int ID = 1;
 
-	private String nom = "Etes-vous sûr(e)? Tous les scores seront perdus";
+	private String nom = "Etes-vous sÃ»r(e)? Tous les scores seront perdus";
 	private String[] items = { "Non", "Oui" };
 
 	public int nbrOption = items.length;
@@ -36,7 +36,7 @@ public class ConfirmMenu extends BasicGameState {
 	}
 
 	private Image background;
-	
+
 	static StateBasedGame game;
 
 	static GameContainer container;
@@ -47,15 +47,15 @@ public class ConfirmMenu extends BasicGameState {
 		this.game = game;
 		this.container = container;
 		container.setShowFPS(false);
-		
+
 		//background = new Image("Images/background2.png");
-		
+
 		Font titre9Font = new Font("Courant", Font.BOLD, 22);
     	font9 = new TrueTypeFont(titre9Font, false);
-    	
+
     	Font titre6Font = new Font("Courant", Font.BOLD, 16);
     	font6 = new TrueTypeFont(titre6Font, false);
-    	
+
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta)
@@ -65,7 +65,7 @@ public class ConfirmMenu extends BasicGameState {
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		
+
 		//g.drawImage(background, 0, 0);
 
 		g.setColor(Color.white);
@@ -123,4 +123,3 @@ public class ConfirmMenu extends BasicGameState {
 	}
 
 }
-

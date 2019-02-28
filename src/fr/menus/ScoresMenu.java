@@ -43,7 +43,7 @@ public class ScoresMenu extends BasicGameState {
 
 	public static void addScoreToList() {
 		if (World.getScore() > scoresList[4]) {
-			
+
 			scoresList[4] = World.getScore();
 			int i = 4; int tmp;
 			while (i>0 && scoresList[i]>scoresList[i-1]) {
@@ -53,12 +53,12 @@ public class ScoresMenu extends BasicGameState {
 				i--;
 			}
 		}
-		
+
 		for (int k=0; k<5; k++)
 			items[k] = (k+1)+". "+scoresList[k];
 		firstTime = false;
 	}
-	
+
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.container = container;
@@ -71,7 +71,7 @@ public class ScoresMenu extends BasicGameState {
 
 		Font titre6Font = new Font("Courant", Font.BOLD, 13);
 		font6 = new TrueTypeFont(titre6Font, false);
-		
+
 		firstTime = true;
 	}
 

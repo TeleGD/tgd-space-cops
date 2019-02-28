@@ -12,20 +12,20 @@ import fr.util.Rectangle;
 
 public class ProjectileType3 extends Projectile implements Rectangle{
 // Ce tir fait une couronne autour du tireur, qui s'elargit au fil du temps.
-	
+
 	private ArrayList<Projectile> shot;
 	private int shotCount;
-	
+
 	public ProjectileType3(double x, double y, double angle, double speed, int shotCount, boolean allied) {
 		super(x, y, angle, speed, allied);
 		shot = new ArrayList<Projectile>();
 		this.shotCount = shotCount;
-		
+
 		for(int i = 1;i<shotCount;i++){
 			shot.add(new Projectile(x, y, angle + i*360/(shotCount-1), speed, allied));
 		}
 	}
-	
+
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.drawImage(image,(float)x,(float)y);

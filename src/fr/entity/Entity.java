@@ -6,17 +6,17 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public abstract class Entity {
-	
+
 	protected double x,y;
 	protected double width,height;
-	
+
 	public Entity(){
 		x = 0;
 		y = 0;
 		width = 32;
 		height = 32;
 	}
-	
+
 	public abstract void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException;
 	public abstract void update(GameContainer container, StateBasedGame game, int delta) throws SlickException;
 

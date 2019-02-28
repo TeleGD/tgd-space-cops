@@ -17,16 +17,16 @@ import fr.util.Collisions;
 import fr.world.World;
 
 public class BasicEnemy extends Enemy{
-	
+
 	Random rand;
-	
+
 	double targetX; //Coordonnees de la prochaine position
 	double targetY;
-	
+
 	boolean explosed = false;
-	
+
 	boolean xOk,yOk; //Si les coordonees x et y sont atteintes
-	
+
 	int marge = 10; //Marge d'erreur
 	private Explosion explo;
 	public BasicEnemy(double x, double y, double width, double height, int time) {
@@ -44,8 +44,8 @@ public class BasicEnemy extends Enemy{
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		super.update(container, game, delta);
@@ -60,7 +60,7 @@ public class BasicEnemy extends Enemy{
 				super.destroy();
 			}
 		}
-		
+
 	}
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		if(alive)
@@ -68,7 +68,7 @@ public class BasicEnemy extends Enemy{
 		if(explo!=null)
 			explo.render(container,game,g);
 	}
-	
+
 	public void move(int delta){
 		moveX(delta);
 		if(x<targetX-marge){
@@ -102,16 +102,16 @@ public class BasicEnemy extends Enemy{
 		if(alive)
 		World.setScore(World.getScore()+1);
 	}
-	
+
 	public void moveArea(double x, double y, double width, double height){
 		targetX = genDouble(x,x+width);
 		targetY = genDouble(y,y+height);
 	}
-	
+
 	public double genDouble(double min, double max){
 		return (min+rand.nextInt((int)(max - min)));
 	}
-	
+
 	public void shoot(){
 		if(alive)
 		new Projectile(x,y,180,0.8, false);

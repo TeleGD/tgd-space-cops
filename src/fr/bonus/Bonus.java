@@ -14,7 +14,7 @@ public class Bonus extends Movable implements Rectangle {
 	public static final int TYPE_PLUS_DE_MISSILE=0;
 	public  static final int TYPE_PLUS_DE_DASH=1;
 	public  static final int TYPE_PLUS_UNE_VIE=2;
-	
+
 	private Image image;
 	public int type;
 	public Bonus(double x, double y)//position de l'ennemi
@@ -40,24 +40,24 @@ public class Bonus extends Movable implements Rectangle {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		image=image.getScaledCopy((float)2);
-			
-		
+
+
 	}
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		
+
 		g.drawImage(image, (float)x, (float)y);
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		y+=speedY*delta;
-		
+
 	}
-	
-	
-	
+
+
+
 
 }

@@ -10,11 +10,11 @@ import fr.explosion.Explosion;
 import fr.util.Rectangle;
 
 public abstract class Boss extends Enemy implements Rectangle{
-	
+
 	Image skin;
 	protected Explosion explo;
-	
-	
+
+
 	public Boss(double x, double y, double width, double height, int time){
 		super(x, y, width, height,time);
 	}
@@ -39,16 +39,16 @@ public abstract class Boss extends Enemy implements Rectangle{
 				super.destroy();
 			}
 		}
-		
+
 	}
-	
+
 	public void destroy(){
-		
+
 	}
 
 	@Override
 	void shoot() {
-		
+
 	}
 
 }

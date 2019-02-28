@@ -9,8 +9,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.util.Movable;
 
 public class Island extends Movable{
-	
-	
+
+
 	private Image image;
 
 	public Island(double x,double y)
@@ -23,7 +23,7 @@ public class Island extends Movable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		image=image.getScaledCopy((int) (Math.random()*250)+150,(int) (Math.random()*250)+150);
 		image.rotate((float) (Math.random()*360));
 	}
@@ -37,8 +37,8 @@ public class Island extends Movable{
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		y+=Decor.defilement;
 		if(y>600)Decor.islands.remove(this);
-		
-		
+
+
 	}
 
 }

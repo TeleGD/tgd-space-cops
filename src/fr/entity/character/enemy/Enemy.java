@@ -13,7 +13,7 @@ import fr.util.Rectangle;
 import fr.world.World;
 
 public abstract class Enemy extends Movable implements Rectangle{
-	
+
 	long lastShoot;
 	long time;
 	protected Image skin;
@@ -21,9 +21,9 @@ public abstract class Enemy extends Movable implements Rectangle{
 	protected static int enemyCounter;
 	protected boolean alive;
 	int hp;
-	
-	
-	
+
+
+
 	public Enemy(double x,double y,double width,double height,int time){
 		isMoving = true;
 		id = enemyCounter;
@@ -57,13 +57,13 @@ public abstract class Enemy extends Movable implements Rectangle{
 				}else{
 					destroy();
 					alive = false;
-					
+
 				}
 			}
 		}
 		}
 	}
-	
+
 	public void destroy(){
 		int i =0;
 		while((i<World.getEnemies().size())&&(World.getEnemies().get(i).id!=this.id)){
@@ -73,7 +73,7 @@ public abstract class Enemy extends Movable implements Rectangle{
 			World.getEnemies().remove(i);
 		}
 	}
-	
+
 	public void move(int delta){
 		speedX+=accelX;
 		moveX(delta);
@@ -97,9 +97,9 @@ public abstract class Enemy extends Movable implements Rectangle{
 			speedY = -speedY;
 		}
 	}
-	
+
 	abstract void shoot();
-	
+
 	protected void testShoot(){
 		if(System.currentTimeMillis() - lastShoot > time){
 			shoot();

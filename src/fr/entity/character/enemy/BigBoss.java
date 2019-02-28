@@ -8,7 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.explosion.Explosion;
 
 public class BigBoss extends Boss{
-	
+
 	Tourret tour1,tour2;
 
 	public BigBoss(double x, double y, double width, double height, int time) {
@@ -16,7 +16,7 @@ public class BigBoss extends Boss{
 		speedY = 0.05;
 		try {
 			skin = new Image("sprites/ennemi2.png");
-			skin = skin.getScaledCopy((float) 2); 
+			skin = skin.getScaledCopy((float) 2);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -24,9 +24,9 @@ public class BigBoss extends Boss{
 		tour1 = new Tourret(x+8,y+26,32,32,(int) (-y+50),0,time,0);
 		tour2 = new Tourret(x+88,y+26,32,32,(int) (-y+50),0,time,0);
 	}
-	
 
-	
+
+
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		super.update(container, game, delta);

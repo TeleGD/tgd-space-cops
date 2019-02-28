@@ -22,7 +22,7 @@ import fr.decor.Decor;
 
 
 public class World extends BasicGameState{
-	
+
 	public enum direction {HAUT,DROITE,BAS,GAUCHE};
 	private static Player player;
 	public static int ID=0;
@@ -32,11 +32,11 @@ public class World extends BasicGameState{
 	private static GameContainer container;
 	private static StateBasedGame game;
 	private static Decor decor;
-	
+
 	private static int score = 0;
 	public static Music Mbackground;
 	public static Music MMenu;
-	
+
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 
@@ -96,7 +96,7 @@ public class World extends BasicGameState{
 		enemyGen.update(container, game, delta);
 		System.out.println(enemies.size());
 	}
-	
+
 	public void keyReleased(int key, char c) {
 		player.keyReleased(key, c);
 	}
@@ -108,7 +108,7 @@ public class World extends BasicGameState{
 			game.enterState(PauseMenu.ID);
 		}
 	}
-	
+
 	public static ArrayList<Enemy> getEnemies(){
 		return enemies;
 	}
@@ -120,7 +120,7 @@ public class World extends BasicGameState{
 	public int getID() {
 		return ID;
 	}
-	
+
 	public static int getScore() {
 		return score;
 	}
@@ -128,5 +128,5 @@ public class World extends BasicGameState{
 	public static void setScore(int scoreP) {
 		score = scoreP;
 	}
-	
+
 }

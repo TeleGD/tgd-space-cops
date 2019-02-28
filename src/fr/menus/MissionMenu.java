@@ -30,7 +30,7 @@ public class MissionMenu extends BasicGameState {
 	public static String[] txt3 = new String[2];
 	public static String[] planetName = { "Kepler-770-C", "Utopia", "Balmoran",
 			"Sulituan", "Naeco", "Nihpuad" };
-	public static String[] postName = { "général 6 étoiles en chef",
+	public static String[] postName = { "gÃ©nÃ©ral 6 Ã©toiles en chef",
 			"capitaine de section", "grand administrateur", "chef artilleur" };
 	public static ArrayList<String> textList;
 	public static int numMessage;
@@ -90,13 +90,13 @@ public class MissionMenu extends BasicGameState {
 		Font titre6Font = new Font("Courant", Font.BOLD, 13);
 		font6 = new TrueTypeFont(titre6Font, false);
 
-		txt1[0] = "Depuis plusieurs années, la planète ";
-		txt2[0] = " vit dans la peur de la menace spatio-terroriste. Sur une des dernières planètes de la galaxie possédant encore des arbres naturels fournissant l'oxygène nécessaire à la vie, l'économie inter-stellaire est gangrénée par le trafic de végétaux. Ces pirates de l'espace possèdent leur propre armée et agissent en bande organisée, se livrant à toutes sortes d'activités anti-écologiques de grande ampleur. Vous venez d'être nommé au poste de ";
-		txt3[0] = " à la tête de la brigade d'intervention et de prévision des attaques. Prenez les devants de votre escadron et faites le ménage dans cette armée de cosmobrigands !";
+		txt1[0] = "Depuis plusieurs annÃ©es, la planÃ¨te ";
+		txt2[0] = " vit dans la peur de la menace spatio-terroriste. Sur une des derniÃ¨res planÃ¨tes de la galaxie possÃ©dant encore des arbres naturels fournissant l'oxygÃ¨ne nÃ©cessaire Ã  la vie, l'Ã©conomie inter-stellaire est gangrÃ¨nÃ©e par le trafic de vÃ©gÃ©taux. Ces pirates de l'espace possÃ©dent leur propre armÃ©e et agissent en bande organisÃ©e, se livrant Ã  toutes sortes d'activitÃ©s anti-Ã©cologiques de grande ampleur. Vous venez d'Ãªtre nommÃ© au poste de ";
+		txt3[0] = " Ã  la tÃªte de la brigade d'intervention et de prÃ©vision des attaques. Prenez les devants de votre escadron et faites le mÃ©nage dans cette armÃ©e de cosmobrigands !";
 
-		txt1[1] = "Des idéalistes soviétiques tentent de mettre en place une nouvelle révolution communiste ! Après la migration de l'humanité vers la planète ";
-		txt2[1] = ", des groupuscules armés ont tenté de prendre le pouvoir par la force. Grâce à la puissance du grand chef suprême, les camarades tentent d'envahir les bastions de l'ennemi capitaliste depuis leurs vaisseaux spatiaux. Si rien n'est fait pour les arrêter, la face de ce nouveau monde pourrait changer à jamais ! En tant que ";
-		txt3[1] = " de la contre-révolte capitaliste, vous avez la charge de tuer dans l'oeuf ce soulèvement prolétaire. Soyez fort, le sort de la planète est entre vos mains.";
+		txt1[1] = "Des idÃ©alistes soviÃ©tiques tentent de mettre en place une nouvelle rÃ©volution communiste ! AprÃ¨s la migration de l'humanitÃ© vers la planÃ¨te ";
+		txt2[1] = ", des groupuscules armÃ©s ont tentÃ© de prendre le pouvoir par la force. GrÃ¢ce Ã  la puissance du grand chef suprÃªme, les camarades tentent d'envahir les bastions de l'ennemi capitaliste depuis leurs vaisseaux spatiaux. Si rien n'est fait pour les arrÃ©ter, la face de ce nouveau monde pourrait changer Ã  jamais ! En tant que ";
+		txt3[1] = " de la contre-rÃ©volte capitaliste, vous avez la charge de tuer dans l'oeuf ce soulÃ¨vement prolÃ©taire. Soyez fort, le sort de la planÃ¨te est entre vos mains.";
 
 		textList = generateText(40);
 
@@ -129,7 +129,7 @@ public class MissionMenu extends BasicGameState {
 	}
 
 	public static void reset() {
-		
+
 	}
 
 	@Override

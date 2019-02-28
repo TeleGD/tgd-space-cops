@@ -11,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.util.Movable;
 
 public class Explosion extends Movable {
-	
+
 	private int explosion;
 	private Image[] image=new Image[60];
 	private double scale;
@@ -24,7 +24,7 @@ public class Explosion extends Movable {
 		explosion = 179;
 		bruit();
 	}
-	
+
 	public void loadExplosion(){
 		for(int i = 0; i<60; i++){
 			if(i<8){
@@ -48,7 +48,7 @@ public class Explosion extends Movable {
 
 	}
 
-	
+
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
@@ -65,9 +65,9 @@ public class Explosion extends Movable {
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		if(explosion>0){
 			explosion--;
-		}	
+		}
 	}
-	
+
 	public void bruit()
 	{
 		try {
@@ -77,6 +77,6 @@ public class Explosion extends Movable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 }

@@ -14,8 +14,8 @@ public class ProjectileType2 extends Projectile implements Rectangle{
 	private int modifier; // Sert juste a gerer le changement trigo/horaire
 	private double X0; // Position initiale (et donc centre de la spirale
 	private double Y0; // idem
-	
-	
+
+
 	public ProjectileType2(double x, double y, double angle, double speed, boolean trigo, boolean allied) {
 		super(x, y, angle, speed, allied);
 		radius = 0;
@@ -29,7 +29,7 @@ public class ProjectileType2 extends Projectile implements Rectangle{
 			modifier = -1;
 		}
 	}
-	
+
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		g.drawImage(image,(float)x,(float)y);

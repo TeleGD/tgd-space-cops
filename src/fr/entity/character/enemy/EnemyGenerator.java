@@ -12,7 +12,7 @@ import fr.menus.MissionMenu;
 import fr.world.World;
 
 public class EnemyGenerator {
-	
+
 	long lastSpawn;
 	long time;
 	Random rand;
@@ -20,14 +20,14 @@ public class EnemyGenerator {
 	long timeStart;
 	boolean started = false;
 	boolean spawn = false;
-	
-	String message0 = "Vous avez eu beau brûler mes sbires, vous ne m'attraperez pas !";
-	String message02 = "La forêt est à moi, je vous détruirai !";
-	String message1 = "Mes camarades sont morts en défendant la mère patrie,";
-	String message12 = "mais je vous brûlerai ! Les rouges vaincront !";
-	
+
+	String message0 = "Vous avez eu beau brÃ»ler mes sbires, vous ne m'attraperez pas !";
+	String message02 = "La forÃªt est Ã  moi, je vous dÃ©truirai !";
+	String message1 = "Mes camarades sont morts en dÃ©fendant la mÃ¨re patrie,";
+	String message12 = "mais je vous brÃ»lerai ! Les rouges vaincront !";
+
 	boolean m1,m2;
-	
+
 	public void reset(){
 		for(int i = 0; i < event.length;i++){
 			event[i] = false;
@@ -35,13 +35,13 @@ public class EnemyGenerator {
 			spawn = false;
 		}
 	}
-	
-	
+
+
 	public void init(GameContainer container,StateBasedGame game){
 		time = 1000;
-		rand = new Random();	
+		rand = new Random();
 	}
-	
+
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		if(m1){
 		g.drawString(message0, 50, 500);
@@ -52,14 +52,14 @@ public class EnemyGenerator {
 		g.drawString(message12, 50, 550);
 		}
 	}
-	
+
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		if(!started){
 			lastSpawn = System.currentTimeMillis();
 			timeStart = System.currentTimeMillis();
 			started = true;
 		}
-		
+
 		if(spawn){
 			if(System.currentTimeMillis() - lastSpawn > time){
 				lastSpawn = System.currentTimeMillis();
@@ -67,8 +67,8 @@ public class EnemyGenerator {
 			}
 		}
 
-		
-		
+
+
 		if(condEvent(0,2000)){
 			spawn = true;
 			event[0]=true;
@@ -115,19 +115,19 @@ public class EnemyGenerator {
 				m2 = false;
 			event[9]=true;
 		}
-		
-		
-		
-		
+
+
+
+
 	}
-	
+
 	public double genDouble(double min, double max){
 		return (min+rand.nextInt((int)(max - min)));
 	}
-	
+
 	public boolean condEvent(int i, long time){
 		return (!event[i] && (long)System.currentTimeMillis() - timeStart>time);
 	}
-	
+
 
 }
