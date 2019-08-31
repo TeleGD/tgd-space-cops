@@ -1,8 +1,8 @@
 - Adrien Wehrung
 - Arthur Canal (@canalarthur)
 - BusyAnt
-- Jérôme
+- Jérôme Gauzins (@jeromegauzins)
 - Lala
-- Medoc
-- Nicolas Bernardes
+- Medoc (@MehdiTheMedoc)
+- Nicolas Bernardes (@nicorb)
 - Quentin Seiwert (@saliwan)
