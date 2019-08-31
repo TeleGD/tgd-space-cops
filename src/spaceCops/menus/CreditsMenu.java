@@ -57,11 +57,11 @@ public class CreditsMenu extends BasicGameState {
 		container.setShowFPS(false);
 		background = new Image("images/0004.png");
 
-    	Font titre5Font = new Font("Courant", Font.BOLD, 18);
-    	font5 = new TrueTypeFont(titre5Font, false);
+		Font titre5Font = new Font("Courant", Font.BOLD, 18);
+		font5 = new TrueTypeFont(titre5Font, false);
 
 		Font titre6Font = new Font("Courant", Font.BOLD, 13);
-    	font6 = new TrueTypeFont(titre6Font, false);
+		font6 = new TrueTypeFont(titre6Font, false);
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
