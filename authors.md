@@ -3,6 +3,6 @@
 - BusyAnt
 - Jérôme Gauzins (@jeromegauzins)
 - Lala
-- Medoc (@MehdiTheMedoc)
+- Mehdi Akkari (@MehdiTheMedoc)
 - Nicolas Bernardes (@nicorb)
 - Quentin Seiwert (@saliwan)
